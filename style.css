@@ -13,10 +13,10 @@ body {
     align-items: center;
     position: relative;
     overflow-x: hidden;
-    background: #b7d9e5;  /* Base sky color from painting */
+    background: #b7d9e5;
 }
 
-/* Master painting background - exactly like the image */
+/* Master painting background */
 body::before {
     content: '';
     position: fixed;
@@ -25,36 +25,28 @@ body::before {
     right: 0;
     bottom: 0;
     background: 
-        /* Sky gradient - soft blues transitioning to warm horizon */
         linear-gradient(165deg, 
             #c4e0e9 0%,
             #b7d9e5 20%,
             #d4bfb0 60%,
             #e3b79c 80%,
             #e8b89d 100%),
-        
-        /* Soft cloud forms - painted effect */
         radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
         radial-gradient(ellipse at 80% 45%, rgba(255, 235, 220, 0.35) 0%, transparent 45%),
         radial-gradient(ellipse at 40% 60%, rgba(255, 245, 235, 0.3) 0%, transparent 50%),
         radial-gradient(ellipse at 60% 25%, rgba(255, 250, 240, 0.25) 0%, transparent 35%),
-        
-        /* Artistic brush strokes - like the painting */
         repeating-linear-gradient(45deg, 
             rgba(255, 255, 255, 0.02) 0px,
             rgba(255, 255, 255, 0.02) 5px,
             transparent 5px,
             transparent 10px),
-        
-        /* Warm glow from horizon */
         radial-gradient(ellipse at 50% 80%, rgba(255, 200, 150, 0.3) 0%, transparent 60%);
-    
     filter: blur(2px);
     pointer-events: none;
     z-index: 0;
 }
 
-/* Artistic clouds - painted, flowing forms */
+/* Artistic clouds */
 .painting-cloud {
     position: fixed;
     background: none;
@@ -62,7 +54,6 @@ body::before {
     pointer-events: none;
 }
 
-/* Main cloud formations - exactly like the painting */
 .cloud-1 {
     top: 15%;
     left: 0;
@@ -125,7 +116,7 @@ body::before {
     100% { transform: translateX(-5%) scale(1); opacity: 0.6; }
 }
 
-/* Warm sun effect - like in the painting */
+/* Sun effect */
 .sun-painting {
     position: fixed;
     top: 10%;
@@ -136,8 +127,7 @@ body::before {
         rgba(255, 220, 170, 0.35) 0%,
         rgba(255, 200, 150, 0.25) 30%,
         rgba(255, 180, 130, 0.15) 50%,
-        transparent 70%
-    );
+        transparent 70%);
     border-radius: 50%;
     filter: blur(30px);
     z-index: 1;
@@ -145,17 +135,11 @@ body::before {
 }
 
 @keyframes sunGlow {
-    0%, 100% { 
-        transform: scale(1) translate(0, 0);
-        opacity: 0.6;
-    }
-    50% { 
-        transform: scale(1.2) translate(-10px, -5px);
-        opacity: 0.9;
-    }
+    0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.6; }
+    50% { transform: scale(1.2) translate(-10px, -5px); opacity: 0.9; }
 }
 
-/* Main app container - painted glass effect */
+/* Main app container */
 .app-container {
     max-width: 1100px;
     width: 100%;
@@ -174,20 +158,7 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Artistic border effect - painted edges */
-.app-container::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 65px 65px 35px 35px;
-    pointer-events: none;
-}
-
-/* Additional artistic texture - like brush strokes */
+/* Artistic texture */
 .painting-texture {
     position: fixed;
     top: 0;
@@ -202,7 +173,7 @@ body::before {
     mix-blend-mode: overlay;
 }
 
-/* Title styling - artistic lettering */
+/* Title */
 h1 {
     text-align: center;
     color: #3f352c;
@@ -236,19 +207,11 @@ h1::before { animation-delay: 0s; }
 h1::after { animation-delay: 2.5s; }
 
 @keyframes paintSparkle {
-    0%, 100% { 
-        opacity: 0.7; 
-        transform: scale(1) rotate(0deg);
-        filter: drop-shadow(0 4px 8px rgba(255, 200, 150, 0.4));
-    }
-    50% { 
-        opacity: 1; 
-        transform: scale(1.3) rotate(8deg);
-        filter: drop-shadow(0 8px 16px rgba(255, 200, 150, 0.8));
-    }
+    0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.3) rotate(8deg); }
 }
 
-/* Section headers - painted style */
+/* Section headers */
 h2 {
     color: #3f352c;
     font-size: 42px;
@@ -272,7 +235,7 @@ h2::after {
     background: linear-gradient(90deg, transparent, #d4a59a, transparent);
 }
 
-/* Home screen specific */
+/* Home screen */
 #home {
     text-align: center;
     padding: 30px 0 50px;
@@ -288,13 +251,11 @@ h2::after {
     display: none;
 }
 
-/* Bible verse display - like painted parchment */
 #home p {
     color: #3f352c;
     font-size: 28px;
     margin: 45px 0 55px;
     font-style: italic;
-    font-family: 'Cormorant Garamond', serif;
     background: rgba(255, 245, 235, 0.5);
     backdrop-filter: blur(8px);
     padding: 35px 70px;
@@ -305,12 +266,9 @@ h2::after {
         inset 0 0 0 2px rgba(255, 255, 255, 0.7),
         inset 0 0 40px rgba(255, 255, 255, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.6);
-    letter-spacing: 1.5px;
-    line-height: 1.6;
-    max-width: 800px;
 }
 
-/* Buttons - painted with artistic edges */
+/* Buttons */
 button {
     padding: 22px 50px;
     margin: 15px;
@@ -334,19 +292,6 @@ button {
     overflow: hidden;
 }
 
-button::before {
-    content: '';
-    position: absolute;
-    top: -30%;
-    left: -30%;
-    width: 160%;
-    height: 160%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s;
-    transform: scale(0.7);
-}
-
 button:hover {
     background: rgba(255, 250, 240, 0.8);
     transform: translateY(-6px) scale(1.02);
@@ -355,10 +300,6 @@ button:hover {
         0 0 0 3px rgba(255, 255, 255, 0.9),
         inset 0 0 40px rgba(255, 255, 255, 0.8);
     color: #2f251c;
-}
-
-button:hover::before {
-    opacity: 0.4;
 }
 
 button:active {
@@ -380,19 +321,11 @@ button:active {
 #home button:nth-child(5) { animation-delay: 0.3s; }
 
 @keyframes paintFadeIn {
-    from { 
-        opacity: 0; 
-        transform: translateY(30px) scale(0.95);
-        filter: blur(2px);
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
+    from { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(2px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-/* Input fields - painted style */
+/* Input fields */
 input {
     padding: 22px 40px;
     width: 100%;
@@ -428,7 +361,7 @@ input::placeholder {
     opacity: 0.6;
 }
 
-/* Result containers - like painted panels */
+/* Result containers */
 #answerResult, #bibleResult, #readerContent {
     margin-top: 40px;
     padding: 50px;
@@ -462,7 +395,7 @@ input::placeholder {
     border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-/* Chapter navigation - painted style */
+/* Chapter navigation */
 .chapter-navigation {
     display: flex;
     justify-content: center;
@@ -489,12 +422,6 @@ input::placeholder {
     opacity: 0.3;
     cursor: not-allowed;
     transform: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-}
-
-.chapter-navigation button:disabled:hover {
-    transform: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .chapter-navigation span {
@@ -512,60 +439,43 @@ input::placeholder {
     text-shadow: 2px 2px 0 white;
 }
 
-/* Book grid - painted tiles */
-.book-grid {
+/* Book and Chapter grids */
+.book-grid, .chapter-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 20px;
     padding: 35px;
     background: rgba(255, 245, 235, 0.5);
     backdrop-filter: blur(10px);
     border-radius: 60px;
     border: 2px solid rgba(255, 255, 255, 0.7);
-    margin-top: 30px;
+    margin: 30px 0;
     max-height: 600px;
     overflow-y: auto;
 }
 
-.book-grid button {
+.book-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.chapter-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
+.book-grid button, .chapter-grid button {
     padding: 22px 15px;
     font-size: 24px;
     text-transform: none;
     background: rgba(255, 255, 255, 0.6);
     border: 2px solid rgba(255, 255, 255, 0.7);
     margin: 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-.book-grid button:hover {
+.book-grid button:hover, .chapter-grid button:hover {
     background: rgba(255, 255, 255, 0.8);
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Chapter grid */
-.chapter-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 18px;
-    padding: 35px;
-    background: rgba(255, 245, 235, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 60px;
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    margin: 30px 0;
-    max-height: 500px;
-    overflow-y: auto;
-}
-
-.chapter-grid button {
-    padding: 20px 10px;
-    font-size: 22px;
-    margin: 0;
-    background: rgba(255, 255, 255, 0.6);
-}
-
-/* Verse text - like painted scripture */
+/* Verse text */
 #chapter-text {
     font-family: 'Cormorant Garamond', 'Georgia', serif;
     line-height: 2.4;
@@ -579,7 +489,6 @@ input::placeholder {
     max-height: 600px;
     overflow-y: auto;
     font-size: 26px;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
 }
 
 #chapter-text p {
@@ -590,13 +499,11 @@ input::placeholder {
     border-radius: 40px;
     border-left: 10px solid rgba(212, 175, 55, 0.4);
     transition: all 0.5s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 #chapter-text p:hover {
     background: rgba(255, 255, 255, 0.7);
     transform: translateX(10px);
-    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.1);
     border-left-color: #d4a59a;
 }
 
@@ -604,8 +511,6 @@ input::placeholder {
     color: #4a3b2f;
     font-size: 28px;
     margin-right: 25px;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
     background: rgba(212, 175, 55, 0.15);
     padding: 6px 20px;
     border-radius: 60px;
@@ -634,19 +539,11 @@ input::placeholder {
 }
 
 @keyframes paintReveal {
-    from { 
-        opacity: 0; 
-        transform: translateY(30px) scale(0.97);
-        filter: blur(4px);
-    }
-    to { 
-        opacity: 1; 
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
+    from { opacity: 0; transform: translateY(30px) scale(0.97); filter: blur(4px); }
+    to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-/* Scrollbar - painted style */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 16px;
 }
@@ -667,101 +564,34 @@ input::placeholder {
     background: linear-gradient(145deg, #c49488, #b58478);
 }
 
-/* Mobile responsive - keeping the painting feel */
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-    
-    .app-container {
-        padding: 30px 20px;
-        border-radius: 50px 50px 30px 30px;
-    }
-    
-    h1 {
-        font-size: 48px;
-        letter-spacing: 4px;
-    }
-    
-    h1::before, h1::after {
-        font-size: 32px;
-        margin: 0 10px;
-    }
-    
-    h2 {
-        font-size: 32px;
-    }
-    
-    #home p {
-        font-size: 22px;
-        padding: 25px 35px;
-    }
-    
-    button {
-        padding: 18px 35px;
-        font-size: 20px;
-        letter-spacing: 2px;
-    }
-    
-    #home button {
-        width: 300px;
-        font-size: 22px;
-        padding: 20px 30px;
-    }
-    
-    .book-grid {
-        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-        padding: 25px;
-    }
-    
-    .book-grid button {
-        font-size: 20px;
-        padding: 18px 10px;
-    }
-    
-    .chapter-navigation {
-        flex-wrap: wrap;
-        gap: 15px;
-        padding: 25px;
-    }
-    
-    .chapter-navigation button {
-        min-width: 140px;
-        padding: 18px 25px;
-        font-size: 20px;
-    }
-    
-    .chapter-navigation span {
-        font-size: 26px;
-        padding: 15px 30px;
-    }
-    
-    .nav-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .nav-buttons button {
-        width: 100%;
-        min-width: auto;
-    }
-    
-    #chapter-text {
-        font-size: 22px;
-        padding: 30px;
-    }
-    
-    #chapter-text strong {
-        font-size: 24px;
-        padding: 5px 15px;
-    }
-    
-    #chapter-text p {
-        padding: 15px 25px;
-    }
+/* Painting glow effects */
+.painting-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 220, 180, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(200, 220, 240, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 3;
+    mix-blend-mode: soft-light;
 }
 
-/* Loading indicator - painting style */
+/* Warm horizon */
+.warm-horizon {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(232, 184, 157, 0.25), transparent);
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Loading indicator */
 .loading {
     text-align: center;
     padding: 70px;
@@ -788,29 +618,19 @@ input::placeholder {
     100% { transform: rotate(360deg) scale(1); }
 }
 
-/* Additional painting effects */
-.painting-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 220, 180, 0.15) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(200, 220, 240, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 3;
-    mix-blend-mode: soft-light;
-}
-
-/* Warm light from bottom - like in the painting */
-.warm-horizon {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    background: linear-gradient(to top, rgba(232, 184, 157, 0.25), transparent);
-    pointer-events: none;
-    z-index: 3;
+/* Mobile responsive */
+@media (max-width: 600px) {
+    body { padding: 10px; }
+    .app-container { padding: 30px 20px; }
+    h1 { font-size: 48px; }
+    h1::before, h1::after { font-size: 32px; margin: 0 10px; }
+    h2 { font-size: 32px; }
+    #home p { font-size: 22px; padding: 25px 35px; }
+    button { padding: 18px 35px; font-size: 20px; }
+    #home button { width: 300px; font-size: 22px; }
+    .book-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .chapter-navigation { flex-wrap: wrap; }
+    .chapter-navigation button { min-width: 140px; font-size: 20px; }
+    .chapter-navigation span { font-size: 26px; padding: 15px 30px; }
+    #chapter-text { font-size: 22px; }
 }
