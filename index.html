@@ -19,11 +19,11 @@
             align-items: center;
             position: relative;
             overflow-x: hidden;
-            /* Beautiful sky painting background */
-            background: linear-gradient(145deg, #b7d9e5 0%, #e3b7a0 50%, #d4a59a 100%);
+            /* Light brown background */
+            background: #e8d5b5;  /* Light warm brown */
         }
 
-        /* Painted sky background with artistic clouds */
+        /* Cross with vines background */
         body::before {
             content: '';
             position: fixed;
@@ -31,102 +31,93 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 220, 180, 0.4) 0%, transparent 40%),
-                radial-gradient(circle at 80% 60%, rgba(255, 200, 150, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(180, 210, 230, 0.5) 0%, transparent 60%),
-                radial-gradient(circle at 70% 20%, rgba(230, 200, 170, 0.4) 0%, transparent 45%);
+            background-image: 
+                /* Main cross - deep brown */
+                linear-gradient(90deg, transparent 49.5%, #5c3e2d 49.5%, #5c3e2d 50.5%, transparent 50.5%),
+                linear-gradient(180deg, transparent 49.5%, #5c3e2d 49.5%, #5c3e2d 50.5%, transparent 50.5%),
+                
+                /* Vine details - swirling around cross */
+                radial-gradient(circle at 30% 40%, #4a6b3f 1px, transparent 1px),
+                radial-gradient(circle at 70% 60%, #4a6b3f 1px, transparent 1px),
+                radial-gradient(circle at 40% 70%, #4a6b3f 1px, transparent 1px),
+                radial-gradient(circle at 60% 30%, #4a6b3f 1px, transparent 1px),
+                
+                /* Vine stems - curved lines */
+                repeating-linear-gradient(45deg, 
+                    transparent 0px,
+                    transparent 15px,
+                    #6b8c5c 15px,
+                    #6b8c5c 16px,
+                    transparent 16px,
+                    transparent 30px),
+                repeating-linear-gradient(-45deg, 
+                    transparent 0px,
+                    transparent 20px,
+                    #6b8c5c 20px,
+                    #6b8c5c 21px,
+                    transparent 21px,
+                    transparent 40px),
+                
+                /* Leaf shapes */
+                radial-gradient(circle at 25% 35%, #5a7c4a 3px, transparent 3px),
+                radial-gradient(circle at 28% 38%, #5a7c4a 2px, transparent 2px),
+                radial-gradient(circle at 75% 65%, #5a7c4a 3px, transparent 3px),
+                radial-gradient(circle at 72% 62%, #5a7c4a 2px, transparent 2px),
+                radial-gradient(circle at 35% 75%, #5a7c4a 3px, transparent 3px),
+                radial-gradient(circle at 38% 72%, #5a7c4a 2px, transparent 2px),
+                radial-gradient(circle at 65% 25%, #5a7c4a 3px, transparent 3px),
+                radial-gradient(circle at 62% 28%, #5a7c4a 2px, transparent 2px),
+                
+                /* Additional vine swirls */
+                radial-gradient(circle at 45% 45%, #6b8c5c 4px, transparent 4px),
+                radial-gradient(circle at 55% 55%, #6b8c5c 4px, transparent 4px),
+                
+                /* Small flowers on vines */
+                radial-gradient(circle at 30% 30%, #d4a59a 2px, transparent 2px),
+                radial-gradient(circle at 70% 70%, #d4a59a 2px, transparent 2px),
+                radial-gradient(circle at 40% 60%, #d4a59a 2px, transparent 2px),
+                radial-gradient(circle at 60% 40%, #d4a59a 2px, transparent 2px);
+            
+            background-size: 
+                100% 100%, 100% 100%,  /* Cross */
+                30px 30px, 30px 30px, 30px 30px, 30px 30px,  /* Vine dots */
+                50px 50px, 50px 50px,  /* Vine lines */
+                20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px,  /* Leaves */
+                40px 40px, 40px 40px,  /* Extra vines */
+                15px 15px, 15px 15px, 15px 15px, 15px 15px;  /* Flowers */
+            
+            background-position: center;
+            background-repeat: repeat;
+            opacity: 0.7;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Artistic floating clouds - painted style */
-        .cloud-painting {
+        /* Additional hand-drawn vine details */
+        .vine-decoration {
             position: fixed;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(3px);
-            border-radius: 1000px;
-            z-index: 1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                /* Curved vines around edges */
+                radial-gradient(ellipse at 10% 20%, #6b8c5c 2px, transparent 2px),
+                radial-gradient(ellipse at 15% 25%, #6b8c5c 2px, transparent 2px),
+                radial-gradient(ellipse at 90% 80%, #6b8c5c 2px, transparent 2px),
+                radial-gradient(ellipse at 85% 75%, #6b8c5c 2px, transparent 2px),
+                
+                /* More leaves */
+                radial-gradient(circle at 20% 85%, #5a7c4a 4px, transparent 4px),
+                radial-gradient(circle at 23% 82%, #5a7c4a 3px, transparent 3px),
+                radial-gradient(circle at 80% 15%, #5a7c4a 4px, transparent 4px),
+                radial-gradient(circle at 77% 18%, #5a7c4a 3px, transparent 3px);
+            
+            background-size: 100px 100px;
+            background-repeat: repeat;
             pointer-events: none;
-            box-shadow: 
-                0 20px 40px rgba(255, 220, 180, 0.2),
-                inset 0 -10px 30px rgba(255, 255, 255, 0.6);
-            filter: blur(3px);
-        }
-
-        .cloud-painting1 {
-            width: 400px;
-            height: 150px;
-            top: 5%;
-            left: -200px;
-            background: linear-gradient(135deg, rgba(255, 245, 235, 0.5), rgba(255, 220, 200, 0.4));
-            animation: driftCloud1 120s linear infinite;
-        }
-
-        .cloud-painting2 {
-            width: 600px;
-            height: 200px;
-            top: 40%;
-            right: -300px;
-            background: linear-gradient(145deg, rgba(255, 235, 220, 0.5), rgba(230, 210, 200, 0.4));
-            animation: driftCloud2 150s linear infinite;
-        }
-
-        .cloud-painting3 {
-            width: 350px;
-            height: 120px;
-            bottom: 15%;
-            left: -150px;
-            background: linear-gradient(125deg, rgba(240, 225, 215, 0.5), rgba(255, 235, 225, 0.4));
-            animation: driftCloud3 100s linear infinite;
-        }
-
-        .cloud-painting4 {
-            width: 500px;
-            height: 180px;
-            top: 60%;
-            left: 70%;
-            background: linear-gradient(155deg, rgba(255, 240, 225, 0.5), rgba(235, 215, 200, 0.4));
-            animation: driftCloud4 130s linear infinite reverse;
-        }
-
-        @keyframes driftCloud1 {
-            from { transform: translateX(-200px); }
-            to { transform: translateX(calc(100vw + 400px)); }
-        }
-
-        @keyframes driftCloud2 {
-            from { transform: translateX(calc(100vw + 300px)); }
-            to { transform: translateX(-600px); }
-        }
-
-        @keyframes driftCloud3 {
-            from { transform: translateX(-150px); }
-            to { transform: translateX(calc(100vw + 350px)); }
-        }
-
-        @keyframes driftCloud4 {
-            from { transform: translateX(calc(100vw + 500px)); }
-            to { transform: translateX(-500px); }
-        }
-
-        /* Warm sun glow */
-        .sun-glow {
-            position: fixed;
-            top: 5%;
-            right: 5%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 200, 150, 0.4) 0%, rgba(255, 180, 130, 0.2) 50%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(40px);
             z-index: 1;
-            animation: sunPulse 8s ease-in-out infinite;
-        }
-
-        @keyframes sunPulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.2); }
+            opacity: 0.5;
         }
 
         /* Main app container */
@@ -134,18 +125,37 @@
             max-width: 1100px;
             width: 100%;
             margin: 0 auto;
-            background: rgba(255, 245, 235, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(245, 235, 220, 0.85);  /* Warm cream with transparency */
+            backdrop-filter: blur(5px);
             border-radius: 60px 60px 40px 40px;
             padding: 40px;
             box-shadow: 
-                0 30px 50px rgba(0, 0, 0, 0.1),
-                0 10px 20px rgba(0, 0, 0, 0.05),
-                inset 0 0 0 2px rgba(255, 255, 255, 0.6),
-                inset 0 0 30px rgba(255, 220, 180, 0.3);
+                0 30px 50px rgba(60, 40, 20, 0.3),
+                0 10px 20px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 2px rgba(255, 245, 235, 0.8),
+                inset 0 0 30px rgba(150, 100, 50, 0.2);
             position: relative;
             z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(200, 160, 120, 0.6);
+        }
+
+        /* Decorative cross on container */
+        .app-container::before {
+            content: '✝';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #5c3e2d;
+            font-size: 60px;
+            background: rgba(245, 235, 220, 0.9);
+            padding: 5px 40px;
+            border-radius: 60px;
+            box-shadow: 0 5px 20px rgba(100, 70, 40, 0.3);
+            border: 2px solid #8b6b4f;
+            text-shadow: 2px 2px 0 #d4a59a;
+            font-family: 'Times New Roman', serif;
+            z-index: 20;
         }
 
         h1 {
@@ -153,36 +163,37 @@
             color: #4a3b2f;
             font-size: 64px;
             margin-bottom: 20px;
+            margin-top: 30px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             font-weight: 500;
             letter-spacing: 6px;
             text-transform: uppercase;
             text-shadow: 
-                2px 2px 0 rgba(255, 255, 255, 0.8),
-                4px 4px 0 rgba(210, 180, 140, 0.3),
-                6px 6px 0 rgba(0, 0, 0, 0.05);
+                2px 2px 0 rgba(255, 245, 235, 0.9),
+                4px 4px 0 #8b6b4f,
+                6px 6px 0 rgba(60, 40, 20, 0.2);
             position: relative;
             display: inline-block;
             width: 100%;
         }
 
         h1::before, h1::after {
-            content: '✦';
-            color: rgba(230, 180, 130, 0.8);
-            font-size: 48px;
-            margin: 0 25px;
-            opacity: 0.8;
+            content: '🌿';
+            color: #5a7c4a;
+            font-size: 40px;
+            margin: 0 20px;
+            opacity: 0.9;
             display: inline-block;
-            filter: drop-shadow(0 2px 5px rgba(255, 200, 150, 0.5));
-            animation: sparkle 4s ease-in-out infinite;
+            filter: drop-shadow(0 2px 5px rgba(90, 124, 74, 0.4));
+            animation: vineWave 4s ease-in-out infinite;
         }
 
         h1::before { animation-delay: 0s; }
         h1::after { animation-delay: 2s; }
 
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.2) rotate(10deg); }
+        @keyframes vineWave {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.1); }
         }
 
         h2 {
@@ -191,37 +202,36 @@
             margin-bottom: 30px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             font-weight: 400;
-            border-bottom: 3px solid rgba(230, 180, 130, 0.5);
+            border-bottom: 3px solid #8b6b4f;
             padding-bottom: 15px;
             letter-spacing: 3px;
             position: relative;
-            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.6);
+            text-shadow: 2px 2px 0 rgba(255, 245, 235, 0.7);
         }
 
         h2::after {
-            content: '☀︎';
+            content: '✝';
             position: absolute;
             right: 0;
-            bottom: -18px;
-            color: #e3b7a0;
-            font-size: 32px;
-            background: rgba(255, 245, 235, 0.8);
+            bottom: -15px;
+            color: #8b6b4f;
+            font-size: 28px;
+            background: #f5ebdc;
             padding: 0 25px;
             border-radius: 50px;
-            box-shadow: 0 2px 15px rgba(230, 180, 130, 0.3);
-            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(139, 107, 79, 0.3);
         }
 
         h3 {
-            color: #5a4b3f;
+            color: #5c3e2d;
             font-size: 28px;
             margin: 20px 0 10px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             font-weight: 500;
             letter-spacing: 1px;
-            border-left: 5px solid rgba(230, 180, 130, 0.6);
+            border-left: 5px solid #8b6b4f;
             padding-left: 20px;
-            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+            text-shadow: 1px 1px 0 rgba(255, 245, 235, 0.5);
         }
 
         /* Home screen */
@@ -235,7 +245,7 @@
             font-size: 42px;
             margin-bottom: 30px;
             border-bottom: none;
-            text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7);
+            text-shadow: 3px 3px 0 rgba(255, 245, 235, 0.8);
         }
 
         #home h2::after {
@@ -248,16 +258,16 @@
             margin: 40px 0 50px;
             font-style: italic;
             font-family: 'Cormorant Garamond', serif;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.8);
+            backdrop-filter: blur(3px);
             padding: 30px 60px;
             display: inline-block;
             border-radius: 200px;
             box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 2px rgba(255, 255, 255, 0.9),
-                inset 0 0 30px rgba(255, 220, 180, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+                0 15px 40px rgba(100, 70, 40, 0.2),
+                inset 0 0 0 2px rgba(200, 160, 120, 0.8),
+                inset 0 0 30px rgba(150, 100, 50, 0.2);
+            border: 1px solid #b5977a;
             letter-spacing: 1px;
         }
 
@@ -265,10 +275,9 @@
         button {
             padding: 18px 40px;
             margin: 12px;
-            background: rgba(255, 245, 235, 0.7);
-            backdrop-filter: blur(5px);
+            background: #f5ebdc;
             color: #4a3b2f;
-            border: none;
+            border: 2px solid #8b6b4f;
             border-radius: 80px;
             font-size: 20px;
             font-weight: 400;
@@ -278,21 +287,53 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             box-shadow: 
-                0 10px 25px rgba(0, 0, 0, 0.1),
-                0 0 0 2px rgba(255, 255, 255, 0.8),
-                inset 0 0 20px rgba(255, 255, 255, 0.5);
+                0 10px 20px rgba(100, 70, 40, 0.2),
+                inset 0 1px 5px rgba(255, 255, 255, 0.5);
             position: relative;
             overflow: hidden;
         }
 
+        button::before {
+            content: '🌿';
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        button::after {
+            content: '🌿';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
         button:hover {
-            background: rgba(255, 235, 220, 0.9);
+            background: #e8d5b5;
             transform: translateY(-5px) scale(1.02);
             box-shadow: 
-                0 20px 35px rgba(0, 0, 0, 0.15),
-                0 0 0 3px rgba(255, 255, 255, 0.9),
-                inset 0 0 30px rgba(255, 255, 255, 0.8);
-            color: #3a2b1f;
+                0 20px 30px rgba(100, 70, 40, 0.3),
+                inset 0 1px 8px rgba(255, 255, 255, 0.8);
+            border-color: #5c3e2d;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        button:hover::before {
+            left: 10px;
+            opacity: 1;
+        }
+
+        button:hover::after {
+            right: 10px;
+            opacity: 1;
         }
 
         button:active {
@@ -329,31 +370,25 @@
             width: 100%;
             max-width: 650px;
             margin: 15px 0 30px;
-            border: none;
+            border: 2px solid #b5977a;
             border-radius: 80px;
             font-size: 22px;
-            background: rgba(255, 245, 235, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.9);
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             color: #4a3b2f;
             transition: all 0.4s;
-            box-shadow: 
-                inset 0 5px 15px rgba(0, 0, 0, 0.05),
-                0 0 0 2px rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 5px 15px rgba(100, 70, 40, 0.1);
         }
 
         input:focus {
             outline: none;
-            box-shadow: 
-                inset 0 5px 20px rgba(0, 0, 0, 0.1),
-                0 0 0 4px rgba(255, 255, 255, 0.9),
-                0 0 30px rgba(230, 180, 130, 0.3);
-            background: rgba(255, 250, 245, 0.95);
+            border-color: #5c3e2d;
+            box-shadow: inset 0 5px 20px rgba(100, 70, 40, 0.1), 0 0 20px rgba(139, 107, 79, 0.3);
+            background: #fff9f0;
         }
 
         input::placeholder {
-            color: #a58e7a;
+            color: #8b6b4f;
             font-style: italic;
             letter-spacing: 1px;
             opacity: 0.7;
@@ -363,34 +398,33 @@
         #answerResult, #bibleResult, #readerContent {
             margin-top: 35px;
             padding: 45px;
-            background: rgba(255, 245, 235, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.85);
+            backdrop-filter: blur(3px);
             border-radius: 50px;
             box-shadow: 
-                0 25px 45px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 3px rgba(255, 255, 255, 0.9),
-                inset 0 0 40px rgba(255, 220, 180, 0.3);
+                0 25px 45px rgba(100, 70, 40, 0.2),
+                inset 0 0 0 2px rgba(200, 160, 120, 0.6),
+                inset 0 0 40px rgba(150, 100, 50, 0.1);
             text-align: left;
             font-size: 22px;
             line-height: 1.9;
             color: #4a3b2f;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid #b5977a;
         }
 
         #answerResult::before, #bibleResult::before, #readerContent::before {
-            content: '✦';
+            content: '✝';
             position: absolute;
-            top: -25px;
+            top: -20px;
             left: 50px;
-            color: #e3b7a0;
-            font-size: 45px;
-            background: rgba(255, 245, 235, 0.9);
-            backdrop-filter: blur(5px);
+            color: #8b6b4f;
+            font-size: 40px;
+            background: #f5ebdc;
             padding: 5px 30px;
             border-radius: 60px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 5px 15px rgba(100, 70, 40, 0.2);
+            border: 2px solid #b5977a;
         }
 
         /* Chapter navigation */
@@ -401,11 +435,11 @@
             gap: 25px;
             margin: 35px 0 25px;
             padding: 25px 40px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.8);
+            backdrop-filter: blur(3px);
             border-radius: 100px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 2px solid #b5977a;
+            box-shadow: 0 15px 35px rgba(100, 70, 40, 0.15);
         }
 
         .chapter-navigation button {
@@ -413,13 +447,14 @@
             font-size: 22px;
             margin: 0;
             min-width: 160px;
-            background: rgba(255, 255, 255, 0.8);
+            background: #f5ebdc;
         }
 
         .chapter-navigation button:disabled {
             opacity: 0.3;
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         .chapter-navigation span {
@@ -428,12 +463,11 @@
             font-weight: 500;
             letter-spacing: 3px;
             font-family: 'Cormorant Garamond', serif;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
+            background: #f5ebdc;
             padding: 15px 45px;
             border-radius: 80px;
-            border: 2px solid rgba(255, 255, 255, 0.9);
-            box-shadow: inset 0 2px 15px rgba(230, 180, 130, 0.2);
+            border: 2px solid #b5977a;
+            box-shadow: inset 0 2px 10px rgba(139, 107, 79, 0.2);
             text-shadow: 1px 1px 0 white;
         }
 
@@ -443,10 +477,10 @@
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 18px;
             padding: 30px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.8);
+            backdrop-filter: blur(3px);
             border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid #b5977a;
             margin-top: 25px;
             max-height: 550px;
             overflow-y: auto;
@@ -456,16 +490,17 @@
             padding: 20px 15px;
             font-size: 22px;
             text-transform: none;
-            background: rgba(255, 255, 255, 0.7);
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: #f5ebdc;
+            border: 2px solid #b5977a;
             margin: 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 15px rgba(100, 70, 40, 0.1);
         }
 
         .book-grid button:hover {
-            background: rgba(255, 255, 255, 0.9);
+            background: #e8d5b5;
             transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 25px rgba(100, 70, 40, 0.2);
+            border-color: #5c3e2d;
         }
 
         /* Chapter grid */
@@ -474,10 +509,10 @@
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             gap: 15px;
             padding: 30px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.8);
+            backdrop-filter: blur(3px);
             border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid #b5977a;
             margin: 25px 0;
             max-height: 450px;
             overflow-y: auto;
@@ -487,7 +522,14 @@
             padding: 18px 10px;
             font-size: 20px;
             margin: 0;
-            background: rgba(255, 255, 255, 0.7);
+            background: #f5ebdc;
+            border: 2px solid #b5977a;
+        }
+
+        .chapter-grid button:hover {
+            background: #e8d5b5;
+            transform: translateY(-4px) scale(1.02);
+            border-color: #5c3e2d;
         }
 
         /* Verse text */
@@ -496,46 +538,45 @@
             line-height: 2.3;
             color: #4a3b2f;
             padding: 35px;
-            background: rgba(255, 245, 235, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(245, 235, 220, 0.85);
+            backdrop-filter: blur(3px);
             border-radius: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid #b5977a;
             margin-top: 25px;
             max-height: 550px;
             overflow-y: auto;
             font-size: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 35px rgba(100, 70, 40, 0.15);
         }
 
         #chapter-text p {
             margin-bottom: 18px;
             padding: 18px 30px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(3px);
+            background: rgba(245, 235, 220, 0.9);
             border-radius: 30px;
-            border-left: 8px solid rgba(230, 180, 130, 0.6);
+            border-left: 8px solid #8b6b4f;
             transition: all 0.4s;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 3px 10px rgba(100, 70, 40, 0.05);
         }
 
         #chapter-text p:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: #f5ebdc;
             transform: translateX(8px);
-            box-shadow: 0 8px 25px rgba(230, 180, 130, 0.15);
-            border-left-color: #e3b7a0;
+            box-shadow: 0 8px 20px rgba(139, 107, 79, 0.2);
+            border-left-color: #5c3e2d;
         }
 
         #chapter-text strong {
-            color: #5a4b3f;
+            color: #5c3e2d;
             font-size: 26px;
             margin-right: 20px;
             font-family: 'Cormorant Garamond', serif;
             font-weight: 600;
-            background: rgba(230, 180, 130, 0.2);
+            background: #e8d5b5;
             padding: 5px 18px;
             border-radius: 50px;
             display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid #b5977a;
         }
 
         /* Navigation buttons for back */
@@ -554,64 +595,62 @@
 
         /* Section containers */
         #askSection, #bibleSection, #readerSection {
-            animation: artisticFade 0.8s ease;
+            animation: fadeIn 0.8s ease;
             position: relative;
         }
 
-        @keyframes artisticFade {
+        @keyframes fadeIn {
             from { 
                 opacity: 0; 
-                transform: translateY(20px) scale(0.98);
-                filter: blur(2px);
+                transform: translateY(20px);
             }
             to { 
                 opacity: 1; 
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateY(0);
             }
         }
 
-        /* Scrollbar styling - artistic */
+        /* Scrollbar styling */
         ::-webkit-scrollbar {
             width: 14px;
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(255, 245, 235, 0.5);
+            background: #e8d5b5;
             border-radius: 20px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid #b5977a;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(145deg, #e3b7a0, #d4a59a);
+            background: linear-gradient(145deg, #8b6b4f, #5c3e2d);
             border-radius: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            border: 3px solid #e8d5b5;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(145deg, #d4a59a, #c4958a);
+            background: #5c3e2d;
         }
 
-        /* Loading indicator - artistic */
+        /* Loading indicator */
         .loading {
             text-align: center;
             padding: 60px;
-            color: #a58e7a;
+            color: #8b6b4f;
             font-size: 28px;
             font-style: italic;
             position: relative;
         }
 
         .loading::after {
-            content: '✦';
-            animation: artisticSpin 3s linear infinite;
+            content: '🌿';
+            animation: spin 3s linear infinite;
             display: inline-block;
             margin-left: 15px;
             font-size: 32px;
-            color: #e3b7a0;
+            color: #5a7c4a;
         }
 
-        @keyframes artisticSpin {
+        @keyframes spin {
             0% { transform: rotate(0deg) scale(1); }
             50% { transform: rotate(180deg) scale(1.2); }
             100% { transform: rotate(360deg) scale(1); }
@@ -710,43 +749,37 @@
             }
         }
 
-        /* Artistic elements */
-        .artistic-dots {
+        /* Cross and vine decorations */
+        .vine-corner {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 40%, rgba(255, 220, 180, 0.1) 0%, transparent 20%),
-                        radial-gradient(circle at 70% 60%, rgba(230, 200, 170, 0.1) 0%, transparent 25%),
-                        radial-gradient(circle at 45% 80%, rgba(210, 180, 140, 0.1) 0%, transparent 15%);
+            bottom: 20px;
+            right: 20px;
+            font-size: 60px;
+            color: #5a7c4a;
+            opacity: 0.3;
+            z-index: 5;
+            transform: rotate(-15deg);
             pointer-events: none;
-            z-index: 2;
-            mix-blend-mode: overlay;
         }
 
-        .warm-light {
+        .cross-small {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 30%;
-            background: linear-gradient(to top, rgba(255, 200, 150, 0.2), transparent);
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            color: #5c3e2d;
+            opacity: 0.2;
+            z-index: 5;
             pointer-events: none;
-            z-index: 2;
         }
     </style>
 </head>
 
 <body>
-    <!-- Artistic painted sky elements -->
-    <div class="cloud-painting cloud-painting1"></div>
-    <div class="cloud-painting cloud-painting2"></div>
-    <div class="cloud-painting cloud-painting3"></div>
-    <div class="cloud-painting cloud-painting4"></div>
-    <div class="sun-glow"></div>
-    <div class="artistic-dots"></div>
-    <div class="warm-light"></div>
+    <!-- Cross and vine background decorations -->
+    <div class="vine-decoration"></div>
+    <div class="cross-small">✝</div>
+    <div class="vine-corner">🌿🌿🌿</div>
 
     <div class="app-container">
         <h1>Walk With God</h1>
@@ -880,15 +913,15 @@
                 for (let k of t.keywords) {
                     if (q.includes(k)) {
                         output += `
-                        <div style="background:rgba(255,245,235,0.8); padding:15px; margin-bottom:15px; border-radius:8px;">
-                            <h3 style="color:#2c3e50;">📖 Scripture</h3>
+                        <div style="background:rgba(245,235,220,0.9); padding:15px; margin-bottom:15px; border-radius:8px; border-left:5px solid #8b6b4f;">
+                            <h3 style="color:#5c3e2d;">📖 Scripture</h3>
                             <p><strong>${t.verse}</strong></p>
                             <p><em>"${t.text}"</em></p>
                             
-                            <h3 style="color:#2c3e50;">💭 Explanation</h3>
+                            <h3 style="color:#5c3e2d;">💭 Explanation</h3>
                             <p>${t.explanation}</p>
                             
-                            <h3 style="color:#2c3e50;">🌟 Guidance</h3>
+                            <h3 style="color:#5c3e2d;">🌟 Guidance</h3>
                             <p>${t.guidance}</p>
                         </div>
                         `;
@@ -900,7 +933,7 @@
             
             if (!found) {
                 output = `
-                <div style="background:rgba(255,245,235,0.8); padding:20px; border-radius:8px;">
+                <div style="background:rgba(245,235,220,0.9); padding:20px; border-radius:8px; border-left:5px solid #8b6b4f;">
                     <p>I don't have an answer for that specific question yet. Here are some topics I can help with:</p>
                     <p>• Lust and temptation<br>• Anger<br>• Failure and self-hatred<br>• Forgiveness<br>• Jealousy<br>• Loneliness<br>• Purpose and direction</p>
                     <p>Try asking about one of these topics, or check back soon as we add more!</p>
@@ -1042,7 +1075,7 @@
                     if (data.verses && data.verses.length > 0) {
                         data.verses.forEach(verse => {
                             output += `
-                            <div style="background:rgba(255,245,235,0.8); padding:10px; margin-bottom:10px; border-radius:5px;">
+                            <div style="background:rgba(245,235,220,0.9); padding:10px; margin-bottom:10px; border-radius:5px; border-left:5px solid #8b6b4f;">
                                 <p><strong>${verse.book} ${verse.chapter}:${verse.verse}</strong><br>
                                 ${verse.text}</p>
                             </div>
