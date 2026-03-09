@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Walk With God / Camina Con Dios</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Logos Bible - Walk With God</title>
     <style>
         * {
             margin: 0;
@@ -11,32 +11,52 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
-            min-height: 100vh;
-            background: #d9c8a9;
-            background-image: 
-                radial-gradient(circle at 30% 40%, rgba(139, 107, 79, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 107, 79, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px, 40px 40px;
-            transition: background 0.3s;
+        :root {
+            --primary: #8b6b4f;
+            --primary-dark: #5c3e2d;
+            --primary-light: #b5977a;
+            --bg-light: #f5ebdc;
+            --bg-dark: #2c231c;
+            --text-light: #4a3729;
+            --text-dark: #e8d5b5;
+            --card-light: #fff9f0;
+            --card-dark: #3a2e25;
+            --accent: #d4a59a;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        /* Dark mode theme */
-        body.dark-mode {
-            background: #2c231c;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            background: var(--bg-light);
             background-image: 
-                radial-gradient(circle at 30% 40%, rgba(200, 170, 140, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(200, 170, 140, 0.05) 1px, transparent 1px);
+                radial-gradient(circle at 30% 40%, rgba(139, 107, 79, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 107, 79, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px, 40px 40px;
+            transition: background 0.3s, color 0.3s;
+            color: var(--text-light);
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(200, 170, 140, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(200, 170, 140, 0.03) 1px, transparent 1px);
+            color: var(--text-dark);
         }
 
         body.dark-mode .app-container,
         body.dark-mode .card,
-        body.dark-mode .bottom-nav,
+        body.dark-mode .modal-content,
         body.dark-mode .settings-panel {
-            background: #3a2e25;
-            color: #e8d5b5;
-            border-color: #b5977a;
+            background: var(--card-dark);
+            color: var(--text-dark);
+            border-color: var(--primary-light);
         }
 
         body.dark-mode h1, 
@@ -44,103 +64,184 @@
         body.dark-mode h3,
         body.dark-mode p,
         body.dark-mode span,
-        body.dark-mode button,
+        body.dark-mode button:not(.primary):not(.header-btn),
         body.dark-mode input,
-        body.dark-mode #answerResult,
-        body.dark-mode #bibleResult,
-        body.dark-mode #readerContent,
-        body.dark-mode #chapter-text {
-            color: #e8d5b5;
+        body.dark-mode textarea,
+        body.dark-mode select {
+            color: var(--text-dark);
+            background-color: transparent;
         }
 
-        body.dark-mode button {
-            background: #4a3b2f;
-            border-color: #b5977a;
+        body.dark-mode button:not(.primary):not(.header-btn) {
+            background: var(--primary-dark);
+            border-color: var(--primary-light);
         }
 
-        body.dark-mode input {
-            background: #4a3b2f;
-            color: #e8d5b5;
+        body.dark-mode input,
+        body.dark-mode textarea,
+        body.dark-mode select {
+            background: var(--primary-dark);
+            border-color: var(--primary-light);
+            color: var(--text-dark);
         }
 
-        /* Main app container */
+        /* High Contrast Mode */
+        body.high-contrast {
+            background: #000;
+            color: #fff;
+        }
+
+        body.high-contrast .app-container,
+        body.high-contrast .card,
+        body.high-contrast button {
+            border: 3px solid #fff !important;
+            background: #000 !important;
+            color: #fff !important;
+        }
+
+        /* Sepia Mode */
+        body.sepia-mode {
+            background: #f4ecd8;
+            color: #5b4636;
+        }
+
+        body.sepia-mode .app-container,
+        body.sepia-mode .card {
+            background: #e8d9c0;
+        }
+
+        /* Main App Container */
         .app-container {
             max-width: 500px;
             width: 100%;
-            margin: 20px auto;
-            background: #f5ebdc;
-            border-radius: 30px 30px 0 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            background: var(--card-light);
+            border-radius: 0;
+            box-shadow: var(--box-shadow);
             position: relative;
             overflow: hidden;
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            border-left: 1px solid var(--primary-light);
+            border-right: 1px solid var(--primary-light);
         }
 
         /* Header */
         .app-header {
-            background: #8b6b4f;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             padding: 20px;
-            color: #f5ebdc;
+            color: white;
             position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .app-header h1 {
             font-size: 28px;
             margin: 0;
             text-align: center;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .app-header h1 span {
             font-size: 14px;
             display: block;
-            opacity: 0.8;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-top: 5px;
         }
 
-        /* Settings button in header */
-        .header-settings {
+        .header-buttons {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: none;
-            border: none;
-            color: #f5ebdc;
-            font-size: 24px;
-            cursor: pointer;
+            display: flex;
+            gap: 10px;
         }
 
-        /* Language toggle in header */
-        .header-lang {
+        .header-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .user-profile {
             position: absolute;
             top: 20px;
             left: 20px;
-            background: none;
-            border: 1px solid #f5ebdc;
-            color: #f5ebdc;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Main content area */
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(5px);
+        }
+
+        .avatar:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .user-name {
+            font-weight: 500;
+            font-size: 14px;
+            color: white;
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Main Content */
         .main-content {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            max-height: calc(90vh - 180px);
+            max-height: calc(100vh - 180px);
         }
 
         /* Cards */
         .card {
-            background: #fff9f0;
-            border-radius: 15px;
+            background: var(--card-light);
+            border-radius: var(--border-radius);
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            border: 1px solid #b5977a;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--primary-light);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         }
 
         .card-header {
@@ -152,19 +253,20 @@
 
         .card-header h2 {
             font-size: 20px;
-            color: #4a3729;
+            font-weight: 600;
             margin: 0;
         }
 
-        .card-header .badge {
-            background: #8b6b4f;
-            color: #f5ebdc;
+        .badge {
+            background: var(--primary);
+            color: white;
             padding: 5px 10px;
-            border-radius: 20px;
+            border-radius: 30px;
             font-size: 12px;
+            font-weight: 500;
         }
 
-        /* Progress bar */
+        /* Progress Bar */
         .progress-section {
             margin: 15px 0;
         }
@@ -174,24 +276,50 @@
             justify-content: space-between;
             font-size: 14px;
             margin-bottom: 5px;
-            color: #8b6b4f;
+            opacity: 0.8;
         }
 
         .progress-bar {
             height: 8px;
-            background: #e8d5b5;
+            background: var(--primary-light);
             border-radius: 4px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: #8b6b4f;
+            background: var(--primary);
             width: 0%;
             transition: width 0.3s;
         }
 
-        /* Option buttons */
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px 5px;
+            background: rgba(139, 107, 79, 0.1);
+            border-radius: var(--border-radius);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Option Grid */
         .option-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -200,12 +328,12 @@
         }
 
         .option-btn {
-            background: #fff9f0;
-            border: 2px solid #b5977a;
+            background: transparent;
+            border: 2px solid var(--primary-light);
             border-radius: 30px;
             padding: 12px;
-            font-size: 16px;
-            color: #4a3729;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
             text-align: center;
@@ -213,54 +341,12 @@
 
         .option-btn:hover,
         .option-btn.active {
-            background: #8b6b4f;
-            color: #f5ebdc;
-            border-color: #5c3e2d;
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
         }
 
-        /* Date display */
-        .date-display {
-            background: #e8d5b5;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 15px 0;
-            font-size: 18px;
-            color: #4a3729;
-        }
-
-        .date-display small {
-            display: block;
-            font-size: 12px;
-            color: #8b6b4f;
-        }
-
-        /* Reading complete section */
-        .reading-complete {
-            text-align: center;
-            padding: 30px 0;
-        }
-
-        .reading-complete h3 {
-            font-size: 24px;
-            color: #4a3729;
-            margin-bottom: 15px;
-        }
-
-        .checkmark-circle {
-            width: 80px;
-            height: 80px;
-            background: #8b6b4f;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: #f5ebdc;
-            font-size: 40px;
-        }
-
-        /* Action buttons row */
+        /* Action Buttons */
         .action-row {
             display: flex;
             gap: 10px;
@@ -269,21 +355,21 @@
 
         .action-btn {
             flex: 1;
-            background: #fff9f0;
-            border: 2px solid #b5977a;
+            background: transparent;
+            border: 2px solid var(--primary-light);
             border-radius: 30px;
             padding: 15px;
             font-size: 16px;
-            color: #4a3729;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
             text-align: center;
         }
 
         .action-btn.primary {
-            background: #8b6b4f;
-            color: #f5ebdc;
-            border-color: #5c3e2d;
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
         }
 
         .action-btn:hover {
@@ -291,23 +377,27 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Bottom navigation */
+        .action-btn.primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Bottom Navigation */
         .bottom-nav {
-            background: #8b6b4f;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             display: flex;
             justify-content: space-around;
             padding: 15px 10px;
-            border-top: 2px solid #5c3e2d;
+            color: white;
         }
 
         .nav-item {
-            color: #f5ebdc;
             text-align: center;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
             padding: 5px 15px;
             border-radius: 30px;
             transition: all 0.2s;
+            opacity: 0.8;
         }
 
         .nav-item i {
@@ -316,84 +406,195 @@
             margin-bottom: 5px;
         }
 
+        .nav-item:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         .nav-item.active {
-            background: #5c3e2d;
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-light);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(139, 107, 79, 0.2);
         }
 
         /* Settings Panel */
         .settings-panel {
             position: fixed;
             top: 0;
-            right: -350px;
-            width: 350px;
+            right: -400px;
+            width: 400px;
             height: 100vh;
-            background: #f5ebdc;
-            box-shadow: -5px 0 30px rgba(0,0,0,0.3);
-            z-index: 100;
+            background: var(--card-light);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+            z-index: 200;
             transition: right 0.3s ease;
-            padding: 60px 20px 20px;
+            padding: 60px 25px 25px;
             overflow-y: auto;
-            border-left: 4px solid #5c3e2d;
+            border-left: 4px solid var(--primary);
         }
 
         .settings-panel.open {
             right: 0;
         }
 
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .settings-header h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
         .close-settings {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             background: none;
             border: none;
             font-size: 30px;
             cursor: pointer;
-            color: #5c3e2d;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .close-settings:hover {
+            opacity: 1;
         }
 
         .settings-section {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #b5977a;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid var(--primary-light);
         }
 
         .settings-section h3 {
             margin-bottom: 15px;
-            font-size: 20px;
-            color: #4a3729;
+            font-size: 18px;
+            font-weight: 600;
         }
 
-        .theme-buttons {
+        .settings-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
-        .theme-btn {
-            padding: 10px;
-            border: 2px solid #b5977a;
-            border-radius: 4px;
-            background: #fff9f0;
+        .settings-btn {
+            padding: 12px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            background: transparent;
             cursor: pointer;
             transition: all 0.2s;
+            font-weight: 500;
         }
 
-        .theme-btn.active {
-            border-color: #5c3e2d;
-            background: #8b6b4f;
-            color: #f5ebdc;
+        .settings-btn:hover,
+        .settings-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
         }
 
-        /* Content sections */
-        .content-section {
-            display: none;
+        .color-picker {
+            width: 100%;
+            height: 50px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            cursor: pointer;
         }
 
-        .content-section.active {
-            display: block;
+        .range-slider {
+            width: 100%;
+            margin: 10px 0;
         }
 
-        /* Bible Reading Styles */
+        /* Bible Reading */
         .book-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -406,18 +607,19 @@
 
         .book-grid button {
             padding: 15px 5px;
-            background: #fff9f0;
-            border: 1px solid #b5977a;
+            background: transparent;
+            border: 2px solid var(--primary-light);
             border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: 500;
             transition: all 0.2s;
-            text-align: center;
         }
 
         .book-grid button:hover {
-            background: #8b6b4f;
-            color: #f5ebdc;
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
         }
 
         .chapter-grid {
@@ -432,106 +634,158 @@
 
         .chapter-grid button {
             padding: 12px 5px;
-            background: #fff9f0;
-            border: 1px solid #b5977a;
+            background: transparent;
+            border: 2px solid var(--primary-light);
             border-radius: 5px;
             cursor: pointer;
-            text-align: center;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
         .chapter-grid button:hover {
-            background: #8b6b4f;
-            color: #f5ebdc;
+            background: var(--primary);
+            color: white;
         }
 
         #chapter-text {
-            font-family: 'Cormorant Garamond', 'Georgia', serif;
             line-height: 1.8;
-            color: #4a3729;
             padding: 20px;
-            background: #fff9f0;
-            border-radius: 8px;
-            border: 1px solid #b5977a;
+            background: rgba(139, 107, 79, 0.05);
+            border-radius: var(--border-radius);
             margin-top: 15px;
             max-height: 400px;
             overflow-y: auto;
-            font-size: 18px;
+            font-size: 16px;
         }
 
         #chapter-text p {
             margin-bottom: 12px;
             padding: 5px 0;
-            border-bottom: 1px dotted #e8d5b5;
+            border-bottom: 1px solid var(--primary-light);
         }
 
         #chapter-text strong {
-            color: #8b6b4f;
+            color: var(--primary);
             font-size: 18px;
             margin-right: 10px;
         }
 
-        .verse-text {
-            font-size: 18px;
-            line-height: 1.6;
+        /* Verse of the Day */
+        .verse-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .verse-card h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-bottom: 15px;
-            color: #4a3729;
+            opacity: 0.9;
         }
 
-        .verse-ref {
-            color: #8b6b4f;
+        .verse-card p {
+            font-size: 24px;
             font-style: italic;
-            text-align: right;
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
-        /* Loading indicator */
+        .verse-card .ref {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Bookmarks */
+        .bookmark-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .bookmark-item:hover {
+            background: rgba(139, 107, 79, 0.1);
+            transform: translateX(5px);
+        }
+
+        .bookmark-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .bookmark-info p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .bookmark-delete {
+            color: var(--danger);
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Notes */
+        .note-item {
+            padding: 15px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .note-date {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .note-delete {
+            color: var(--danger);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Loading */
         .loading {
             text-align: center;
             padding: 40px;
-            color: #8b6b4f;
-            font-size: 20px;
+            opacity: 0.7;
         }
 
         .loading::after {
             content: '✝';
-            animation: gentleSpin 2s linear infinite;
+            animation: spin 2s linear infinite;
             display: inline-block;
             margin-left: 10px;
         }
 
-        @keyframes gentleSpin {
+        @keyframes spin {
             100% { transform: rotate(360deg); }
         }
 
-        /* Error message */
-        .error-message {
-            color: #a94442;
-            background: #f2dede;
-            border: 1px solid #ebccd1;
-            border-radius: 4px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        /* Search results */
-        .search-result {
-            padding: 12px;
-            margin-bottom: 10px;
-            border-left: 3px solid #8b6b4f;
-            background: #fff9f0;
-        }
-
-        .search-result strong {
-            color: #8b6b4f;
-        }
-
-        /* Mobile responsive */
+        /* Responsive */
         @media (max-width: 500px) {
             .settings-panel {
-                width: 280px;
-            }
-            
-            .option-grid {
-                grid-template-columns: 1fr 1fr;
+                width: 100%;
+                right: -100%;
             }
             
             .book-grid {
@@ -541,256 +795,429 @@
             .chapter-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
+
+            .user-name {
+                display: none;
+            }
         }
 
-        /* Language-specific text */
-        .lang-es {
+        /* Animations */
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .card {
+            animation: slideIn 0.3s ease;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
             display: none;
+            animation: slideUp 0.3s ease;
         }
 
-        body.spanish .lang-en {
-            display: none;
+        .toast.show {
+            display: block;
         }
 
-        body.spanish .lang-es {
-            display: inline;
+        @keyframes slideUp {
+            from { transform: translate(-50%, 20px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
         }
-
-        /* Font size classes */
-        body.font-small { font-size: 14px; }
-        body.font-small button { font-size: 14px; }
-        body.font-small #chapter-text { font-size: 16px; }
-        
-        body.font-medium { font-size: 16px; }
-        body.font-medium button { font-size: 16px; }
-        body.font-medium #chapter-text { font-size: 18px; }
-        
-        body.font-large { font-size: 18px; }
-        body.font-large button { font-size: 18px; }
-        body.font-large #chapter-text { font-size: 20px; }
     </style>
 </head>
-
 <body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+            <h2 id="loginTitle">Sign In</h2>
+            
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••">
+            </div>
+            
+            <div class="action-row">
+                <button class="action-btn primary" onclick="login()">Sign In</button>
+                <button class="action-btn" onclick="showRegister()">Create Account</button>
+            </div>
+            
+            <p style="text-align: center; margin-top: 15px;">
+                <a href="#" onclick="forgotPassword()">Forgot Password?</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+            <h2>Create Account</h2>
+            
+            <div class="form-group">
+                <label for="registerName">Full Name</label>
+                <input type="text" id="registerName" placeholder="John Doe">
+            </div>
+            
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="••••••••">
+            </div>
+            
+            <div class="form-group">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" placeholder="••••••••">
+            </div>
+            
+            <div class="action-row">
+                <button class="action-btn primary" onclick="register()">Create Account</button>
+                <button class="action-btn" onclick="showLogin()">Back to Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('profileModal')">✕</button>
+            <h2>Your Profile</h2>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="font-size: 80px; margin-bottom: 10px;">👤</div>
+                <h3 id="profileName">Guest User</h3>
+                <p id="profileEmail">guest@example.com</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="profileStreak">0</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="profileChapters">0</div>
+                    <div class="stat-label">Chapters</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="profileBookmarks">0</div>
+                    <div class="stat-label">Bookmarks</div>
+                </div>
+            </div>
+            
+            <div class="action-row">
+                <button class="action-btn" onclick="logout()">Sign Out</button>
+                <button class="action-btn primary" onclick="closeModal('profileModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bookmarks Modal -->
+    <div id="bookmarksModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('bookmarksModal')">✕</button>
+            <h2>Your Bookmarks</h2>
+            <div id="bookmarksList"></div>
+        </div>
+    </div>
+
+    <!-- Notes Modal -->
+    <div id="notesModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('notesModal')">✕</button>
+            <h2>Your Notes</h2>
+            
+            <div class="form-group">
+                <textarea id="noteInput" rows="3" placeholder="Write your note here..."></textarea>
+            </div>
+            
+            <button class="action-btn primary" onclick="addNote()" style="width:100%; margin-bottom:20px;">Add Note</button>
+            
+            <div id="notesList"></div>
+        </div>
+    </div>
+
     <!-- Settings Panel -->
     <div class="settings-panel" id="settingsPanel">
-        <button class="close-settings" onclick="toggleSettings()">✕</button>
-        <h2 class="lang-en">Settings</h2>
-        <h2 class="lang-es">Configuración</h2>
+        <div class="settings-header">
+            <h2>Settings</h2>
+            <button class="close-settings" onclick="toggleSettings()">✕</button>
+        </div>
 
+        <!-- Profile Section -->
         <div class="settings-section">
-            <h3 class="lang-en">Theme</h3>
-            <h3 class="lang-es">Tema</h3>
-            <div class="theme-buttons">
-                <button class="theme-btn active" onclick="setTheme('default')" id="themeDefault">
-                    <span class="lang-en">Default</span>
-                    <span class="lang-es">Predeterminado</span>
-                </button>
-                <button class="theme-btn" onclick="setTheme('dark')" id="themeDark">
-                    <span class="lang-en">Dark</span>
-                    <span class="lang-es">Oscuro</span>
-                </button>
+            <h3>Account</h3>
+            <div class="settings-grid">
+                <button class="settings-btn" onclick="openModal('profileModal')">View Profile</button>
+                <button class="settings-btn" onclick="openModal('bookmarksModal')">Bookmarks</button>
+                <button class="settings-btn" onclick="openModal('notesModal')">Notes</button>
+                <button class="settings-btn" onclick="exportData()">Export Data</button>
             </div>
         </div>
 
+        <!-- Appearance -->
         <div class="settings-section">
-            <h3 class="lang-en">Font Size</h3>
-            <h3 class="lang-es">Tamaño</h3>
-            <div class="theme-buttons">
-                <button class="theme-btn" onclick="setFontSize('small')" id="fontSmall">A-</button>
-                <button class="theme-btn active" onclick="setFontSize('medium')" id="fontMedium">A</button>
-                <button class="theme-btn" onclick="setFontSize('large')" id="fontLarge">A+</button>
+            <h3>Appearance</h3>
+            <div class="settings-grid">
+                <button class="settings-btn" onclick="setTheme('default')" id="themeDefault">Light</button>
+                <button class="settings-btn" onclick="setTheme('dark')" id="themeDark">Dark</button>
+                <button class="settings-btn" onclick="setTheme('sepia')" id="themeSepia">Sepia</button>
+                <button class="settings-btn" onclick="setTheme('highContrast')" id="themeHighContrast">High Contrast</button>
             </div>
         </div>
 
+        <!-- Font Settings -->
         <div class="settings-section">
-            <h3 class="lang-en">Language</h3>
-            <h3 class="lang-es">Idioma</h3>
-            <div class="theme-buttons">
-                <button class="theme-btn" onclick="setLanguage('en')" id="langEn">English</button>
-                <button class="theme-btn" onclick="setLanguage('es')" id="langEs">Español</button>
+            <h3>Font</h3>
+            <div class="settings-grid">
+                <button class="settings-btn" onclick="setFont('inter')" id="fontInter">Inter</button>
+                <button class="settings-btn" onclick="setFont('georgia')" id="fontGeorgia">Georgia</button>
+                <button class="settings-btn" onclick="setFont('times')" id="fontTimes">Times</button>
+                <button class="settings-btn" onclick="setFont('arial')" id="fontArial">Arial</button>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <label>Font Size</label>
+                <input type="range" class="range-slider" id="fontSizeSlider" min="12" max="24" value="16" onchange="setFontSize(this.value)">
+                <div style="display:flex; justify-content:space-between; margin-top:5px;">
+                    <button class="settings-btn" onclick="setFontSize('small')">A-</button>
+                    <button class="settings-btn" onclick="setFontSize('medium')">A</button>
+                    <button class="settings-btn" onclick="setFontSize('large')">A+</button>
+                </div>
             </div>
         </div>
 
+        <!-- Reading Preferences -->
         <div class="settings-section">
-            <h3 class="lang-en">Custom Color</h3>
-            <h3 class="lang-es">Color</h3>
-            <input type="color" id="bgColorPicker" value="#d9c8a9" onchange="setCustomBackground(this.value)" style="width:100%; height:40px;">
+            <h3>Reading</h3>
+            <div class="settings-grid">
+                <button class="settings-btn" onclick="toggleLineSpacing()" id="lineSpacing">Line Spacing: 1.5</button>
+                <button class="settings-btn" onclick="toggleVerseNumbers()" id="verseNumbers">Verse #: On</button>
+                <button class="settings-btn" onclick="toggleJustify()" id="textJustify">Justify: Off</button>
+                <button class="settings-btn" onclick="setTranslation('kjv')" id="transKJV">KJV</button>
+            </div>
         </div>
 
-        <button onclick="resetSettings()" style="width:100%; padding:12px;">
-            <span class="lang-en">Reset</span>
-            <span class="lang-es">Restablecer</span>
-        </button>
+        <!-- Custom Colors -->
+        <div class="settings-section">
+            <h3>Custom Colors</h3>
+            <div class="form-group">
+                <label>Primary Color</label>
+                <input type="color" class="color-picker" id="primaryColor" value="#8b6b4f" onchange="setPrimaryColor(this.value)">
+            </div>
+            <div class="form-group">
+                <label>Background Color</label>
+                <input type="color" class="color-picker" id="bgColor" value="#f5ebdc" onchange="setBgColor(this.value)">
+            </div>
+            <div class="form-group">
+                <label>Text Color</label>
+                <input type="color" class="color-picker" id="textColor" value="#4a3729" onchange="setTextColor(this.value)">
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-section">
+            <h3>Notifications</h3>
+            <div class="settings-grid">
+                <button class="settings-btn" onclick="toggleDailyVerse()" id="dailyVerseNotif">Daily Verse: On</button>
+                <button class="settings-btn" onclick="toggleReminders()" id="reminders">Reminders: Off</button>
+                <button class="settings-btn" onclick="toggleSound()" id="sound">Sound: On</button>
+            </div>
+        </div>
+
+        <!-- Data Management -->
+        <div class="settings-section">
+            <h3>Data</h3>
+            <div class="settings-grid">
+                <button class="settings-btn" onclick="backupData()">Backup</button>
+                <button class="settings-btn" onclick="restoreData()">Restore</button>
+                <button class="settings-btn" onclick="clearData()">Clear Data</button>
+                <button class="settings-btn" onclick="resetSettings()">Reset All</button>
+            </div>
+        </div>
+
+        <!-- About -->
+        <div class="settings-section">
+            <h3>About</h3>
+            <p>Version 2.0.0</p>
+            <p>© 2024 Logos Bible</p>
+            <button class="settings-btn" onclick="showPrivacyPolicy()">Privacy Policy</button>
+            <button class="settings-btn" onclick="showTerms()">Terms of Service</button>
+        </div>
     </div>
 
     <!-- Main App Container -->
     <div class="app-container">
         <!-- Header -->
         <div class="app-header">
-            <button class="header-lang" onclick="toggleLanguage()">
-                <span class="lang-en">ES</span>
-                <span class="lang-es">EN</span>
-            </button>
+            <div class="user-profile" onclick="openModal('profileModal')">
+                <div class="avatar" id="userAvatar">👤</div>
+                <span class="user-name" id="userName">Guest</span>
+            </div>
             <h1>
-                <span class="lang-en">Walk With God</span>
-                <span class="lang-es">Camina Con Dios</span>
-                <span class="lang-en">Daily Devotional</span>
-                <span class="lang-es">Devocional Diario</span>
+                Logos Bible
+                <span>Walk With God</span>
             </h1>
-            <button class="header-settings" onclick="toggleSettings()">⚙️</button>
+            <div class="header-buttons">
+                <button class="header-btn" onclick="openModal('bookmarksModal')">🔖</button>
+                <button class="header-btn" onclick="toggleSettings()">⚙️</button>
+            </div>
         </div>
 
-        <!-- Main Content Area -->
+        <!-- Main Content -->
         <div class="main-content">
             <!-- Home Section -->
             <div id="homeSection" class="content-section active">
-                <!-- Today's Plan Card -->
+                <!-- Verse of the Day -->
+                <div class="verse-card" id="verseOfDayCard">
+                    <h3>Verse of the Day</h3>
+                    <p id="verseText">For God so loved the world...</p>
+                    <div class="ref" id="verseRef">John 3:16</div>
+                </div>
+
+                <!-- Progress Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="lang-en">Today's Plan</h2>
-                        <h2 class="lang-es">Plan de Hoy</h2>
-                        <span class="badge" id="todayDate"></span>
+                        <h2>Your Progress</h2>
+                        <span class="badge" id="streakBadge">🔥 0 days</span>
                     </div>
                     
-                    <div class="progress-section">
-                        <div class="progress-label">
-                            <span class="lang-en">Daily Reading</span>
-                            <span class="lang-es">Lectura Diaria</span>
-                            <span id="progressPercent">33%</span>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value" id="chaptersRead">0</div>
+                            <div class="stat-label">Chapters</div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill" style="width: 33%"></div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="versesRead">0</div>
+                            <div class="stat-label">Verses</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="daysActive">0</div>
+                            <div class="stat-label">Days</div>
                         </div>
                     </div>
 
-                    <div class="date-display">
-                        <span id="verseOfDay">John 3:16</span>
-                        <small class="lang-en">Verse of the Day</small>
-                        <small class="lang-es">Versículo del Día</small>
+                    <div class="progress-section">
+                        <div class="progress-label">
+                            <span>Daily Goal</span>
+                            <span id="goalProgress">0/5 chapters</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="goalFill" style="width: 0%"></div>
+                        </div>
                     </div>
 
                     <div class="action-row">
-                        <button class="action-btn" onclick="showReader()">
-                            <span class="lang-en">Read</span>
-                            <span class="lang-es">Leer</span>
-                        </button>
-                        <button class="action-btn primary" onclick="showAsk()">
-                            <span class="lang-en">Ask</span>
-                            <span class="lang-es">Preguntar</span>
-                        </button>
-                        <button class="action-btn" onclick="showBible()">
-                            <span class="lang-en">Search</span>
-                            <span class="lang-es">Buscar</span>
-                        </button>
+                        <button class="action-btn primary" onclick="showReader()">Continue Reading</button>
+                        <button class="action-btn" onclick="markComplete()">✓ Complete</button>
                     </div>
                 </div>
 
-                <!-- Reading Plan Options Card -->
+                <!-- Reading Plans Card -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="lang-en">Reading Plans</h2>
-                        <h2 class="lang-es">Planes de Lectura</h2>
+                        <h2>Reading Plans</h2>
                     </div>
                     
                     <div class="option-grid">
-                        <button class="option-btn active" onclick="selectPlan(30)">30 Days</button>
-                        <button class="option-btn" onclick="selectPlan(90)">90 Days</button>
-                        <button class="option-btn" onclick="selectPlan(180)">180 Days</button>
-                        <button class="option-btn" onclick="selectPlan(365)">Year</button>
+                        <button class="option-btn" onclick="selectPlan('chronological')">Chronological</button>
+                        <button class="option-btn" onclick="selectPlan('pentateuch')">Pentateuch</button>
+                        <button class="option-btn" onclick="selectPlan('psalms')">Psalms</button>
+                        <button class="option-btn" onclick="selectPlan('gospels')">Gospels</button>
                     </div>
 
-                    <div class="date-display">
-                        <span class="lang-en">Projected Completion</span>
-                        <span class="lang-es">Finalización Estimada</span>
-                        <br>
-                        <strong id="completionDate">Dec 31, 2024</strong>
+                    <div class="date-display" style="background: rgba(139, 107, 79, 0.1); padding: 15px; border-radius: 8px; text-align: center;">
+                        <strong>Current Plan:</strong> <span id="currentPlan">Chronological</span><br>
+                        <small id="planProgress">Day 5 of 365</small>
                     </div>
                 </div>
 
-                <!-- Recent Readings Card -->
+                <!-- Recent Activity -->
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="lang-en">Recent</h2>
-                        <h2 class="lang-es">Recientes</h2>
+                        <h2>Recent Activity</h2>
                     </div>
                     
-                    <div class="reading-complete">
-                        <div class="checkmark-circle">✓</div>
-                        <h3 class="lang-en">Yesterday's Reading</h3>
-                        <h3 class="lang-es">Lectura de Ayer</h3>
-                        <p class="verse-text" id="lastReading">Psalm 23</p>
-                        <div class="action-row">
-                            <button class="action-btn" onclick="loadChapter('Psalm', 23, 'Psalm')">
-                                <span class="lang-en">Review</span>
-                                <span class="lang-es">Revisar</span>
-                            </button>
-                        </div>
+                    <div id="recentActivity">
+                        <p style="text-align: center; opacity: 0.7;">No recent activity</p>
                     </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="action-row">
+                    <button class="action-btn" onclick="showReader()">📖 Read</button>
+                    <button class="action-btn" onclick="showAsk()">❓ Ask</button>
+                    <button class="action-btn" onclick="showBible()">🔍 Search</button>
+                    <button class="action-btn" onclick="openModal('notesModal')">📝 Notes</button>
+                </div>
+            </div>
+
+            <!-- Reader Section -->
+            <div id="readerSection" class="content-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Read the Bible</h2>
+                        <button class="badge" onclick="addBookmark()">➕ Bookmark</button>
+                    </div>
+                    
+                    <div id="readerContent">
+                        <p class="loading">Loading books...</p>
+                    </div>
+                    
+                    <button class="action-btn" onclick="showHome()" style="margin-top:20px;">← Back to Home</button>
                 </div>
             </div>
 
             <!-- Ask Section -->
             <div id="askSection" class="content-section">
                 <div class="card">
-                    <h2 class="lang-en">Ask a Question</h2>
-                    <h2 class="lang-es">Haz una Pregunta</h2>
+                    <h2>Ask a Question</h2>
                     
-                    <input type="text" id="question" class="lang-en" placeholder="e.g., 'why do I feel jealous?'" style="width:100%; padding:15px; margin:10px 0; border:2px solid #b5977a; border-radius:30px;">
-                    <input type="text" id="question-es" class="lang-es" placeholder="ej., '¿por qué siento celos?'" style="width:100%; padding:15px; margin:10px 0; border:2px solid #b5977a; border-radius:30px; display:none;">
+                    <textarea id="question" rows="3" placeholder="e.g., 'What does the Bible say about forgiveness?'" style="width:100%; padding:15px; margin:10px 0; border:2px solid var(--primary-light); border-radius:8px;"></textarea>
                     
-                    <button class="action-btn primary" onclick="answerQuestion()" style="width:100%; margin:10px 0;">
-                        <span class="lang-en">Ask</span>
-                        <span class="lang-es">Preguntar</span>
-                    </button>
+                    <button class="action-btn primary" onclick="answerQuestion()" style="width:100%; margin:10px 0;">Ask</button>
                     
                     <div id="answerResult" class="card" style="margin-top:20px;"></div>
                     
-                    <button class="action-btn" onclick="showHome()" style="margin-top:20px;">
-                        ← <span class="lang-en">Back</span><span class="lang-es">Volver</span>
-                    </button>
+                    <button class="action-btn" onclick="showHome()" style="margin-top:20px;">← Back to Home</button>
                 </div>
             </div>
 
             <!-- Search Section -->
             <div id="bibleSection" class="content-section">
                 <div class="card">
-                    <h2 class="lang-en">Search the Bible</h2>
-                    <h2 class="lang-es">Buscar en la Biblia</h2>
+                    <h2>Search the Bible</h2>
                     
-                    <input type="text" id="bibleSearch" class="lang-en" placeholder="e.g., 'love'" style="width:100%; padding:15px; margin:10px 0; border:2px solid #b5977a; border-radius:30px;">
-                    <input type="text" id="bibleSearch-es" class="lang-es" placeholder="ej., 'amor'" style="width:100%; padding:15px; margin:10px 0; border:2px solid #b5977a; border-radius:30px; display:none;">
+                    <input type="text" id="bibleSearch" placeholder="e.g., 'love, faith, hope'" style="width:100%; padding:15px; margin:10px 0; border:2px solid var(--primary-light); border-radius:8px;">
                     
-                    <button class="action-btn primary" onclick="searchBible()" style="width:100%; margin:10px 0;">
-                        <span class="lang-en">Search</span>
-                        <span class="lang-es">Buscar</span>
-                    </button>
+                    <button class="action-btn primary" onclick="searchBible()" style="width:100%; margin:10px 0;">Search</button>
                     
                     <div id="bibleResult" class="card" style="margin-top:20px;"></div>
                     
-                    <button class="action-btn" onclick="showHome()" style="margin-top:20px;">
-                        ← <span class="lang-en">Back</span><span class="lang-es">Volver</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Reader Section - FULL BIBLE INTEGRATION -->
-            <div id="readerSection" class="content-section">
-                <div class="card">
-                    <h2 class="lang-en">Read the Bible</h2>
-                    <h2 class="lang-es">Leer la Biblia</h2>
-                    
-                    <div id="readerContent">
-                        <!-- Books will be loaded here by JavaScript -->
-                        <p class="loading">
-                            <span class="lang-en">Loading books...</span>
-                            <span class="lang-es">Cargando libros...</span>
-                        </p>
-                    </div>
-                    
-                    <button class="action-btn" onclick="showHome()" style="margin-top:20px;">
-                        ← <span class="lang-en">Back</span><span class="lang-es">Volver</span>
-                    </button>
+                    <button class="action-btn" onclick="showHome()" style="margin-top:20px;">← Back to Home</button>
                 </div>
             </div>
         </div>
@@ -799,30 +1226,313 @@
         <div class="bottom-nav">
             <div class="nav-item active" onclick="showHome()">
                 <i>🏠</i>
-                <span class="lang-en">Home</span>
-                <span class="lang-es">Inicio</span>
+                <span>Home</span>
             </div>
             <div class="nav-item" onclick="showReader()">
                 <i>📖</i>
-                <span class="lang-en">Read</span>
-                <span class="lang-es">Leer</span>
+                <span>Read</span>
             </div>
             <div class="nav-item" onclick="showAsk()">
                 <i>❓</i>
-                <span class="lang-en">Ask</span>
-                <span class="lang-es">Preguntar</span>
+                <span>Ask</span>
             </div>
             <div class="nav-item" onclick="showBible()">
                 <i>🔍</i>
-                <span class="lang-en">Search</span>
-                <span class="lang-es">Buscar</span>
+                <span>Search</span>
             </div>
         </div>
     </div>
 
     <script>
-        // ============= COMPLETE BIBLE BOOKS DATA =============
-        // All 66 books of the Bible with their chapter counts [citation:2]
+        // ==================== USER AUTHENTICATION ====================
+        let currentUser = null;
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Load current session
+        const session = JSON.parse(localStorage.getItem('currentSession'));
+        if (session) {
+            currentUser = session;
+            updateUIForUser();
+        }
+
+        function showToast(message, duration = 3000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        function openModal(modalId) {
+            if (!currentUser && modalId !== 'loginModal' && modalId !== 'registerModal') {
+                showLogin();
+                return;
+            }
+            document.getElementById(modalId).classList.add('show');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        function showLogin() {
+            closeModal('registerModal');
+            openModal('loginModal');
+        }
+
+        function showRegister() {
+            closeModal('loginModal');
+            openModal('registerModal');
+        }
+
+        function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const user = users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentSession', JSON.stringify(user));
+                closeModal('loginModal');
+                updateUIForUser();
+                showToast(`Welcome back, ${user.name}!`);
+            } else {
+                showToast('Invalid email or password');
+            }
+        }
+
+        function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirm = document.getElementById('registerConfirmPassword').value;
+            
+            if (!name || !email || !password) {
+                showToast('Please fill all fields');
+                return;
+            }
+            
+            if (password !== confirm) {
+                showToast('Passwords do not match');
+                return;
+            }
+            
+            if (users.find(u => u.email === email)) {
+                showToast('Email already registered');
+                return;
+            }
+            
+            const newUser = {
+                id: Date.now(),
+                name,
+                email,
+                password,
+                createdAt: new Date().toISOString(),
+                bookmarks: [],
+                notes: [],
+                progress: {
+                    chaptersRead: 0,
+                    versesRead: 0,
+                    streak: 0,
+                    lastRead: null
+                },
+                settings: {
+                    theme: 'default',
+                    fontSize: 'medium',
+                    fontFamily: 'Inter',
+                    notifications: true
+                }
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            currentUser = newUser;
+            localStorage.setItem('currentSession', JSON.stringify(newUser));
+            
+            closeModal('registerModal');
+            updateUIForUser();
+            showToast(`Welcome, ${name}!`);
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentSession');
+            closeModal('profileModal');
+            updateUIForGuest();
+            showToast('Signed out successfully');
+        }
+
+        function updateUIForUser() {
+            document.getElementById('userName').textContent = currentUser.name;
+            document.getElementById('profileName').textContent = currentUser.name;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            
+            // Update stats
+            document.getElementById('profileStreak').textContent = currentUser.progress?.streak || 0;
+            document.getElementById('profileChapters').textContent = currentUser.progress?.chaptersRead || 0;
+            document.getElementById('profileBookmarks').textContent = currentUser.bookmarks?.length || 0;
+            
+            document.getElementById('chaptersRead').textContent = currentUser.progress?.chaptersRead || 0;
+            document.getElementById('versesRead').textContent = currentUser.progress?.versesRead || 0;
+            document.getElementById('daysActive').textContent = currentUser.progress?.streak || 0;
+            document.getElementById('streakBadge').textContent = `🔥 ${currentUser.progress?.streak || 0} days`;
+        }
+
+        function updateUIForGuest() {
+            document.getElementById('userName').textContent = 'Guest';
+            document.getElementById('profileName').textContent = 'Guest User';
+            document.getElementById('profileEmail').textcontent = 'guest@example.com';
+            
+            document.getElementById('profileStreak').textContent = '0';
+            document.getElementById('profileChapters').textContent = '0';
+            document.getElementById('profileBookmarks').textContent = '0';
+            
+            document.getElementById('chaptersRead').textContent = '0';
+            document.getElementById('versesRead').textContent = '0';
+            document.getElementById('daysActive').textContent = '0';
+            document.getElementById('streakBadge').textContent = '🔥 0 days';
+        }
+
+        function forgotPassword() {
+            showToast('Password reset link sent to your email');
+        }
+
+        // ==================== BOOKMARKS ====================
+        function addBookmark() {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            
+            if (!currentBook || !currentChapter) {
+                showToast('Please select a chapter first');
+                return;
+            }
+            
+            const bookmark = {
+                id: Date.now(),
+                book: currentBook,
+                chapter: currentChapter,
+                verse: currentDisplayBook,
+                date: new Date().toISOString()
+            };
+            
+            if (!currentUser.bookmarks) currentUser.bookmarks = [];
+            currentUser.bookmarks.push(bookmark);
+            
+            saveUserData();
+            showToast('Bookmark added!');
+        }
+
+        function loadBookmarks() {
+            if (!currentUser || !currentUser.bookmarks) return;
+            
+            const list = document.getElementById('bookmarksList');
+            let html = '';
+            
+            currentUser.bookmarks.forEach(bookmark => {
+                html += `
+                <div class="bookmark-item" onclick="loadChapter('${bookmark.book}', ${bookmark.chapter}, '${bookmark.verse}'); closeModal('bookmarksModal')">
+                    <div class="bookmark-info">
+                        <h4>${bookmark.verse} ${bookmark.chapter}</h4>
+                        <p>${new Date(bookmark.date).toLocaleDateString()}</p>
+                    </div>
+                    <button class="bookmark-delete" onclick="deleteBookmark(${bookmark.id}); event.stopPropagation()">🗑️</button>
+                </div>
+                `;
+            });
+            
+            if (html === '') {
+                html = '<p style="text-align:center;">No bookmarks yet</p>';
+            }
+            
+            list.innerHTML = html;
+        }
+
+        function deleteBookmark(id) {
+            if (!currentUser) return;
+            currentUser.bookmarks = currentUser.bookmarks.filter(b => b.id !== id);
+            saveUserData();
+            loadBookmarks();
+            showToast('Bookmark removed');
+        }
+
+        // ==================== NOTES ====================
+        function loadNotes() {
+            if (!currentUser || !currentUser.notes) return;
+            
+            const list = document.getElementById('notesList');
+            let html = '';
+            
+            currentUser.notes.forEach(note => {
+                html += `
+                <div class="note-item">
+                    <div class="note-header">
+                        <span class="note-date">${new Date(note.date).toLocaleDateString()}</span>
+                        <button class="note-delete" onclick="deleteNote(${note.id})">🗑️</button>
+                    </div>
+                    <p>${note.text}</p>
+                </div>
+                `;
+            });
+            
+            if (html === '') {
+                html = '<p style="text-align:center;">No notes yet</p>';
+            }
+            
+            list.innerHTML = html;
+        }
+
+        function addNote() {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            
+            const text = document.getElementById('noteInput').value.trim();
+            if (!text) return;
+            
+            if (!currentUser.notes) currentUser.notes = [];
+            
+            currentUser.notes.unshift({
+                id: Date.now(),
+                text,
+                date: new Date().toISOString()
+            });
+            
+            document.getElementById('noteInput').value = '';
+            saveUserData();
+            loadNotes();
+            showToast('Note added');
+        }
+
+        function deleteNote(id) {
+            if (!currentUser) return;
+            currentUser.notes = currentUser.notes.filter(n => n.id !== id);
+            saveUserData();
+            loadNotes();
+            showToast('Note deleted');
+        }
+
+        function saveUserData() {
+            if (!currentUser) return;
+            
+            // Update users array
+            const index = users.findIndex(u => u.id === currentUser.id);
+            if (index !== -1) {
+                users[index] = currentUser;
+            }
+            
+            localStorage.setItem('users', JSON.stringify(users));
+            localStorage.setItem('currentSession', JSON.stringify(currentUser));
+            
+            updateUIForUser();
+        }
+
+        // ==================== COMPLETE BIBLE DATA ====================
         const bibleBooks = [
             // Old Testament
             { id: "Genesis", name: "Genesis", name_es: "Génesis", chapters: 50 },
@@ -900,13 +1610,21 @@
         let currentChapter = 1;
         let currentDisplayBook = null;
 
-        // ============= NAVIGATION FUNCTIONS =============
+        // ==================== NAVIGATION ====================
         function showHome() {
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
             document.getElementById('homeSection').classList.add('active');
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.querySelectorAll('.nav-item')[0].classList.add('active');
-            updateDate();
+            updateVerseOfDay();
+        }
+
+        function showReader() {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById('readerSection').classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.nav-item')[1].classList.add('active');
+            loadBooks();
         }
 
         function showAsk() {
@@ -923,262 +1641,154 @@
             document.querySelectorAll('.nav-item')[3].classList.add('active');
         }
 
-        function showReader() {
-            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            document.getElementById('readerSection').classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            document.querySelectorAll('.nav-item')[1].classList.add('active');
-            loadBooks();
-        }
-
-        // ============= BIBLE READING FUNCTIONS - FULL INTEGRATION =============
-        
-        // Load all books of the Bible
+        // ==================== BIBLE READING ====================
         function loadBooks() {
-            const isSpanish = document.body.classList.contains('spanish');
-            let output = '<h3 class="lang-en">Select a Book:</h3><h3 class="lang-es">Selecciona un Libro:</h3>';
+            let output = '<h3>Select a Book:</h3>';
             output += '<div class="book-grid">';
             
             bibleBooks.forEach(book => {
-                const displayName = isSpanish ? book.name_es : book.name;
-                output += `<button onclick="loadChapters('${book.id}', '${book.name}', '${book.name_es}')">${displayName}</button>`;
+                output += `<button onclick="loadChapters('${book.id}', '${book.name}')">${book.name}</button>`;
             });
             
             output += '</div>';
             document.getElementById('readerContent').innerHTML = output;
         }
 
-        // Load chapters for selected book
-        function loadChapters(bookId, bookNameEn, bookNameEs) {
-            const isSpanish = document.body.classList.contains('spanish');
+        function loadChapters(bookId, bookName) {
             const book = bibleBooks.find(b => b.id === bookId);
-            const displayName = isSpanish ? bookNameEs : bookNameEn;
             
-            let output = `<button onclick="loadBooks()" style="margin:10px 0; padding:10px;">← <span class="lang-en">Back to Books</span><span class="lang-es">Volver a Libros</span></button>`;
-            output += `<h3>${displayName}</h3>`;
+            let output = `<button onclick="loadBooks()" style="margin:10px 0; padding:10px;">← Back to Books</button>`;
+            output += `<h3>${bookName}</h3>`;
             output += '<div class="chapter-grid">';
             
             for (let i = 1; i <= book.chapters; i++) {
-                output += `<button onclick="loadChapter('${bookId}', ${i}, '${displayName}')">${i}</button>`;
+                output += `<button onclick="loadChapter('${bookId}', ${i}, '${bookName}')">${i}</button>`;
             }
             
             output += '</div>';
             document.getElementById('readerContent').innerHTML = output;
         }
 
-        // Load specific chapter using Bible API [citation:3][citation:9]
         function loadChapter(bookId, chapter, displayName) {
             currentBook = bookId;
             currentChapter = chapter;
             currentDisplayBook = displayName;
             
-            const isSpanish = document.body.classList.contains('spanish');
-            
-            let output = `<div class="nav-buttons" style="display:flex; justify-content:space-between; margin:10px 0;">`;
-            output += `<button onclick="loadChapters('${bookId}', '${bookId}', '${displayName}')">← <span class="lang-en">Chapters</span><span class="lang-es">Capítulos</span></button>`;
-            
-            // Previous/Next chapter buttons
+            let output = `<div style="display:flex; justify-content:space-between; margin:10px 0;">`;
+            output += `<button onclick="loadChapters('${bookId}', '${displayName}')">← Chapters</button>`;
             output += `<div>`;
             if (chapter > 1) {
-                output += `<button onclick="loadChapter('${bookId}', ${chapter - 1}, '${displayName}')" style="margin-right:5px;">← <span class="lang-en">Prev</span><span class="lang-es">Ant</span></button>`;
+                output += `<button onclick="loadChapter('${bookId}', ${chapter - 1}, '${displayName}')" style="margin-right:5px;">← Prev</button>`;
             }
             if (chapter < bibleBooks.find(b => b.id === bookId).chapters) {
-                output += `<button onclick="loadChapter('${bookId}', ${chapter + 1}, '${displayName}')"><span class="lang-en">Next</span><span class="lang-es">Sig</span> →</button>`;
+                output += `<button onclick="loadChapter('${bookId}', ${chapter + 1}, '${displayName}')">Next →</button>`;
             }
             output += `</div></div>`;
             
             output += `<h3>${displayName} ${chapter}</h3>`;
-            output += `<div id="chapter-text" class="loading"><span class="lang-en">Loading...</span><span class="lang-es">Cargando...</span></div>`;
+            output += `<div id="chapter-text" class="loading">Loading...</div>`;
             
             document.getElementById('readerContent').innerHTML = output;
             
-            // Fetch the actual Bible verses from the API [citation:3][citation:9]
-            const apiUrl = `https://bible-api.com/${bookId}+${chapter}?translation=kjv`;
-            
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+            // Fetch from Bible API
+            fetch(`https://bible-api.com/${bookId}+${chapter}?translation=kjv`)
+                .then(response => response.json())
                 .then(data => {
                     let versesOutput = '';
                     if (data.verses && data.verses.length > 0) {
                         data.verses.forEach(verse => {
                             versesOutput += `<p><strong>${verse.verse}</strong> ${verse.text}</p>`;
                         });
-                    } else {
-                        versesOutput = `<p class="error-message"><span class="lang-en">No verses found</span><span class="lang-es">No se encontraron versículos</span></p>`;
+                        
+                        // Update progress if user is logged in
+                        if (currentUser) {
+                            if (!currentUser.progress) currentUser.progress = { chaptersRead: 0, versesRead: 0 };
+                            currentUser.progress.chaptersRead = (currentUser.progress.chaptersRead || 0) + 1;
+                            currentUser.progress.versesRead = (currentUser.progress.versesRead || 0) + data.verses.length;
+                            saveUserData();
+                        }
                     }
                     document.getElementById('chapter-text').innerHTML = versesOutput;
-                    document.getElementById('chapter-text').classList.remove('loading');
                 })
                 .catch(error => {
-                    console.error('Error fetching Bible chapter:', error);
-                    document.getElementById('chapter-text').innerHTML = `<p class="error-message"><span class="lang-en">Error loading chapter. Please try again.</span><span class="lang-es">Error al cargar el capítulo. Intente de nuevo.</span></p>`;
+                    document.getElementById('chapter-text').innerHTML = '<p>Error loading chapter</p>';
                 });
         }
 
-        // ============= SEARCH BIBLE FUNCTION =============
+        // ==================== SEARCH ====================
         function searchBible() {
-            const isSpanish = document.body.classList.contains('spanish');
-            const searchTerm = isSpanish ? 
-                document.getElementById('bibleSearch-es').value : 
-                document.getElementById('bibleSearch').value;
-            
-            if (!searchTerm.trim()) {
-                alert(isSpanish ? 'Por favor ingrese un término de búsqueda' : 'Please enter a search term');
-                return;
-            }
+            const searchTerm = document.getElementById('bibleSearch').value;
+            if (!searchTerm.trim()) return;
             
             const resultDiv = document.getElementById('bibleResult');
-            resultDiv.innerHTML = `<p class="loading"><span class="lang-en">Searching...</span><span class="lang-es">Buscando...</span></p>`;
+            resultDiv.innerHTML = '<p class="loading">Searching...</p>';
             
-            // Use Bible API search [citation:7][citation:9]
-            const apiUrl = `https://bible-api.com/${encodeURIComponent(searchTerm)}?translation=kjv`;
-            
-            fetch(apiUrl)
+            fetch(`https://bible-api.com/${encodeURIComponent(searchTerm)}?translation=kjv`)
                 .then(response => response.json())
                 .then(data => {
                     let output = '';
                     if (data.verses && data.verses.length > 0) {
-                        output += `<p><strong><span class="lang-en">Found ${data.verses.length} verses:</span><span class="lang-es">Se encontraron ${data.verses.length} versículos:</span></strong></p>`;
+                        output += `<p><strong>Found ${data.verses.length} verses:</strong></p>`;
                         data.verses.slice(0, 10).forEach(verse => {
                             output += `
-                            <div class="search-result">
+                            <div style="padding:10px; margin-bottom:10px; border-left:3px solid var(--primary);">
                                 <strong>${verse.book} ${verse.chapter}:${verse.verse}</strong><br>
                                 ${verse.text}
                             </div>
                             `;
                         });
-                        if (data.verses.length > 10) {
-                            output += `<p><em><span class="lang-en">Showing first 10 results</span><span class="lang-es">Mostrando primeros 10 resultados</span></em></p>`;
-                        }
                     } else {
-                        output = `<p class="error-message"><span class="lang-en">No verses found for "${searchTerm}"</span><span class="lang-es">No se encontraron versículos para "${searchTerm}"</span></p>`;
+                        output = '<p>No verses found</p>';
                     }
                     resultDiv.innerHTML = output;
                 })
-                .catch(error => {
-                    console.error('Error searching Bible:', error);
-                    resultDiv.innerHTML = `<p class="error-message"><span class="lang-en">Error searching. Please try again.</span><span class="lang-es">Error al buscar. Intente de nuevo.</span></p>`;
+                .catch(() => {
+                    resultDiv.innerHTML = '<p>Error searching</p>';
                 });
         }
 
-        // ============= QUESTION ANSWERING FUNCTIONS =============
+        // ==================== QUESTION ANSWERING ====================
         const topics = [
             {
-                keywords: ["lust", "temptation", "desire"],
-                keywords_es: ["lujuria", "tentación", "deseo"],
-                verse: "Matthew 5:28",
-                verse_es: "Mateo 5:28",
-                text: "But I tell you that anyone who looks at a woman lustfully has already committed adultery with her in his heart.",
-                text_es: "Pero yo os digo que cualquiera que mira a una mujer para codiciarla, ya adulteró con ella en su corazón.",
-                explanation: "Jesus teaches that sin begins in the heart and mind, not just in actions. Lust treats people as objects rather than honoring them as God's creation.",
-                explanation_es: "Jesús enseña que el pecado comienza en el corazón y la mente, no solo en las acciones. La lujuria trata a las personas como objetos en lugar de honrarlas como creación de Dios.",
-                guidance: "Guard your thoughts and what you watch. Focus on respecting others and building healthy relationships based on love, not lust.",
-                guidance_es: "Guarda tus pensamientos y lo que miras. Concéntrate en respetar a los demás y construir relaciones saludables basadas en el amor, no en la lujuria."
-            },
-            {
-                keywords: ["anger", "mad", "frustrated"],
-                keywords_es: ["enojo", "ira", "frustrado", "enfado"],
-                verse: "James 1:19-20",
-                verse_es: "Santiago 1:19-20",
-                text: "My dear brothers and sisters, take note of this: Everyone should be quick to listen, slow to speak and slow to become angry, because human anger does not produce the righteousness that God desires.",
-                text_es: "Por esto, mis amados hermanos, todo hombre sea pronto para oír, tardo para hablar, tardo para airarse; porque la ira del hombre no obra la justicia de Dios.",
-                explanation: "Anger itself isn't always wrong, but uncontrolled anger leads to words and actions we regret. God wants us to respond thoughtfully, not react emotionally.",
-                explanation_es: "El enojo en sí mismo no siempre es malo, pero la ira descontrolada lleva a palabras y acciones que lamentamos. Dios quiere que respondamos con consideración, no que reaccionemos emocionalmente.",
-                guidance: "When you feel angry, pause and take deep breaths. Ask yourself: 'What would help this situation?' Respond with kindness when possible.",
-                guidance_es: "Cuando te sientas enojado, haz una pausa y respira profundamente. Pregúntate: '¿Qué ayudaría en esta situación?' Responde con amabilidad cuando sea posible."
-            },
-            {
-                keywords: ["fail", "failure", "hate myself", "disappointed", "mess up"],
-                keywords_es: ["fracaso", "fallar", "odio a mí mismo", "decepcionado", "equivocar"],
-                verse: "Romans 8:1",
-                verse_es: "Romanos 8:1",
-                text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
-                text_es: "Ahora, pues, ninguna condenación hay para los que están en Cristo Jesús.",
-                explanation: "Failure does not define your worth. God offers forgiveness and a fresh start. Even when you stumble, you are not condemned or rejected.",
-                explanation_es: "El fracaso no define tu valor. Dios ofrece perdón y un nuevo comienzo. Incluso cuando tropiezas, no eres condenado ni rechazado.",
-                guidance: "Learn from your mistake, ask for forgiveness if needed, and focus on growing. Every person who ever did anything great failed many times first.",
-                guidance_es: "Aprende de tu error, pide perdón si es necesario, y concéntrate en crecer. Toda persona que hizo algo grandioso fracasó muchas veces primero."
-            },
-            {
-                keywords: ["forgive", "forgiveness", "hurt", "someone wronged me"],
-                keywords_es: ["perdonar", "perdón", "herido", "alguien me lastimó"],
+                keywords: ["forgive", "forgiveness"],
                 verse: "Ephesians 4:32",
-                verse_es: "Efesios 4:32",
                 text: "Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
-                text_es: "Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros, como también Dios os perdonó a vosotros en Cristo.",
-                explanation: "Forgiveness is not about pretending something didn't hurt. It's about releasing the burden of anger and trusting God with justice.",
-                explanation_es: "El perdón no se trata de pretender que algo no dolió. Se trata de liberar la carga de la ira y confiar en Dios para la justicia.",
-                guidance: "Forgiveness is a process. Start by praying for the person who hurt you, even if you don't feel it yet. This helps your own heart heal.",
-                guidance_es: "El perdón es un proceso. Comienza orando por la persona que te lastimó, incluso si aún no lo sientes. Esto ayuda a que tu propio corazón sane."
+                explanation: "Forgiveness is a command from God, not an option. It releases us from the burden of anger.",
+                guidance: "Pray for those who hurt you and ask God to help you release the pain."
             },
             {
-                keywords: ["jealous", "jealousy", "envy", "compare"],
-                keywords_es: ["celoso", "celos", "envidia", "comparar"],
-                verse: "Proverbs 14:30",
-                verse_es: "Proverbios 14:30",
-                text: "A heart at peace gives life to the body, but envy rots the bones.",
-                text_es: "El corazón apacible es vida de la carne; mas la envidia es carcoma de los huesos.",
-                explanation: "Jealousy and comparison steal your joy and peace. They make you focus on what others have instead of being grateful for your own blessings.",
-                explanation_es: "Los celos y la comparación roban tu alegría y paz. Te hacen enfocarte en lo que otros tienen en lugar de estar agradecido por tus propias bendiciones.",
-                guidance: "Practice gratitude daily. Write down three things you're thankful for. Celebrate others' success instead of comparing yourself to them.",
-                guidance_es: "Practica la gratitud diariamente. Escribe tres cosas por las que estás agradecido. Celebra el éxito de los demás en lugar de compararte con ellos."
+                keywords: ["love"],
+                verse: "1 Corinthians 13:4-7",
+                text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud.",
+                explanation: "This passage describes the true nature of godly love - selfless and enduring.",
+                guidance: "Practice patience and kindness today, even in difficult situations."
             },
             {
-                keywords: ["lonely", "alone", "isolated", "no friends"],
-                keywords_es: ["solo", "soledad", "aislado", "sin amigos"],
-                verse: "Deuteronomy 31:6",
-                verse_es: "Deuteronomio 31:6",
-                text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
-                text_es: "Esforzaos y cobrad ánimo; no temáis, ni tengáis miedo de ellos, porque Jehová tu Dios es el que va contigo; no te dejará, ni te desamparará.",
-                explanation: "Even when you feel alone, God promises to be with you. Loneliness is a feeling, but God's presence is a fact.",
-                explanation_es: "Incluso cuando te sientes solo, Dios promete estar contigo. La soledad es un sentimiento, pero la presencia de Dios es un hecho.",
-                guidance: "Reach out to one person today, even just to say hello. Consider joining a church group or community where you can meet people.",
-                guidance_es: "Comunícate con una persona hoy, aunque solo sea para saludar. Considera unirte a un grupo de la iglesia o comunidad donde puedas conocer personas."
-            },
-            {
-                keywords: ["purpose", "meaning", "why am i here", "direction"],
-                keywords_es: ["propósito", "significado", "por qué estoy aquí", "dirección"],
-                verse: "Jeremiah 29:11",
-                verse_es: "Jeremías 29:11",
-                text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
-                text_es: "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.",
-                explanation: "God has a purpose for your life. Even when you don't know your direction, He does. Your existence is not an accident.",
-                explanation_es: "Dios tiene un propósito para tu vida. Incluso cuando no sabes tu dirección, Él la sabe. Tu existencia no es un accidente.",
-                guidance: "Try different activities and see what you enjoy and what helps others. Your purpose often combines what you're good at, what you love, and how you can serve.",
-                guidance_es: "Prueba diferentes actividades y ve qué disfrutas y qué ayuda a los demás. Tu propósito a menudo combina lo que se te da bien, lo que amas y cómo puedes servir."
+                keywords: ["faith", "trust"],
+                verse: "Hebrews 11:1",
+                text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+                explanation: "Faith is trusting God even when we cannot see the outcome.",
+                guidance: "Take one step of faith today, trusting God with the results."
             }
         ];
 
         function answerQuestion() {
-            const isSpanish = document.body.classList.contains('spanish');
-            let q = isSpanish ? 
-                document.getElementById("question-es").value.toLowerCase() : 
-                document.getElementById("question").value.toLowerCase();
-            
-            let resultDiv = document.getElementById("answerResult");
+            const question = document.getElementById('question').value.toLowerCase();
             let found = false;
-            let output = "";
+            let output = '';
             
             for (let t of topics) {
-                let keywords = isSpanish ? t.keywords_es : t.keywords;
-                for (let k of keywords) {
-                    if (q.includes(k)) {
+                for (let k of t.keywords) {
+                    if (question.includes(k)) {
                         output += `
-                        <div style="margin-bottom:15px; padding:10px; border-left:3px solid #8b6b4f;">
-                            <h3 style="color:#4a3729; margin-top:0;">📖 ${isSpanish ? 'Escritura' : 'Scripture'}</h3>
-                            <p><strong>${isSpanish ? t.verse_es : t.verse}</strong></p>
-                            <p><em>"${isSpanish ? t.text_es : t.text}"</em></p>
-                            
-                            <h3 style="color:#4a3729;">💭 ${isSpanish ? 'Explicación' : 'Explanation'}</h3>
-                            <p>${isSpanish ? t.explanation_es : t.explanation}</p>
-                            
-                            <h3 style="color:#4a3729;">🌟 ${isSpanish ? 'Guía' : 'Guidance'}</h3>
-                            <p>${isSpanish ? t.guidance_es : t.guidance}</p>
+                        <div style="margin-bottom:15px;">
+                            <h3>📖 Scripture</h3>
+                            <p><strong>${t.verse}</strong></p>
+                            <p><em>"${t.text}"</em></p>
+                            <h3>💭 Explanation</h3>
+                            <p>${t.explanation}</p>
+                            <h3>🌟 Guidance</h3>
+                            <p>${t.guidance}</p>
                         </div>
                         `;
                         found = true;
@@ -1188,145 +1798,252 @@
             }
             
             if (!found) {
-                output = `
-                <div style="padding:15px;">
-                    <p>${isSpanish ? 'Aún no tengo respuesta. Temas disponibles:' : 'No answer yet. Available topics:'}</p>
-                    <p>• ${isSpanish ? 'Lujuria' : 'Lust'}<br>
-                       • ${isSpanish ? 'Enojo' : 'Anger'}<br>
-                       • ${isSpanish ? 'Fracaso' : 'Failure'}<br>
-                       • ${isSpanish ? 'Perdón' : 'Forgiveness'}<br>
-                       • ${isSpanish ? 'Celos' : 'Jealousy'}<br>
-                       • ${isSpanish ? 'Soledad' : 'Loneliness'}<br>
-                       • ${isSpanish ? 'Propósito' : 'Purpose'}</p>
-                </div>
-                `;
+                output = '<p>Try asking about forgiveness, love, or faith.</p>';
             }
             
-            resultDiv.innerHTML = output;
+            document.getElementById('answerResult').innerHTML = output;
         }
 
-        // ============= UTILITY FUNCTIONS =============
-        function updateDate() {
-            const today = new Date();
-            const options = { month: 'short', day: 'numeric', year: 'numeric' };
-            document.getElementById('todayDate').textContent = today.toLocaleDateString('en-US', options);
-            
-            // Random verse of the day
-            const verses = [
-                "John 3:16", "Psalm 23:1", "Philippians 4:13", "Romans 8:28", 
-                "Jeremiah 29:11", "Proverbs 3:5", "Isaiah 40:31", "Joshua 1:9"
-            ];
-            document.getElementById('verseOfDay').textContent = verses[Math.floor(Math.random() * verses.length)];
-            
-            // Set completion date (30 days from now)
-            const completion = new Date();
-            completion.setDate(completion.getDate() + 30);
-            document.getElementById('completionDate').textContent = completion.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        // ==================== VERSE OF THE DAY ====================
+        const verses = [
+            { text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", ref: "John 3:16" },
+            { text: "The Lord is my shepherd; I shall not want.", ref: "Psalm 23:1" },
+            { text: "I can do all things through him who strengthens me.", ref: "Philippians 4:13" },
+            { text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.", ref: "Romans 8:28" },
+            { text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "Jeremiah 29:11" }
+        ];
+
+        function updateVerseOfDay() {
+            const today = new Date().getDate();
+            const verse = verses[today % verses.length];
+            document.getElementById('verseText').textContent = verse.text;
+            document.getElementById('verseRef').textContent = verse.ref;
         }
 
-        function selectPlan(days) {
-            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            const completion = new Date();
-            completion.setDate(completion.getDate() + days);
-            document.getElementById('completionDate').textContent = completion.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        // ==================== READING PLANS ====================
+        function selectPlan(plan) {
+            document.getElementById('currentPlan').textContent = 
+                plan.charAt(0).toUpperCase() + plan.slice(1);
+            showToast(`Plan selected: ${plan}`);
         }
 
-        // ============= SETTINGS FUNCTIONS =============
+        function markComplete() {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            
+            // Update streak
+            const today = new Date().toDateString();
+            if (currentUser.progress.lastRead !== today) {
+                currentUser.progress.streak = (currentUser.progress.streak || 0) + 1;
+                currentUser.progress.lastRead = today;
+                
+                // Update goal progress
+                const goalProgress = document.getElementById('goalProgress');
+                const goalFill = document.getElementById('goalFill');
+                const current = parseInt(goalProgress.textContent.split('/')[0]) || 0;
+                
+                if (current < 5) {
+                    goalProgress.textContent = `${current + 1}/5 chapters`;
+                    goalFill.style.width = `${((current + 1) / 5) * 100}%`;
+                }
+                
+                saveUserData();
+                showToast('Progress updated! 🔥');
+            }
+        }
+
+        // ==================== RECENT ACTIVITY ====================
+        function addActivity(action) {
+            const activityDiv = document.getElementById('recentActivity');
+            const activities = JSON.parse(localStorage.getItem('activities')) || [];
+            
+            activities.unshift({
+                action,
+                time: new Date().toLocaleTimeString()
+            });
+            
+            if (activities.length > 5) activities.pop();
+            localStorage.setItem('activities', JSON.stringify(activities));
+            
+            updateActivityDisplay(activities);
+        }
+
+        function updateActivityDisplay(activities) {
+            const activityDiv = document.getElementById('recentActivity');
+            let html = '';
+            
+            activities.forEach(a => {
+                html += `<p>• ${a.action} - ${a.time}</p>`;
+            });
+            
+            activityDiv.innerHTML = html;
+        }
+
+        // ==================== SETTINGS FUNCTIONS ====================
         function toggleSettings() {
             document.getElementById('settingsPanel').classList.toggle('open');
+            if (currentUser) {
+                loadBookmarks();
+                loadNotes();
+            }
         }
 
         function setTheme(theme) {
-            document.body.classList.remove('dark-mode');
-            if (theme === 'dark') document.body.classList.add('dark-mode');
+            document.body.classList.remove('dark-mode', 'sepia-mode', 'high-contrast');
+            if (theme !== 'default') {
+                document.body.classList.add(theme + '-mode');
+            }
             
-            document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('[id^="theme"]').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`theme${theme.charAt(0).toUpperCase() + theme.slice(1)}`).classList.add('active');
-            localStorage.setItem('bibleAppTheme', theme);
+            
+            if (currentUser) {
+                currentUser.settings.theme = theme;
+                saveUserData();
+            }
+        }
+
+        function setFont(font) {
+            document.body.style.fontFamily = 
+                font === 'inter' ? 'Inter, sans-serif' :
+                font === 'georgia' ? 'Georgia, serif' :
+                font === 'times' ? 'Times New Roman, serif' :
+                'Arial, sans-serif';
+            
+            document.querySelectorAll('[id^="font"]').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`font${font.charAt(0).toUpperCase() + font.slice(1)}`).classList.add('active');
         }
 
         function setFontSize(size) {
-            document.body.classList.remove('font-small', 'font-medium', 'font-large');
-            document.body.classList.add(`font-${size}`);
-            
-            document.querySelectorAll('[id^="font"]').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`font${size.charAt(0).toUpperCase() + size.slice(1)}`).classList.add('active');
-            localStorage.setItem('bibleAppFontSize', size);
+            if (size === 'small') document.body.style.fontSize = '14px';
+            else if (size === 'medium') document.body.style.fontSize = '16px';
+            else if (size === 'large') document.body.style.fontSize = '18px';
+            else document.body.style.fontSize = size + 'px';
         }
 
-        function setLanguage(lang) {
-            if (lang === 'es') {
-                document.body.classList.add('spanish');
-            } else {
-                document.body.classList.remove('spanish');
+        function setPrimaryColor(color) {
+            document.documentElement.style.setProperty('--primary', color);
+        }
+
+        function setBgColor(color) {
+            document.body.style.background = color;
+        }
+
+        function setTextColor(color) {
+            document.body.style.color = color;
+        }
+
+        function toggleLineSpacing() {
+            const btn = document.getElementById('lineSpacing');
+            const current = btn.textContent.match(/\d+\.?\d*/)?.[0] || '1.5';
+            const newSpacing = current === '1.5' ? '2.0' : '1.5';
+            document.body.style.lineHeight = newSpacing;
+            btn.textContent = `Line Spacing: ${newSpacing}`;
+        }
+
+        function toggleVerseNumbers() {
+            const btn = document.getElementById('verseNumbers');
+            const current = btn.textContent.includes('On');
+            btn.textContent = `Verse #: ${current ? 'Off' : 'On'}`;
+        }
+
+        function exportData() {
+            if (!currentUser) {
+                showLogin();
+                return;
             }
             
-            document.getElementById('question').style.display = lang === 'en' ? 'block' : 'none';
-            document.getElementById('question-es').style.display = lang === 'es' ? 'block' : 'none';
-            document.getElementById('bibleSearch').style.display = lang === 'en' ? 'block' : 'none';
-            document.getElementById('bibleSearch-es').style.display = lang === 'es' ? 'block' : 'none';
+            const data = {
+                user: currentUser,
+                bookmarks: currentUser.bookmarks,
+                notes: currentUser.notes,
+                progress: currentUser.progress,
+                exportDate: new Date().toISOString()
+            };
             
-            // Refresh current view with new language
-            if (document.getElementById('readerSection').classList.contains('active')) {
-                if (currentBook) {
-                    loadChapter(currentBook, currentChapter, currentDisplayBook);
-                } else {
-                    loadBooks();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `bible-data-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            
+            showToast('Data exported successfully');
+        }
+
+        function restoreData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = event => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        if (data.user && data.user.id === currentUser?.id) {
+                            currentUser.bookmarks = data.bookmarks || [];
+                            currentUser.notes = data.notes || [];
+                            currentUser.progress = data.progress || {};
+                            saveUserData();
+                            showToast('Data restored successfully');
+                        } else {
+                            showToast('Invalid data file');
+                        }
+                    } catch {
+                        showToast('Error reading file');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        function clearData() {
+            if (confirm('Are you sure? This will delete all your data.')) {
+                if (currentUser) {
+                    currentUser.bookmarks = [];
+                    currentUser.notes = [];
+                    currentUser.progress = { chaptersRead: 0, versesRead: 0, streak: 0 };
+                    saveUserData();
+                    showToast('Data cleared');
                 }
             }
-            
-            localStorage.setItem('bibleAppLanguage', lang);
-        }
-
-        function toggleLanguage() {
-            if (document.body.classList.contains('spanish')) {
-                setLanguage('en');
-            } else {
-                setLanguage('es');
-            }
-        }
-
-        function setCustomBackground(color) {
-            document.body.style.background = color;
-            localStorage.setItem('bibleAppCustomBg', color);
         }
 
         function resetSettings() {
+            document.body.style = '';
+            document.documentElement.style = '';
             setTheme('default');
+            setFont('inter');
             setFontSize('medium');
-            setLanguage('en');
-            document.body.style.background = '';
-            document.getElementById('bgColorPicker').value = '#d9c8a9';
-            document.getElementById('brightnessSlider').value = '1';
-            localStorage.clear();
+            showToast('Settings reset');
         }
 
-        // Load saved settings
-        function loadSavedSettings() {
-            const savedTheme = localStorage.getItem('bibleAppTheme');
-            if (savedTheme) setTheme(savedTheme);
-            
-            const savedFontSize = localStorage.getItem('bibleAppFontSize');
-            if (savedFontSize) setFontSize(savedFontSize);
-            
-            const savedLanguage = localStorage.getItem('bibleAppLanguage');
-            if (savedLanguage) setLanguage(savedLanguage);
-            
-            const savedBg = localStorage.getItem('bibleAppCustomBg');
-            if (savedBg) {
-                document.body.style.background = savedBg;
-                document.getElementById('bgColorPicker').value = savedBg;
-            }
+        function backupData() {
+            exportData();
         }
 
-        // Initialize on page load
+        function showPrivacyPolicy() {
+            alert('Privacy Policy: Your data is stored locally on your device.');
+        }
+
+        function showTerms() {
+            alert('Terms of Service: Use this app for personal Bible study.');
+        }
+
+        // Initialize
         window.onload = function() {
-            updateDate();
-            loadSavedSettings();
+            updateVerseOfDay();
+            const activities = JSON.parse(localStorage.getItem('activities')) || [];
+            updateActivityDisplay(activities);
         };
     </script>
 </body>
-
 </html>
