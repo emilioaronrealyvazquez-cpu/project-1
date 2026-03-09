@@ -1,64 +1,343 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-    background: #f0f2f5;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #8B5A2B;  /* Dark wood base */
+    background-image: 
+        linear-gradient(rgba(139, 90, 43, 0.9), rgba(139, 90, 43, 0.9)),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M20 10 L80 10 M50 10 L50 90" stroke="%23442211" stroke-width="8"/><circle cx="50" cy="50" r="15" stroke="%23442211" stroke-width="4" fill="none"/></svg>');
+    background-size: auto, 100px 100px;
+    min-height: 100vh;
     padding: 20px;
-    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
+    background: #D2B48C;  /* Tan wood */
+    background-image: 
+        linear-gradient(90deg, rgba(101, 67, 33, 0.2) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(101, 67, 33, 0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 
+        0 20px 30px rgba(0,0,0,0.5),
+        inset 0 0 30px rgba(139, 69, 19, 0.5);
+    border: 8px solid #8B4513;  /* Saddle brown */
+    position: relative;
+}
+
+.app-container::before {
+    content: "✝";
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #CD853F;  /* Peru */
+    color: #8B4513;
+    font-size: 40px;
+    padding: 10px 30px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border: 3px solid #654321;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
 h1 {
-    color: #2c3e50;
-    margin-bottom: 30px;
-}
-
-button {
-    padding: 12px 24px;
-    margin: 10px;
-    background: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #2980b9;
-}
-
-input {
-    padding: 10px;
-    width: 80%;
-    max-width: 400px;
-    margin: 10px 0;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-#answerResult, #bibleResult {
+    text-align: center;
+    color: #FDF5E6;  /* Old lace */
+    font-size: 42px;
+    margin-bottom: 20px;
     margin-top: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    text-align: left;
-}
-
-#home button {
-    width: 200px;
-    display: block;
-    margin: 20px auto;
+    font-family: 'Palatino', 'Book Antiqua', serif;
+    text-shadow: 
+        4px 4px 0 #654321,
+        6px 6px 0 rgba(0,0,0,0.3);
+    letter-spacing: 2px;
 }
 
 h2 {
-    color: #2c3e50;
+    color: #FDF5E6;
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: 'Palatino', 'Book Antiqua', serif;
+    text-shadow: 2px 2px 0 #654321;
+    border-bottom: 3px solid #8B4513;
+    padding-bottom: 10px;
 }
 
 h3 {
-    color: #3498db;
+    color: #8B4513;
+    font-size: 20px;
+    margin: 15px 0 5px;
+    font-family: 'Palatino', 'Book Antiqua', serif;
+    border-left: 5px solid #CD853F;
+    padding-left: 10px;
+}
+
+#home {
+    text-align: center;
+    padding: 20px;
+}
+
+#home h2 {
+    color: #FDF5E6;
+    font-size: 32px;
+    margin-bottom: 30px;
+    border-bottom: none;
+}
+
+#home p {
+    color: #FDF5E6;
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-style: italic;
+    text-shadow: 1px 1px 0 #654321;
+}
+
+button {
+    padding: 15px 30px;
+    margin: 10px;
+    background: #CD853F;  /* Peru */
+    color: #FDF5E6;
+    border: 3px solid #8B4513;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Georgia', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 0 #654321;
+    position: relative;
+    top: 0;
+}
+
+button:hover {
+    background: #DEB887;  /* Burly wood */
+    color: #4A2511;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0 #654321;
+}
+
+button:active {
+    top: 8px;
+    box-shadow: 0 0 0 #654321;
+}
+
+#home button {
+    width: 250px;
+    display: block;
+    margin: 20px auto;
+    font-size: 20px;
+}
+
+input {
+    padding: 15px 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 10px 0 20px;
+    border: 4px solid #8B4513;
+    border-radius: 50px;
+    font-size: 18px;
+    background: #FDF5E6;
+    font-family: 'Georgia', serif;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.2);
+}
+
+input:focus {
+    outline: none;
+    border-color: #CD853F;
+    box-shadow: inset 0 2px 10px rgba(205, 133, 63, 0.5);
+}
+
+#answerResult, #bibleResult, #readerContent {
+    margin-top: 20px;
+    padding: 25px;
+    background: #FDF5E6;
+    background-image: linear-gradient(45deg, #FDF5E6 95%, #E6D5B8 100%);
+    border-radius: 20px;
+    box-shadow: 
+        inset 0 2px 10px rgba(139, 69, 19, 0.3),
+        0 10px 20px rgba(0,0,0,0.3);
+    text-align: left;
+    border: 4px solid #8B4513;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #4A2511;
+}
+
+#answerResult p, #bibleResult p, #readerContent p {
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #CD853F;
+    padding-bottom: 10px;
+}
+
+#answerResult p:last-child, #bibleResult p:last-child, #readerContent p:last-child {
+    border-bottom: none;
+}
+
+/* Book grid styling */
+#readerContent div[style*="grid"] {
+    background: #E6D5B8;
+    padding: 20px;
+    border-radius: 15px;
     margin-top: 15px;
-    margin-bottom: 5px;
+}
+
+#readerContent button {
+    padding: 12px 8px;
+    margin: 5px;
+    font-size: 14px;
+    text-transform: none;
+    background: #8B5A2B;
+    border: 2px solid #654321;
+    box-shadow: 0 4px 0 #4A2511;
+}
+
+#readerContent button:hover {
+    background: #CD853F;
+}
+
+/* Back button styling */
+#readerContent button:first-child,
+#askSection button:last-child,
+#bibleSection button:last-child,
+#readerSection button:last-child {
+    background: #8B4513;
+    border-color: #4A2511;
+    padding: 12px 25px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* Verse styling */
+#chapter-text {
+    font-family: 'Georgia', serif;
+    line-height: 2;
+    color: #4A2511;
+}
+
+#chapter-text p {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    border-left: 5px solid #CD853F;
+}
+
+#chapter-text strong {
+    color: #8B4513;
+    font-size: 20px;
+    margin-right: 10px;
+    font-family: 'Palatino', serif;
+}
+
+/* Section containers */
+#askSection, #bibleSection, #readerSection {
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #D2B48C;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8B4513;
+    border-radius: 10px;
+    border: 2px solid #CD853F;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #654321;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .app-container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    button {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+    
+    #home button {
+        width: 200px;
+    }
+    
+    input {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+    
+    #readerContent div[style*="grid"] {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important;
+    }
+}
+
+/* Wood grain effect on containers */
+#askSection, #bibleSection, #readerSection {
+    background: rgba(210, 180, 140, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+/* Little cross decorations */
+#askSection::after, #bibleSection::after, #readerSection::after {
+    content: "✝";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #8B4513;
+    opacity: 0.3;
+    transform: rotate(15deg);
+}
+
+/* Bible verse highlight */
+.verse-highlight {
+    background: #CD853F;
+    color: #FDF5E6;
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+/* Loading indicator */
+#chapter-text p em {
+    color: #8B5A2B;
+    font-style: italic;
+    font-size: 18px;
 }
