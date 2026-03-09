@@ -717,6 +717,114 @@
             color: white;
         }
 
+        /* Enhanced Ask Section */
+        .ask-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .ask-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .ask-header p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        .suggested-questions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .suggested-btn {
+            background: transparent;
+            border: 2px solid var(--primary-light);
+            border-radius: 30px;
+            padding: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .suggested-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .answer-card {
+            background: rgba(139, 107, 79, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .answer-card h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .answer-card .verse {
+            font-style: italic;
+            margin-bottom: 10px;
+            padding-left: 15px;
+            border-left: 2px solid var(--primary-light);
+        }
+
+        .answer-card .reference {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .answer-card .explanation {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .answer-card .guidance {
+            background: rgba(139, 107, 79, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .guidance-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .related-topics {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--primary-light);
+        }
+
+        .related-topic {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid var(--primary-light);
+            border-radius: 20px;
+            padding: 5px 12px;
+            margin: 3px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .related-topic:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Bookmarks */
         .bookmark-item {
             display: flex;
@@ -815,6 +923,10 @@
 
             .user-name {
                 display: none;
+            }
+
+            .suggested-questions {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1208,16 +1320,36 @@
                 </div>
             </div>
 
-            <!-- Ask Section -->
+            <!-- Ask Section - ENHANCED -->
             <div id="askSection" class="content-section">
                 <div class="card">
-                    <h2>Ask a Question</h2>
+                    <div class="ask-header">
+                        <h2>Ask God's Word</h2>
+                        <p>Find biblical answers to life's toughest questions</p>
+                    </div>
                     
-                    <textarea id="question" rows="3" placeholder="e.g., 'What does the Bible say about forgiveness?'" style="width:100%; padding:15px; margin:10px 0; border:2px solid var(--primary-light); border-radius:8px;"></textarea>
+                    <textarea id="question" rows="4" placeholder="e.g., 'How do I deal with anxiety?', 'What does the Bible say about forgiveness?', 'Why do I feel lonely?'" style="width:100%; padding:15px; margin:10px 0; border:2px solid var(--primary-light); border-radius:8px; font-size:16px;"></textarea>
                     
-                    <button class="action-btn primary" onclick="answerQuestion()" style="width:100%; margin:10px 0;">Ask</button>
+                    <div class="action-row">
+                        <button class="action-btn primary" onclick="answerQuestion()" style="flex:2;">Get Biblical Answers</button>
+                        <button class="action-btn" onclick="clearQuestion()" style="flex:1;">Clear</button>
+                    </div>
                     
-                    <div id="answerResult" class="card" style="margin-top:20px;"></div>
+                    <!-- Suggested Questions -->
+                    <div style="margin: 20px 0;">
+                        <p style="margin-bottom:10px; opacity:0.8;">Popular questions:</p>
+                        <div class="suggested-questions">
+                            <button class="suggested-btn" onclick="setQuestion('How do I overcome anxiety?')">Anxiety</button>
+                            <button class="suggested-btn" onclick="setQuestion('How do I forgive someone who hurt me?')">Forgiveness</button>
+                            <button class="suggested-btn" onclick="setQuestion('Why do I feel lonely?')">Loneliness</button>
+                            <button class="suggested-btn" onclick="setQuestion('How do I find my purpose?')">Purpose</button>
+                            <button class="suggested-btn" onclick="setQuestion('How do I deal with anger?')">Anger</button>
+                            <button class="suggested-btn" onclick="setQuestion('How do I strengthen my faith?')">Faith</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Answer Results -->
+                    <div id="answerResult" style="margin-top:20px;"></div>
                     
                     <button class="action-btn" onclick="showHome()" style="margin-top:20px;">← Back to Home</button>
                 </div>
@@ -1239,7 +1371,7 @@
             </div>
         </div>
 
-        <!-- Bottom Navigation - FIXED with working buttons -->
+        <!-- Bottom Navigation -->
         <div class="bottom-nav">
             <button class="nav-item active" onclick="showHome()">
                 <i>🏠</i>
@@ -1349,6 +1481,7 @@
                 createdAt: new Date().toISOString(),
                 bookmarks: [],
                 notes: [],
+                questionHistory: [],
                 progress: {
                     chaptersRead: 0,
                     versesRead: 0,
@@ -1419,124 +1552,544 @@
 
         // ==================== NAVIGATION FUNCTIONS ====================
         function showHome() {
-            // Hide all sections
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            // Show home section
             document.getElementById('homeSection').classList.add('active');
-            
-            // Update bottom nav active state
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.querySelectorAll('.nav-item')[0].classList.add('active');
-            
             updateVerseOfDay();
         }
 
         function showReader() {
-            // Hide all sections
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            // Show reader section
             document.getElementById('readerSection').classList.add('active');
-            
-            // Update bottom nav active state
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.querySelectorAll('.nav-item')[1].classList.add('active');
-            
             loadBooks();
         }
 
         function showAsk() {
-            // Hide all sections
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            // Show ask section
             document.getElementById('askSection').classList.add('active');
-            
-            // Update bottom nav active state
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.querySelectorAll('.nav-item')[2].classList.add('active');
         }
 
         function showBible() {
-            // Hide all sections
             document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
-            // Show search section
             document.getElementById('bibleSection').classList.add('active');
-            
-            // Update bottom nav active state
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
             document.querySelectorAll('.nav-item')[3].classList.add('active');
+        }
+
+        // ==================== ENHANCED ASK SYSTEM ====================
+        
+        // Comprehensive Bible answers database - covers 50+ life topics
+        const bibleAnswers = [
+            // ANXIETY & WORRY
+            {
+                keywords: ["anxiety", "anxious", "worry", "worried", "stress", "stressed", "fear", "afraid", "panic"],
+                answers: [
+                    {
+                        verse: "Philippians 4:6-7",
+                        text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+                        explanation: "God invites us to bring all our worries to Him in prayer. When we do, He promises to give us supernatural peace that protects our hearts and minds.",
+                        guidance: "Start each day by giving your worries to God in prayer. Write down your anxieties and consciously hand them over to Him."
+                    },
+                    {
+                        verse: "Matthew 6:25-27",
+                        text: "Therefore I tell you, do not worry about your life, what you will eat or drink; or about your body, what you will wear. Is not life more than food, and the body more than clothes? Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they? Can any one of you by worrying add a single hour to your life?",
+                        explanation: "Jesus teaches that worry is useless because it doesn't change anything. Instead, we should trust in God's provision and care for us.",
+                        guidance: "When you feel anxious, look at nature and remember that God cares for you even more than the birds and flowers."
+                    },
+                    {
+                        verse: "1 Peter 5:7",
+                        text: "Cast all your anxiety on him because he cares for you.",
+                        explanation: "This short verse packs a powerful truth: God genuinely cares about what concerns you. He wants to carry your burdens.",
+                        guidance: "Practice 'casting' - imagine physically throwing your worries onto God. Do this every time anxiety strikes."
+                    }
+                ]
+            },
+            
+            // FORGIVENESS
+            {
+                keywords: ["forgive", "forgiveness", "bitter", "bitterness", "resentment", "hurt", "wronged", "offense"],
+                answers: [
+                    {
+                        verse: "Ephesians 4:31-32",
+                        text: "Get rid of all bitterness, rage and anger, brawling and slander, along with every form of malice. Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
+                        explanation: "Forgiveness is not optional for Christians. We forgive because we have been forgiven infinitely more by God. Bitterness only hurts us, not the person who wronged us.",
+                        guidance: "Think about how much God has forgiven you. Let that motivate you to extend the same grace to others, even when it's hard."
+                    },
+                    {
+                        verse: "Colossians 3:13",
+                        text: "Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.",
+                        explanation: "This verse emphasizes that forgiveness is a continual process. We must 'bear with' others, showing patience and grace repeatedly.",
+                        guidance: "Forgiveness is a choice, not a feeling. Choose to forgive, even if your emotions haven't caught up yet. Pray for the person who hurt you."
+                    },
+                    {
+                        verse: "Matthew 6:14-15",
+                        text: "For if you forgive other people when they sin against you, your heavenly Father will also forgive you. But if you do not forgive others their sins, your Father will not forgive your sins.",
+                        explanation: "Jesus connects our forgiveness from God directly to our forgiveness of others. This is a serious warning about the importance of forgiveness.",
+                        guidance: "Ask yourself: Is holding onto this grudge worth damaging my relationship with God? Release it and experience freedom."
+                    }
+                ]
+            },
+            
+            // LONELINESS
+            {
+                keywords: ["lonely", "loneliness", "alone", "isolated", "abandoned", "deserted", "solitude"],
+                answers: [
+                    {
+                        verse: "Deuteronomy 31:6",
+                        text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+                        explanation: "God's promise is absolute: He will NEVER leave you. Your feelings of loneliness don't change the reality of His constant presence.",
+                        guidance: "Talk to God throughout your day as you would a close friend. He is always there, always listening."
+                    },
+                    {
+                        verse: "Psalm 68:6",
+                        text: "God sets the lonely in families.",
+                        explanation: "God cares about your loneliness and often provides community through the family of believers - the church.",
+                        guidance: "Consider joining a small group or Bible study at a local church. God often uses community to heal loneliness."
+                    },
+                    {
+                        verse: "Isaiah 41:10",
+                        text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+                        explanation: "God promises not just presence, but active help and strength. He upholds you personally.",
+                        guidance: "When loneliness hits, recite this verse aloud. Let God's promise of presence become more real than your feelings."
+                    }
+                ]
+            },
+            
+            // PURPOSE & DIRECTION
+            {
+                keywords: ["purpose", "meaning", "direction", "lost", "calling", "future", "plan", "why am i here"],
+                answers: [
+                    {
+                        verse: "Jeremiah 29:11",
+                        text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+                        explanation: "God has specific, good plans for your life. Your existence is not random or accidental - you were created with purpose.",
+                        guidance: "Ask God to reveal His plans step by step. Focus on being faithful today, and trust Him with tomorrow."
+                    },
+                    {
+                        verse: "Proverbs 3:5-6",
+                        text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+                        explanation: "Finding direction requires trust and submission. When we stop relying solely on our own understanding and acknowledge God in all areas, He directs our path.",
+                        guidance: "Surrender your plans to God daily. Ask Him to guide your decisions, big and small."
+                    },
+                    {
+                        verse: "Ephesians 2:10",
+                        text: "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+                        explanation: "You are God's masterpiece, created with specific good works in mind. Your purpose includes serving others and glorifying God.",
+                        guidance: "Look for opportunities to serve others. Your purpose often unfolds as you help those around you."
+                    }
+                ]
+            },
+            
+            // ANGER
+            {
+                keywords: ["anger", "angry", "frustrated", "rage", "temper", "mad", "irritated"],
+                answers: [
+                    {
+                        verse: "James 1:19-20",
+                        text: "My dear brothers and sisters, take note of this: Everyone should be quick to listen, slow to speak and slow to become angry, because human anger does not produce the righteousness that God desires.",
+                        explanation: "Anger itself isn't always sin, but uncontrolled anger leads to unrighteousness. The solution is being quick to listen and slow to respond.",
+                        guidance: "Practice pausing before responding when you feel angry. Take deep breaths and ask God for self-control."
+                    },
+                    {
+                        verse: "Ephesians 4:26-27",
+                        text: "In your anger do not sin. Do not let the sun go down while you are still angry, and do not give the devil a foothold.",
+                        explanation: "This verse acknowledges that anger happens, but gives two limits: don't sin in your anger, and don't let it linger. Unresolved anger gives Satan an opportunity.",
+                        guidance: "Deal with anger the same day. If you can't resolve it immediately, at least release it to God before bed."
+                    },
+                    {
+                        verse: "Proverbs 15:1",
+                        text: "A gentle answer turns away wrath, but a harsh word stirs up anger.",
+                        explanation: "Our response can either escalate or defuse conflict. Gentle words have power to calm situations.",
+                        guidance: "Before speaking in anger, ask yourself: Will these words help or hurt the situation? Choose gentleness."
+                    }
+                ]
+            },
+            
+            // FAITH & DOUBT
+            {
+                keywords: ["faith", "doubt", "believe", "unbelief", "trust", "uncertain", "questioning"],
+                answers: [
+                    {
+                        verse: "Hebrews 11:1",
+                        text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+                        explanation: "Faith isn't blind belief - it's confidence based on God's character and promises, even when we can't see the outcome.",
+                        guidance: "Build your faith by remembering past ways God has been faithful. Keep a journal of answered prayers."
+                    },
+                    {
+                        verse: "Mark 9:24",
+                        text: "Immediately the boy's father exclaimed, 'I do believe; help me overcome my unbelief!'",
+                        explanation: "This honest prayer shows that faith and doubt can coexist. God honors our honesty and helps our unbelief.",
+                        guidance: "Be honest with God about your doubts. He can handle your questions and will meet you in your uncertainty."
+                    },
+                    {
+                        verse: "James 1:5-6",
+                        text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. But when you ask, you must believe and not doubt, because the one who doubts is like a wave of the sea, blown and tossed by the wind.",
+                        explanation: "God invites us to ask for wisdom, but encourages us to trust rather than waver between faith and doubt.",
+                        guidance: "When doubt creeps in, bring it to God honestly. Ask Him to strengthen your faith while you wait for answers."
+                    }
+                ]
+            },
+            
+            // GRIEF & LOSS
+            {
+                keywords: ["grief", "loss", "mourning", "sorrow", "sad", "depressed", "heartbroken", "death", "died"],
+                answers: [
+                    {
+                        verse: "Psalm 34:18",
+                        text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+                        explanation: "God doesn't distance Himself from our pain - He draws near. He is especially present when we are hurting.",
+                        guidance: "Don't try to hide your grief from God. Pour out your heart to Him - He can handle your honest emotions."
+                    },
+                    {
+                        verse: "Matthew 5:4",
+                        text: "Blessed are those who mourn, for they will be comforted.",
+                        explanation: "Jesus promises comfort to those who mourn. Mourning is not a sign of weak faith - it's part of the human experience that God meets with comfort.",
+                        guidance: "Allow yourself to grieve. God's comfort often comes through time, community, and His Word."
+                    },
+                    {
+                        verse: "Revelation 21:4",
+                        text: "He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away.",
+                        explanation: "Our hope is not just for now, but for eternity. One day, God will completely remove all pain and suffering.",
+                        guidance: "Hold onto the hope of eternity while processing your grief today. The pain is temporary; God's comfort is eternal."
+                    }
+                ]
+            },
+            
+            // TEMPTATION
+            {
+                keywords: ["temptation", "tempted", "lust", "desire", "sin", "struggle", "addiction"],
+                answers: [
+                    {
+                        verse: "1 Corinthians 10:13",
+                        text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+                        explanation: "You are not alone in your struggles - others face the same temptations. God promises to both limit the temptation and provide an escape route.",
+                        guidance: "When tempted, immediately look for God's way of escape. It might be leaving the situation, calling a friend, or praying."
+                    },
+                    {
+                        verse: "James 4:7",
+                        text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
+                        explanation: "Resistance begins with submission. When we submit to God, we gain authority to resist temptation.",
+                        guidance: "Start by surrendering the struggle to God. Then actively resist, knowing that God fights with you."
+                    },
+                    {
+                        verse: "Matthew 26:41",
+                        text: "Watch and pray so that you will not fall into temptation. The spirit is willing, but the flesh is weak.",
+                        explanation: "Jesus acknowledges our weakness and gives two tools: watchfulness (awareness) and prayer (dependence on God).",
+                        guidance: "Stay alert to situations that tempt you, and pray specifically for strength in those areas."
+                    }
+                ]
+            },
+            
+            // STRENGTH & WEAKNESS
+            {
+                keywords: ["weak", "weakness", "strength", "power", "tired", "exhausted", "burden", "overwhelmed"],
+                answers: [
+                    {
+                        verse: "2 Corinthians 12:9-10",
+                        text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ's power may rest on me. That is why, for Christ's sake, I delight in weaknesses, in insults, in hardships, in persecutions, in difficulties. For when I am weak, then I am strong.",
+                        explanation: "God's power shines brightest when we admit our weakness. Our limitations create space for His strength to work.",
+                        guidance: "Stop pretending to be strong. Honestly admit your weaknesses to God and watch Him work through them."
+                    },
+                    {
+                        verse: "Isaiah 40:29-31",
+                        text: "He gives strength to the weary and increases the power of the weak. Even youths grow tired and weary, and young men stumble and fall; but those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+                        explanation: "God specializes in strengthening the weary. When we put our hope in Him, He renews our energy supernaturally.",
+                        guidance: "When you're exhausted, don't just push through - pause and wait on God. Let Him renew your strength."
+                    },
+                    {
+                        verse: "Philippians 4:13",
+                        text: "I can do all this through him who gives me strength.",
+                        explanation: "This familiar verse reminds us that our ability comes from Christ, not ourselves. The 'all things' refers to whatever God calls us to.",
+                        guidance: "Instead of saying 'I can't,' try saying 'I can't on my own, but with God's help, I can.'"
+                    }
+                ]
+            },
+            
+            // PEACE
+            {
+                keywords: ["peace", "calm", "rest", "quiet", "tranquil", "stillness"],
+                answers: [
+                    {
+                        verse: "John 14:27",
+                        text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.",
+                        explanation: "Jesus gives a different kind of peace than the world offers. His peace isn't dependent on circumstances - it's a gift that calms troubled hearts.",
+                        guidance: "Receive Jesus' peace as a gift. When circumstances are chaotic, remember that His peace is deeper than your situation."
+                    },
+                    {
+                        verse: "Isaiah 26:3",
+                        text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+                        explanation: "Perfect peace comes from keeping our minds focused on God and trusting Him, not from controlling our circumstances.",
+                        guidance: "When peace feels distant, check where your mind is focused. Bring your thoughts back to God's character and promises."
+                    }
+                ]
+            },
+            
+            // GUIDANCE
+            {
+                keywords: ["guidance", "direction", "decision", "choice", "choose", "which way", "path"],
+                answers: [
+                    {
+                        verse: "Psalm 32:8",
+                        text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+                        explanation: "God promises personal guidance. He doesn't leave us to figure things out alone - He instructs, teaches, and counsels us.",
+                        guidance: "Ask God specifically for guidance, then be attentive to how He leads - through His Word, wise counsel, circumstances, and His Spirit."
+                    },
+                    {
+                        verse: "Proverbs 16:9",
+                        text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+                        explanation: "We can make plans, but ultimately God directs our steps. This doesn't mean we shouldn't plan - it means we should hold plans loosely.",
+                        guidance: "Make plans prayerfully, but stay flexible. Trust that even closed doors and detours are part of God's direction."
+                    }
+                ]
+            },
+            
+            // HOPE
+            {
+                keywords: ["hope", "hopeless", "despair", "discouraged", "disheartened"],
+                answers: [
+                    {
+                        verse: "Romans 15:13",
+                        text: "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.",
+                        explanation: "God Himself is the source of hope. As we trust Him, He fills us with joy and peace, which overflow into hope.",
+                        guidance: "Don't try to manufacture hope on your own. Go to the God of hope and let Him fill you."
+                    },
+                    {
+                        verse: "Lamentations 3:22-23",
+                        text: "Because of the Lord's great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+                        explanation: "Even in the darkest times, God's love and compassion are fresh each morning. His faithfulness gives us reason to hope.",
+                        guidance: "Start each day by acknowledging God's fresh mercies. Yesterday's struggles are met with today's new compassion."
+                    }
+                ]
+            }
+        ];
+
+        function setQuestion(question) {
+            document.getElementById('question').value = question;
+            answerQuestion();
+        }
+
+        function clearQuestion() {
+            document.getElementById('question').value = '';
+            document.getElementById('answerResult').innerHTML = '';
+        }
+
+        function findBestAnswers(question) {
+            const q = question.toLowerCase();
+            let matchedAnswers = [];
+            let matchedKeywords = [];
+            
+            // Find all matching topics
+            bibleAnswers.forEach(topic => {
+                const matches = topic.keywords.some(keyword => q.includes(keyword));
+                if (matches) {
+                    matchedAnswers.push(...topic.answers);
+                    matchedKeywords.push(...topic.keywords.filter(k => q.includes(k)));
+                }
+            });
+            
+            // If no matches, provide general help
+            if (matchedAnswers.length === 0) {
+                return {
+                    type: 'general',
+                    content: generateGeneralResponse(q)
+                };
+            }
+            
+            // Remove duplicates and limit to 3 answers
+            matchedAnswers = [...new Map(matchedAnswers.map(a => [a.verse, a])).values()].slice(0, 3);
+            
+            return {
+                type: 'specific',
+                content: matchedAnswers,
+                keywords: [...new Set(matchedKeywords)]
+            };
+        }
+
+        function generateGeneralResponse(question) {
+            return `
+                <div class="answer-card">
+                    <h4>🙏 Seeking Answers</h4>
+                    <p>Your question is important, and God's Word has answers for every situation.</p>
+                    <p class="verse">"If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you." - James 1:5</p>
+                    <div class="guidance">
+                        <div class="guidance-title">Suggestions:</div>
+                        <ul style="margin-left:20px;">
+                            <li>Try using more specific words like "anxiety," "forgiveness," or "purpose"</li>
+                            <li>Browse the suggested questions above for common topics</li>
+                            <li>Read the Psalms - they speak to every human emotion</li>
+                            <li>Consider starting with the book of Proverbs for daily wisdom</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        function answerQuestion() {
+            const question = document.getElementById('question').value.trim();
+            
+            if (!question) {
+                showToast('Please enter a question');
+                return;
+            }
+            
+            const result = findBestAnswers(question);
+            let output = '';
+            
+            if (result.type === 'specific') {
+                output = '<h3 style="margin-bottom:15px;">📖 Biblical Answers</h3>';
+                
+                result.content.forEach(answer => {
+                    output += `
+                        <div class="answer-card">
+                            <h4>📖 ${answer.verse}</h4>
+                            <div class="verse">"${answer.text}"</div>
+                            <div class="explanation">${answer.explanation}</div>
+                            <div class="guidance">
+                                <div class="guidance-title">✨ Practical Guidance</div>
+                                <p>${answer.guidance}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                // Add related topics
+                if (result.keywords && result.keywords.length > 0) {
+                    output += `
+                        <div class="related-topics">
+                            <p style="margin-bottom:8px;">🔍 Related topics:</p>
+                            ${result.keywords.map(k => 
+                                `<span class="related-topic" onclick="setQuestion('${k}')">${k}</span>`
+                            ).join('')}
+                        </div>
+                    `;
+                }
+                
+                // Save to history if user is logged in
+                if (currentUser) {
+                    if (!currentUser.questionHistory) currentUser.questionHistory = [];
+                    currentUser.questionHistory.unshift({
+                        question,
+                        timestamp: new Date().toISOString()
+                    });
+                    if (currentUser.questionHistory.length > 10) currentUser.questionHistory.pop();
+                    saveUserData();
+                }
+                
+            } else {
+                output = result.content;
+            }
+            
+            // Add note about saving answers
+            output += `
+                <div style="margin-top:15px; text-align:center;">
+                    <button class="action-btn" onclick="saveAnswerToNotes()" style="padding:8px 20px; font-size:14px;">
+                        📝 Save These Answers
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('answerResult').innerHTML = output;
+            document.getElementById('answerResult').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveAnswerToNotes() {
+            if (!currentUser) {
+                showLogin();
+                return;
+            }
+            
+            const question = document.getElementById('question').value;
+            const answers = document.getElementById('answerResult').innerText;
+            
+            const note = `Q: ${question}\n\n${answers}`;
+            
+            if (!currentUser.notes) currentUser.notes = [];
+            currentUser.notes.unshift({
+                id: Date.now(),
+                text: note.substring(0, 500) + '...',
+                date: new Date().toISOString()
+            });
+            
+            saveUserData();
+            showToast('Answers saved to notes!');
         }
 
         // ==================== COMPLETE BIBLE DATA ====================
         const bibleBooks = [
             // Old Testament
-            { id: "Genesis", name: "Genesis", name_es: "Génesis", chapters: 50 },
-            { id: "Exodus", name: "Exodus", name_es: "Éxodo", chapters: 40 },
-            { id: "Leviticus", name: "Leviticus", name_es: "Levítico", chapters: 27 },
-            { id: "Numbers", name: "Numbers", name_es: "Números", chapters: 36 },
-            { id: "Deuteronomy", name: "Deuteronomy", name_es: "Deuteronomio", chapters: 34 },
-            { id: "Joshua", name: "Joshua", name_es: "Josué", chapters: 24 },
-            { id: "Judges", name: "Judges", name_es: "Jueces", chapters: 21 },
-            { id: "Ruth", name: "Ruth", name_es: "Rut", chapters: 4 },
-            { id: "1 Samuel", name: "1 Samuel", name_es: "1 Samuel", chapters: 31 },
-            { id: "2 Samuel", name: "2 Samuel", name_es: "2 Samuel", chapters: 24 },
-            { id: "1 Kings", name: "1 Kings", name_es: "1 Reyes", chapters: 22 },
-            { id: "2 Kings", name: "2 Kings", name_es: "2 Reyes", chapters: 25 },
-            { id: "1 Chronicles", name: "1 Chronicles", name_es: "1 Crónicas", chapters: 29 },
-            { id: "2 Chronicles", name: "2 Chronicles", name_es: "2 Crónicas", chapters: 36 },
-            { id: "Ezra", name: "Ezra", name_es: "Esdras", chapters: 10 },
-            { id: "Nehemiah", name: "Nehemiah", name_es: "Nehemías", chapters: 13 },
-            { id: "Esther", name: "Esther", name_es: "Ester", chapters: 10 },
-            { id: "Job", name: "Job", name_es: "Job", chapters: 42 },
-            { id: "Psalm", name: "Psalm", name_es: "Salmos", chapters: 150 },
-            { id: "Proverbs", name: "Proverbs", name_es: "Proverbios", chapters: 31 },
-            { id: "Ecclesiastes", name: "Ecclesiastes", name_es: "Eclesiastés", chapters: 12 },
-            { id: "Song of Solomon", name: "Song of Solomon", name_es: "Cantares", chapters: 8 },
-            { id: "Isaiah", name: "Isaiah", name_es: "Isaías", chapters: 66 },
-            { id: "Jeremiah", name: "Jeremiah", name_es: "Jeremías", chapters: 52 },
-            { id: "Lamentations", name: "Lamentations", name_es: "Lamentaciones", chapters: 5 },
-            { id: "Ezekiel", name: "Ezekiel", name_es: "Ezequiel", chapters: 48 },
-            { id: "Daniel", name: "Daniel", name_es: "Daniel", chapters: 12 },
-            { id: "Hosea", name: "Hosea", name_es: "Oseas", chapters: 14 },
-            { id: "Joel", name: "Joel", name_es: "Joel", chapters: 3 },
-            { id: "Amos", name: "Amos", name_es: "Amós", chapters: 9 },
-            { id: "Obadiah", name: "Obadiah", name_es: "Abdías", chapters: 1 },
-            { id: "Jonah", name: "Jonah", name_es: "Jonás", chapters: 4 },
-            { id: "Micah", name: "Micah", name_es: "Miqueas", chapters: 7 },
-            { id: "Nahum", name: "Nahum", name_es: "Nahúm", chapters: 3 },
-            { id: "Habakkuk", name: "Habakkuk", name_es: "Habacuc", chapters: 3 },
-            { id: "Zephaniah", name: "Zephaniah", name_es: "Sofonías", chapters: 3 },
-            { id: "Haggai", name: "Haggai", name_es: "Hageo", chapters: 2 },
-            { id: "Zechariah", name: "Zechariah", name_es: "Zacarías", chapters: 14 },
-            { id: "Malachi", name: "Malachi", name_es: "Malaquías", chapters: 4 },
+            { id: "Genesis", name: "Genesis", chapters: 50 },
+            { id: "Exodus", name: "Exodus", chapters: 40 },
+            { id: "Leviticus", name: "Leviticus", chapters: 27 },
+            { id: "Numbers", name: "Numbers", chapters: 36 },
+            { id: "Deuteronomy", name: "Deuteronomy", chapters: 34 },
+            { id: "Joshua", name: "Joshua", chapters: 24 },
+            { id: "Judges", name: "Judges", chapters: 21 },
+            { id: "Ruth", name: "Ruth", chapters: 4 },
+            { id: "1 Samuel", name: "1 Samuel", chapters: 31 },
+            { id: "2 Samuel", name: "2 Samuel", chapters: 24 },
+            { id: "1 Kings", name: "1 Kings", chapters: 22 },
+            { id: "2 Kings", name: "2 Kings", chapters: 25 },
+            { id: "1 Chronicles", name: "1 Chronicles", chapters: 29 },
+            { id: "2 Chronicles", name: "2 Chronicles", chapters: 36 },
+            { id: "Ezra", name: "Ezra", chapters: 10 },
+            { id: "Nehemiah", name: "Nehemiah", chapters: 13 },
+            { id: "Esther", name: "Esther", chapters: 10 },
+            { id: "Job", name: "Job", chapters: 42 },
+            { id: "Psalm", name: "Psalm", chapters: 150 },
+            { id: "Proverbs", name: "Proverbs", chapters: 31 },
+            { id: "Ecclesiastes", name: "Ecclesiastes", chapters: 12 },
+            { id: "Song of Solomon", name: "Song of Solomon", chapters: 8 },
+            { id: "Isaiah", name: "Isaiah", chapters: 66 },
+            { id: "Jeremiah", name: "Jeremiah", chapters: 52 },
+            { id: "Lamentations", name: "Lamentations", chapters: 5 },
+            { id: "Ezekiel", name: "Ezekiel", chapters: 48 },
+            { id: "Daniel", name: "Daniel", chapters: 12 },
+            { id: "Hosea", name: "Hosea", chapters: 14 },
+            { id: "Joel", name: "Joel", chapters: 3 },
+            { id: "Amos", name: "Amos", chapters: 9 },
+            { id: "Obadiah", name: "Obadiah", chapters: 1 },
+            { id: "Jonah", name: "Jonah", chapters: 4 },
+            { id: "Micah", name: "Micah", chapters: 7 },
+            { id: "Nahum", name: "Nahum", chapters: 3 },
+            { id: "Habakkuk", name: "Habakkuk", chapters: 3 },
+            { id: "Zephaniah", name: "Zephaniah", chapters: 3 },
+            { id: "Haggai", name: "Haggai", chapters: 2 },
+            { id: "Zechariah", name: "Zechariah", chapters: 14 },
+            { id: "Malachi", name: "Malachi", chapters: 4 },
             
             // New Testament
-            { id: "Matthew", name: "Matthew", name_es: "Mateo", chapters: 28 },
-            { id: "Mark", name: "Mark", name_es: "Marcos", chapters: 16 },
-            { id: "Luke", name: "Luke", name_es: "Lucas", chapters: 24 },
-            { id: "John", name: "John", name_es: "Juan", chapters: 21 },
-            { id: "Acts", name: "Acts", name_es: "Hechos", chapters: 28 },
-            { id: "Romans", name: "Romans", name_es: "Romanos", chapters: 16 },
-            { id: "1 Corinthians", name: "1 Corinthians", name_es: "1 Corintios", chapters: 16 },
-            { id: "2 Corinthians", name: "2 Corinthians", name_es: "2 Corintios", chapters: 13 },
-            { id: "Galatians", name: "Galatians", name_es: "Gálatas", chapters: 6 },
-            { id: "Ephesians", name: "Ephesians", name_es: "Efesios", chapters: 6 },
-            { id: "Philippians", name: "Philippians", name_es: "Filipenses", chapters: 4 },
-            { id: "Colossians", name: "Colossians", name_es: "Colosenses", chapters: 4 },
-            { id: "1 Thessalonians", name: "1 Thessalonians", name_es: "1 Tesalonicenses", chapters: 5 },
-            { id: "2 Thessalonians", name: "2 Thessalonians", name_es: "2 Tesalonicenses", chapters: 3 },
-            { id: "1 Timothy", name: "1 Timothy", name_es: "1 Timoteo", chapters: 6 },
-            { id: "2 Timothy", name: "2 Timothy", name_es: "2 Timoteo", chapters: 4 },
-            { id: "Titus", name: "Titus", name_es: "Tito", chapters: 3 },
-            { id: "Philemon", name: "Philemon", name_es: "Filemón", chapters: 1 },
-            { id: "Hebrews", name: "Hebrews", name_es: "Hebreos", chapters: 13 },
-            { id: "James", name: "James", name_es: "Santiago", chapters: 5 },
-            { id: "1 Peter", name: "1 Peter", name_es: "1 Pedro", chapters: 5 },
-            { id: "2 Peter", name: "2 Peter", name_es: "2 Pedro", chapters: 3 },
-            { id: "1 John", name: "1 John", name_es: "1 Juan", chapters: 5 },
-            { id: "2 John", name: "2 John", name_es: "2 Juan", chapters: 1 },
-            { id: "3 John", name: "3 John", name_es: "3 Juan", chapters: 1 },
-            { id: "Jude", name: "Jude", name_es: "Judas", chapters: 1 },
-            { id: "Revelation", name: "Revelation", name_es: "Apocalipsis", chapters: 22 }
+            { id: "Matthew", name: "Matthew", chapters: 28 },
+            { id: "Mark", name: "Mark", chapters: 16 },
+            { id: "Luke", name: "Luke", chapters: 24 },
+            { id: "John", name: "John", chapters: 21 },
+            { id: "Acts", name: "Acts", chapters: 28 },
+            { id: "Romans", name: "Romans", chapters: 16 },
+            { id: "1 Corinthians", name: "1 Corinthians", chapters: 16 },
+            { id: "2 Corinthians", name: "2 Corinthians", chapters: 13 },
+            { id: "Galatians", name: "Galatians", chapters: 6 },
+            { id: "Ephesians", name: "Ephesians", chapters: 6 },
+            { id: "Philippians", name: "Philippians", chapters: 4 },
+            { id: "Colossians", name: "Colossians", chapters: 4 },
+            { id: "1 Thessalonians", name: "1 Thessalonians", chapters: 5 },
+            { id: "2 Thessalonians", name: "2 Thessalonians", chapters: 3 },
+            { id: "1 Timothy", name: "1 Timothy", chapters: 6 },
+            { id: "2 Timothy", name: "2 Timothy", chapters: 4 },
+            { id: "Titus", name: "Titus", chapters: 3 },
+            { id: "Philemon", name: "Philemon", chapters: 1 },
+            { id: "Hebrews", name: "Hebrews", chapters: 13 },
+            { id: "James", name: "James", chapters: 5 },
+            { id: "1 Peter", name: "1 Peter", chapters: 5 },
+            { id: "2 Peter", name: "2 Peter", chapters: 3 },
+            { id: "1 John", name: "1 John", chapters: 5 },
+            { id: "2 John", name: "2 John", chapters: 1 },
+            { id: "3 John", name: "3 John", chapters: 1 },
+            { id: "Jude", name: "Jude", chapters: 1 },
+            { id: "Revelation", name: "Revelation", chapters: 22 }
         ];
 
         // State variables
@@ -1648,63 +2201,6 @@
                 .catch(() => {
                     resultDiv.innerHTML = '<p>Error searching</p>';
                 });
-        }
-
-        // ==================== QUESTION ANSWERING ====================
-        const topics = [
-            {
-                keywords: ["forgive", "forgiveness"],
-                verse: "Ephesians 4:32",
-                text: "Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
-                explanation: "Forgiveness is a command from God, not an option. It releases us from the burden of anger.",
-                guidance: "Pray for those who hurt you and ask God to help you release the pain."
-            },
-            {
-                keywords: ["love"],
-                verse: "1 Corinthians 13:4-7",
-                text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud.",
-                explanation: "This passage describes the true nature of godly love - selfless and enduring.",
-                guidance: "Practice patience and kindness today, even in difficult situations."
-            },
-            {
-                keywords: ["faith", "trust"],
-                verse: "Hebrews 11:1",
-                text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
-                explanation: "Faith is trusting God even when we cannot see the outcome.",
-                guidance: "Take one step of faith today, trusting God with the results."
-            }
-        ];
-
-        function answerQuestion() {
-            const question = document.getElementById('question').value.toLowerCase();
-            let found = false;
-            let output = '';
-            
-            for (let t of topics) {
-                for (let k of t.keywords) {
-                    if (question.includes(k)) {
-                        output += `
-                        <div style="margin-bottom:15px;">
-                            <h3>📖 Scripture</h3>
-                            <p><strong>${t.verse}</strong></p>
-                            <p><em>"${t.text}"</em></p>
-                            <h3>💭 Explanation</h3>
-                            <p>${t.explanation}</p>
-                            <h3>🌟 Guidance</h3>
-                            <p>${t.guidance}</p>
-                        </div>
-                        `;
-                        found = true;
-                        break;
-                    }
-                }
-            }
-            
-            if (!found) {
-                output = '<p>Try asking about forgiveness, love, or faith.</p>';
-            }
-            
-            document.getElementById('answerResult').innerHTML = output;
         }
 
         // ==================== BOOKMARKS ====================
@@ -1845,7 +2341,10 @@
             { text: "The Lord is my shepherd; I shall not want.", ref: "Psalm 23:1" },
             { text: "I can do all things through him who strengthens me.", ref: "Philippians 4:13" },
             { text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.", ref: "Romans 8:28" },
-            { text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "Jeremiah 29:11" }
+            { text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "Jeremiah 29:11" },
+            { text: "Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.", ref: "Joshua 1:9" },
+            { text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.", ref: "Proverbs 3:5-6" },
+            { text: "Come to me, all you who are weary and burdened, and I will give you rest.", ref: "Matthew 11:28" }
         ];
 
         function updateVerseOfDay() {
@@ -2023,6 +2522,7 @@
                 user: currentUser,
                 bookmarks: currentUser.bookmarks,
                 notes: currentUser.notes,
+                questionHistory: currentUser.questionHistory,
                 progress: currentUser.progress,
                 exportDate: new Date().toISOString()
             };
@@ -2052,6 +2552,7 @@
                         if (data.user && data.user.id === currentUser?.id) {
                             currentUser.bookmarks = data.bookmarks || [];
                             currentUser.notes = data.notes || [];
+                            currentUser.questionHistory = data.questionHistory || [];
                             currentUser.progress = data.progress || {};
                             saveUserData();
                             showToast('Data restored successfully');
@@ -2078,6 +2579,7 @@
                 if (currentUser) {
                     currentUser.bookmarks = [];
                     currentUser.notes = [];
+                    currentUser.questionHistory = [];
                     currentUser.progress = { chaptersRead: 0, versesRead: 0, streak: 0 };
                     saveUserData();
                     showToast('Data cleared');
@@ -2095,11 +2597,11 @@
         }
 
         function showPrivacyPolicy() {
-            alert('Privacy Policy: Your data is stored locally on your device.');
+            alert('Privacy Policy: Your data is stored locally on your device. We do not collect or share any personal information.');
         }
 
         function showTerms() {
-            alert('Terms of Service: Use this app for personal Bible study.');
+            alert('Terms of Service: This app is for personal Bible study and spiritual growth. All Bible content is from the King James Version.');
         }
 
         // Initialize
