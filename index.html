@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Walk With God</title>
+    <title>Walk With God / Camina Con Dios</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
             position: relative;
             overflow-x: hidden;
             /* Light brown background */
-            background: #e8d5b5;  /* Light warm brown */
+            background: #e8d5b5;
         }
 
         /* Cross with vines background */
@@ -36,13 +36,11 @@
                 linear-gradient(90deg, transparent 49.5%, #5c3e2d 49.5%, #5c3e2d 50.5%, transparent 50.5%),
                 linear-gradient(180deg, transparent 49.5%, #5c3e2d 49.5%, #5c3e2d 50.5%, transparent 50.5%),
                 
-                /* Vine details - swirling around cross */
+                /* Vine details */
                 radial-gradient(circle at 30% 40%, #4a6b3f 1px, transparent 1px),
                 radial-gradient(circle at 70% 60%, #4a6b3f 1px, transparent 1px),
-                radial-gradient(circle at 40% 70%, #4a6b3f 1px, transparent 1px),
-                radial-gradient(circle at 60% 30%, #4a6b3f 1px, transparent 1px),
                 
-                /* Vine stems - curved lines */
+                /* Vine stems */
                 repeating-linear-gradient(45deg, 
                     transparent 0px,
                     transparent 15px,
@@ -50,41 +48,16 @@
                     #6b8c5c 16px,
                     transparent 16px,
                     transparent 30px),
-                repeating-linear-gradient(-45deg, 
-                    transparent 0px,
-                    transparent 20px,
-                    #6b8c5c 20px,
-                    #6b8c5c 21px,
-                    transparent 21px,
-                    transparent 40px),
                 
                 /* Leaf shapes */
                 radial-gradient(circle at 25% 35%, #5a7c4a 3px, transparent 3px),
-                radial-gradient(circle at 28% 38%, #5a7c4a 2px, transparent 2px),
-                radial-gradient(circle at 75% 65%, #5a7c4a 3px, transparent 3px),
-                radial-gradient(circle at 72% 62%, #5a7c4a 2px, transparent 2px),
-                radial-gradient(circle at 35% 75%, #5a7c4a 3px, transparent 3px),
-                radial-gradient(circle at 38% 72%, #5a7c4a 2px, transparent 2px),
-                radial-gradient(circle at 65% 25%, #5a7c4a 3px, transparent 3px),
-                radial-gradient(circle at 62% 28%, #5a7c4a 2px, transparent 2px),
-                
-                /* Additional vine swirls */
-                radial-gradient(circle at 45% 45%, #6b8c5c 4px, transparent 4px),
-                radial-gradient(circle at 55% 55%, #6b8c5c 4px, transparent 4px),
-                
-                /* Small flowers on vines */
-                radial-gradient(circle at 30% 30%, #d4a59a 2px, transparent 2px),
-                radial-gradient(circle at 70% 70%, #d4a59a 2px, transparent 2px),
-                radial-gradient(circle at 40% 60%, #d4a59a 2px, transparent 2px),
-                radial-gradient(circle at 60% 40%, #d4a59a 2px, transparent 2px);
+                radial-gradient(circle at 75% 65%, #5a7c4a 3px, transparent 3px);
             
             background-size: 
-                100% 100%, 100% 100%,  /* Cross */
-                30px 30px, 30px 30px, 30px 30px, 30px 30px,  /* Vine dots */
-                50px 50px, 50px 50px,  /* Vine lines */
-                20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px, 20px 20px,  /* Leaves */
-                40px 40px, 40px 40px,  /* Extra vines */
-                15px 15px, 15px 15px, 15px 15px, 15px 15px;  /* Flowers */
+                100% 100%, 100% 100%,
+                30px 30px, 30px 30px,
+                50px 50px,
+                20px 20px, 20px 20px;
             
             background-position: center;
             background-repeat: repeat;
@@ -93,159 +66,215 @@
             z-index: 0;
         }
 
-        /* Additional hand-drawn vine details */
-        .vine-decoration {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                /* Curved vines around edges */
-                radial-gradient(ellipse at 10% 20%, #6b8c5c 2px, transparent 2px),
-                radial-gradient(ellipse at 15% 25%, #6b8c5c 2px, transparent 2px),
-                radial-gradient(ellipse at 90% 80%, #6b8c5c 2px, transparent 2px),
-                radial-gradient(ellipse at 85% 75%, #6b8c5c 2px, transparent 2px),
-                
-                /* More leaves */
-                radial-gradient(circle at 20% 85%, #5a7c4a 4px, transparent 4px),
-                radial-gradient(circle at 23% 82%, #5a7c4a 3px, transparent 3px),
-                radial-gradient(circle at 80% 15%, #5a7c4a 4px, transparent 4px),
-                radial-gradient(circle at 77% 18%, #5a7c4a 3px, transparent 3px);
-            
-            background-size: 100px 100px;
-            background-repeat: repeat;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.5;
+        /* Language toggle button */
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 30;
         }
 
-        /* Main app container */
+        .lang-toggle button {
+            padding: 12px 25px;
+            font-size: 18px;
+            background: #5c3e2d;
+            color: #f5ebdc;
+            border: 2px solid #b5977a;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .lang-toggle button:hover {
+            background: #8b6b4f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Main app container - now with Bible/book styling */
         .app-container {
-            max-width: 1100px;
+            max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            background: rgba(245, 235, 220, 0.85);  /* Warm cream with transparency */
-            backdrop-filter: blur(5px);
-            border-radius: 60px 60px 40px 40px;
+            background: #f5ebdc;
+            background-image: 
+                linear-gradient(90deg, rgba(139, 107, 79, 0.1) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(139, 107, 79, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            border-radius: 20px;
             padding: 40px;
             box-shadow: 
-                0 30px 50px rgba(60, 40, 20, 0.3),
-                0 10px 20px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 2px rgba(255, 245, 235, 0.8),
+                0 30px 50px rgba(60, 40, 20, 0.5),
+                0 10px 20px rgba(0, 0, 0, 0.2),
+                inset 0 0 0 2px #b5977a,
                 inset 0 0 30px rgba(150, 100, 50, 0.2);
             position: relative;
             z-index: 10;
-            border: 1px solid rgba(200, 160, 120, 0.6);
+            border: 8px solid #8b6b4f;
         }
 
-        /* Decorative cross on container */
+        /* Bible cover effect */
         .app-container::before {
-            content: '✝';
+            content: '';
             position: absolute;
-            top: -20px;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 3px solid #b5977a;
+            border-radius: 25px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Spine of the book */
+        .app-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 100%;
+            background: linear-gradient(90deg, #5c3e2d, #8b6b4f);
+            border-radius: 15px 0 0 15px;
+            box-shadow: inset -2px 0 5px rgba(0,0,0,0.3);
+            opacity: 0.3;
+        }
+
+        /* Decorative cross on cover */
+        .bible-cross {
+            position: absolute;
+            top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            color: #5c3e2d;
-            font-size: 60px;
-            background: rgba(245, 235, 220, 0.9);
-            padding: 5px 40px;
-            border-radius: 60px;
-            box-shadow: 0 5px 20px rgba(100, 70, 40, 0.3);
-            border: 2px solid #8b6b4f;
-            text-shadow: 2px 2px 0 #d4a59a;
+            font-size: 80px;
+            color: #b5977a;
+            opacity: 0.2;
+            z-index: 5;
+            pointer-events: none;
             font-family: 'Times New Roman', serif;
-            z-index: 20;
         }
 
         h1 {
             text-align: center;
-            color: #4a3b2f;
+            color: #5c3e2d;
             font-size: 64px;
             margin-bottom: 20px;
-            margin-top: 30px;
+            margin-top: 20px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            font-weight: 500;
-            letter-spacing: 6px;
+            font-weight: 600;
+            letter-spacing: 4px;
             text-transform: uppercase;
             text-shadow: 
-                2px 2px 0 rgba(255, 245, 235, 0.9),
-                4px 4px 0 #8b6b4f,
-                6px 6px 0 rgba(60, 40, 20, 0.2);
+                2px 2px 0 #f5ebdc,
+                4px 4px 0 #b5977a;
             position: relative;
-            display: inline-block;
-            width: 100%;
+            z-index: 10;
         }
 
-        h1::before, h1::after {
-            content: '🌿';
-            color: #5a7c4a;
-            font-size: 40px;
-            margin: 0 20px;
-            opacity: 0.9;
-            display: inline-block;
-            filter: drop-shadow(0 2px 5px rgba(90, 124, 74, 0.4));
-            animation: vineWave 4s ease-in-out infinite;
+        h1 span {
+            font-size: 24px;
+            display: block;
+            color: #8b6b4f;
+            letter-spacing: 8px;
+            text-transform: none;
+            font-style: italic;
+            margin-top: 5px;
         }
 
-        h1::before { animation-delay: 0s; }
-        h1::after { animation-delay: 2s; }
+        /* Page turning animation */
+        .page-turn {
+            animation: pageFlip 0.6s ease-in-out;
+        }
 
-        @keyframes vineWave {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(5deg) scale(1.1); }
+        @keyframes pageFlip {
+            0% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: rotateY(90deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: rotateY(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Bible paper texture for content areas */
+        .paper-texture {
+            background: #fff9f0;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(139, 107, 79, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 70% 60%, rgba(139, 107, 79, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            border: 2px solid #b5977a;
+            border-radius: 15px;
+            box-shadow: 
+                inset 0 0 30px rgba(139, 107, 79, 0.1),
+                0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+            position: relative;
+        }
+
+        /* Page corner effect */
+        .paper-texture::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, transparent 50%, rgba(139, 107, 79, 0.1) 50%);
+            pointer-events: none;
         }
 
         h2 {
-            color: #4a3b2f;
+            color: #5c3e2d;
             font-size: 36px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            font-weight: 400;
-            border-bottom: 3px solid #8b6b4f;
-            padding-bottom: 15px;
-            letter-spacing: 3px;
+            font-weight: 500;
+            border-bottom: 3px solid #b5977a;
+            padding-bottom: 10px;
+            letter-spacing: 2px;
             position: relative;
-            text-shadow: 2px 2px 0 rgba(255, 245, 235, 0.7);
         }
 
         h2::after {
             content: '✝';
             position: absolute;
-            right: 0;
-            bottom: -15px;
-            color: #8b6b4f;
-            font-size: 28px;
+            right: 10px;
+            bottom: -5px;
+            color: #b5977a;
+            font-size: 24px;
             background: #f5ebdc;
-            padding: 0 25px;
-            border-radius: 50px;
-            box-shadow: 0 2px 10px rgba(139, 107, 79, 0.3);
+            padding: 0 15px;
         }
 
         h3 {
             color: #5c3e2d;
             font-size: 28px;
-            margin: 20px 0 10px;
+            margin: 20px 0 15px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             font-weight: 500;
-            letter-spacing: 1px;
-            border-left: 5px solid #8b6b4f;
-            padding-left: 20px;
-            text-shadow: 1px 1px 0 rgba(255, 245, 235, 0.5);
+            border-left: 5px solid #b5977a;
+            padding-left: 15px;
         }
 
         /* Home screen */
         #home {
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0;
         }
 
         #home h2 {
-            color: #4a3b2f;
             font-size: 42px;
-            margin-bottom: 30px;
             border-bottom: none;
-            text-shadow: 3px 3px 0 rgba(255, 245, 235, 0.8);
         }
 
         #home h2::after {
@@ -253,201 +282,191 @@
         }
 
         #home p {
-            color: #4a3b2f;
-            font-size: 26px;
+            color: #5c3e2d;
+            font-size: 28px;
             margin: 40px 0 50px;
             font-style: italic;
             font-family: 'Cormorant Garamond', serif;
-            background: rgba(245, 235, 220, 0.8);
-            backdrop-filter: blur(3px);
+            background: #fff9f0;
             padding: 30px 60px;
             display: inline-block;
-            border-radius: 200px;
+            border-radius: 15px;
             box-shadow: 
-                0 15px 40px rgba(100, 70, 40, 0.2),
-                inset 0 0 0 2px rgba(200, 160, 120, 0.8),
-                inset 0 0 30px rgba(150, 100, 50, 0.2);
-            border: 1px solid #b5977a;
-            letter-spacing: 1px;
+                0 10px 30px rgba(100, 70, 40, 0.2),
+                inset 0 0 0 2px #b5977a;
+            border: 1px solid #8b6b4f;
+            position: relative;
+        }
+
+        #home p::before, #home p::after {
+            content: '"';
+            font-size: 60px;
+            color: #b5977a;
+            position: absolute;
+            opacity: 0.5;
+        }
+
+        #home p::before {
+            top: -10px;
+            left: 10px;
+        }
+
+        #home p::after {
+            bottom: -30px;
+            right: 10px;
+            transform: rotate(180deg);
         }
 
         /* Buttons */
         button {
-            padding: 18px 40px;
-            margin: 12px;
-            background: #f5ebdc;
-            color: #4a3b2f;
-            border: 2px solid #8b6b4f;
-            border-radius: 80px;
+            padding: 15px 35px;
+            margin: 10px;
+            background: #fff9f0;
+            color: #5c3e2d;
+            border: 2px solid #b5977a;
+            border-radius: 8px;
             font-size: 20px;
-            font-weight: 400;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            box-shadow: 
-                0 10px 20px rgba(100, 70, 40, 0.2),
-                inset 0 1px 5px rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+            box-shadow: 0 5px 10px rgba(100, 70, 40, 0.2);
             position: relative;
             overflow: hidden;
         }
 
         button::before {
-            content: '🌿';
+            content: '';
             position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        button::after {
-            content: '🌿';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 20px;
-            opacity: 0;
-            transition: all 0.3s;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 107, 79, 0.2), transparent);
+            transition: left 0.4s;
         }
 
         button:hover {
             background: #e8d5b5;
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 
-                0 20px 30px rgba(100, 70, 40, 0.3),
-                inset 0 1px 8px rgba(255, 255, 255, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(100, 70, 40, 0.3);
             border-color: #5c3e2d;
-            padding-left: 50px;
-            padding-right: 50px;
         }
 
         button:hover::before {
-            left: 10px;
-            opacity: 1;
-        }
-
-        button:hover::after {
-            right: 10px;
-            opacity: 1;
-        }
-
-        button:active {
-            transform: translateY(0) scale(1);
+            left: 100%;
         }
 
         #home button {
-            width: 350px;
+            width: 380px;
             display: block;
-            margin: 25px auto;
+            margin: 20px auto;
             font-size: 24px;
-            padding: 22px 40px;
-            animation: fadeInUp 0.6s ease backwards;
+            padding: 20px 35px;
         }
 
-        #home button:nth-child(3) { animation-delay: 0.1s; }
-        #home button:nth-child(4) { animation-delay: 0.2s; }
-        #home button:nth-child(5) { animation-delay: 0.3s; }
+        /* Language-specific text */
+        .lang-en, .lang-es {
+            transition: opacity 0.3s;
+        }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .lang-es {
+            display: none;
+        }
+
+        body.spanish .lang-en {
+            display: none;
+        }
+
+        body.spanish .lang-es {
+            display: inline;
         }
 
         /* Input fields */
         input {
-            padding: 20px 35px;
+            padding: 18px 30px;
             width: 100%;
             max-width: 650px;
-            margin: 15px 0 30px;
+            margin: 15px 0 25px;
             border: 2px solid #b5977a;
-            border-radius: 80px;
+            border-radius: 8px;
             font-size: 22px;
-            background: rgba(245, 235, 220, 0.9);
+            background: #fff9f0;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            color: #4a3b2f;
-            transition: all 0.4s;
-            box-shadow: inset 0 5px 15px rgba(100, 70, 40, 0.1);
+            color: #5c3e2d;
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 8px rgba(100, 70, 40, 0.1);
         }
 
         input:focus {
             outline: none;
             border-color: #5c3e2d;
-            box-shadow: inset 0 5px 20px rgba(100, 70, 40, 0.1), 0 0 20px rgba(139, 107, 79, 0.3);
-            background: #fff9f0;
+            box-shadow: inset 0 2px 12px rgba(100, 70, 40, 0.15), 0 0 15px rgba(139, 107, 79, 0.3);
+            background: #ffffff;
         }
 
         input::placeholder {
-            color: #8b6b4f;
+            color: #b5977a;
             font-style: italic;
-            letter-spacing: 1px;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
-        /* Result containers */
+        /* Result containers - Bible paper style */
         #answerResult, #bibleResult, #readerContent {
-            margin-top: 35px;
-            padding: 45px;
-            background: rgba(245, 235, 220, 0.85);
-            backdrop-filter: blur(3px);
-            border-radius: 50px;
+            margin-top: 30px;
+            padding: 40px;
+            background: #fff9f0;
+            background-image: 
+                linear-gradient(45deg, rgba(139, 107, 79, 0.02) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(139, 107, 79, 0.02) 25%, transparent 25%);
+            background-size: 20px 20px;
+            border-radius: 15px;
             box-shadow: 
-                0 25px 45px rgba(100, 70, 40, 0.2),
-                inset 0 0 0 2px rgba(200, 160, 120, 0.6),
-                inset 0 0 40px rgba(150, 100, 50, 0.1);
+                inset 0 0 30px rgba(139, 107, 79, 0.1),
+                0 10px 30px rgba(0, 0, 0, 0.15),
+                0 0 0 2px #b5977a;
             text-align: left;
             font-size: 22px;
-            line-height: 1.9;
-            color: #4a3b2f;
+            line-height: 1.8;
+            color: #5c3e2d;
             position: relative;
-            border: 1px solid #b5977a;
+            border: 1px solid #8b6b4f;
+            min-height: 300px;
+            transition: all 0.6s;
         }
 
-        #answerResult::before, #bibleResult::before, #readerContent::before {
+        /* Page number effect */
+        #readerContent::before {
             content: '✝';
             position: absolute;
-            top: -20px;
-            left: 50px;
-            color: #8b6b4f;
-            font-size: 40px;
-            background: #f5ebdc;
-            padding: 5px 30px;
-            border-radius: 60px;
-            box-shadow: 0 5px 15px rgba(100, 70, 40, 0.2);
-            border: 2px solid #b5977a;
+            bottom: 15px;
+            right: 25px;
+            color: #b5977a;
+            font-size: 24px;
+            opacity: 0.5;
         }
 
-        /* Chapter navigation */
+        /* Chapter navigation - like book tabs */
         .chapter-navigation {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px;
-            margin: 35px 0 25px;
-            padding: 25px 40px;
-            background: rgba(245, 235, 220, 0.8);
-            backdrop-filter: blur(3px);
-            border-radius: 100px;
+            gap: 20px;
+            margin: 30px 0 20px;
+            padding: 20px 30px;
+            background: #e8d5b5;
+            border-radius: 10px;
             border: 2px solid #b5977a;
-            box-shadow: 0 15px 35px rgba(100, 70, 40, 0.15);
+            box-shadow: inset 0 2px 8px rgba(100, 70, 40, 0.1);
         }
 
         .chapter-navigation button {
-            padding: 18px 40px;
+            padding: 15px 35px;
             font-size: 22px;
             margin: 0;
-            min-width: 160px;
-            background: #f5ebdc;
+            min-width: 150px;
+            background: #fff9f0;
         }
 
         .chapter-navigation button:disabled {
@@ -458,48 +477,46 @@
         }
 
         .chapter-navigation span {
-            font-size: 32px;
-            color: #4a3b2f;
-            font-weight: 500;
-            letter-spacing: 3px;
+            font-size: 30px;
+            color: #5c3e2d;
+            font-weight: 600;
             font-family: 'Cormorant Garamond', serif;
-            background: #f5ebdc;
-            padding: 15px 45px;
-            border-radius: 80px;
-            border: 2px solid #b5977a;
-            box-shadow: inset 0 2px 10px rgba(139, 107, 79, 0.2);
-            text-shadow: 1px 1px 0 white;
+            background: #fff9f0;
+            padding: 12px 40px;
+            border-radius: 8px;
+            border: 2px solid #8b6b4f;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* Book grid */
+        /* Book grid - like table of contents */
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 15px;
             padding: 30px;
-            background: rgba(245, 235, 220, 0.8);
-            backdrop-filter: blur(3px);
-            border-radius: 50px;
+            background: #fff9f0;
+            border-radius: 15px;
             border: 2px solid #b5977a;
-            margin-top: 25px;
+            margin-top: 20px;
             max-height: 550px;
             overflow-y: auto;
+            box-shadow: inset 0 0 20px rgba(139, 107, 79, 0.1);
         }
 
         .book-grid button {
-            padding: 20px 15px;
+            padding: 18px 12px;
             font-size: 22px;
             text-transform: none;
-            background: #f5ebdc;
+            background: #fff9f0;
             border: 2px solid #b5977a;
             margin: 0;
-            box-shadow: 0 8px 15px rgba(100, 70, 40, 0.1);
+            box-shadow: 0 4px 8px rgba(100, 70, 40, 0.1);
         }
 
         .book-grid button:hover {
             background: #e8d5b5;
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 15px 25px rgba(100, 70, 40, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(100, 70, 40, 0.2);
             border-color: #5c3e2d;
         }
 
@@ -507,123 +524,138 @@
         .chapter-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 15px;
+            gap: 12px;
             padding: 30px;
-            background: rgba(245, 235, 220, 0.8);
-            backdrop-filter: blur(3px);
-            border-radius: 50px;
+            background: #fff9f0;
+            border-radius: 15px;
             border: 2px solid #b5977a;
-            margin: 25px 0;
+            margin: 20px 0;
             max-height: 450px;
             overflow-y: auto;
+            box-shadow: inset 0 0 20px rgba(139, 107, 79, 0.1);
         }
 
         .chapter-grid button {
-            padding: 18px 10px;
+            padding: 16px 10px;
             font-size: 20px;
             margin: 0;
-            background: #f5ebdc;
+            background: #fff9f0;
             border: 2px solid #b5977a;
         }
 
         .chapter-grid button:hover {
             background: #e8d5b5;
-            transform: translateY(-4px) scale(1.02);
+            transform: translateY(-3px);
             border-color: #5c3e2d;
         }
 
-        /* Verse text */
+        /* Verse text - Bible page style */
         #chapter-text {
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            line-height: 2.3;
-            color: #4a3b2f;
-            padding: 35px;
-            background: rgba(245, 235, 220, 0.85);
-            backdrop-filter: blur(3px);
-            border-radius: 50px;
+            line-height: 2.2;
+            color: #5c3e2d;
+            padding: 40px;
+            background: #fff9f0;
+            background-image: 
+                linear-gradient(90deg, rgba(139, 107, 79, 0.03) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(139, 107, 79, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            border-radius: 15px;
             border: 2px solid #b5977a;
-            margin-top: 25px;
+            margin-top: 20px;
             max-height: 550px;
             overflow-y: auto;
             font-size: 24px;
-            box-shadow: 0 15px 35px rgba(100, 70, 40, 0.15);
+            box-shadow: inset 0 0 40px rgba(139, 107, 79, 0.1);
+            column-count: 2;
+            column-gap: 40px;
+            column-rule: 1px solid #b5977a;
+        }
+
+        @media (max-width: 800px) {
+            #chapter-text {
+                column-count: 1;
+            }
         }
 
         #chapter-text p {
-            margin-bottom: 18px;
-            padding: 18px 30px;
-            background: rgba(245, 235, 220, 0.9);
-            border-radius: 30px;
-            border-left: 8px solid #8b6b4f;
-            transition: all 0.4s;
-            box-shadow: 0 3px 10px rgba(100, 70, 40, 0.05);
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            border-left: 4px solid #b5977a;
+            transition: all 0.3s;
+            break-inside: avoid;
         }
 
         #chapter-text p:hover {
-            background: #f5ebdc;
-            transform: translateX(8px);
-            box-shadow: 0 8px 20px rgba(139, 107, 79, 0.2);
+            background: #fff9f0;
+            transform: translateX(5px);
+            box-shadow: 0 2px 10px rgba(139, 107, 79, 0.2);
             border-left-color: #5c3e2d;
         }
 
         #chapter-text strong {
             color: #5c3e2d;
-            font-size: 26px;
-            margin-right: 20px;
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
+            font-size: 22px;
+            margin-right: 12px;
+            font-weight: 700;
             background: #e8d5b5;
-            padding: 5px 18px;
-            border-radius: 50px;
+            padding: 2px 12px;
+            border-radius: 20px;
             display: inline-block;
             border: 1px solid #b5977a;
         }
 
-        /* Navigation buttons for back */
+        /* Navigation buttons */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 25px 0;
+            margin: 20px 0;
         }
 
         .nav-buttons button {
-            padding: 18px 40px;
-            min-width: 200px;
+            padding: 15px 35px;
+            min-width: 180px;
             font-size: 22px;
+        }
+
+        /* Page turn animation class */
+        .turning-page {
+            animation: pageFlip 0.5s ease-in-out;
         }
 
         /* Section containers */
         #askSection, #bibleSection, #readerSection {
-            animation: fadeIn 0.8s ease;
-            position: relative;
+            animation: fadeInPage 0.5s ease;
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInPage {
             from { 
-                opacity: 0; 
-                transform: translateY(20px);
+                opacity: 0;
+                transform: translateY(10px);
             }
             to { 
-                opacity: 1; 
+                opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Scrollbar styling */
+        /* Scrollbar - like old book edge */
         ::-webkit-scrollbar {
-            width: 14px;
+            width: 16px;
         }
 
         ::-webkit-scrollbar-track {
             background: #e8d5b5;
-            border-radius: 20px;
+            border-radius: 10px;
             border: 2px solid #b5977a;
         }
 
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(145deg, #8b6b4f, #5c3e2d);
-            border-radius: 20px;
+            border-radius: 10px;
             border: 3px solid #e8d5b5;
         }
 
@@ -631,10 +663,10 @@
             background: #5c3e2d;
         }
 
-        /* Loading indicator */
+        /* Loading indicator - like bookmark */
         .loading {
             text-align: center;
-            padding: 60px;
+            padding: 50px;
             color: #8b6b4f;
             font-size: 28px;
             font-style: italic;
@@ -642,187 +674,224 @@
         }
 
         .loading::after {
-            content: '🌿';
-            animation: spin 3s linear infinite;
+            content: '✝';
+            animation: spin 2s linear infinite;
             display: inline-block;
             margin-left: 15px;
             font-size: 32px;
-            color: #5a7c4a;
+            color: #b5977a;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(360deg) scale(1); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Mobile responsive */
         @media (max-width: 600px) {
             body {
-                padding: 15px 10px;
+                padding: 10px;
             }
             
             .app-container {
-                padding: 25px 15px;
+                padding: 20px 15px;
+            }
+            
+            .lang-toggle {
+                position: relative;
+                top: 0;
+                right: 0;
+                text-align: center;
+                margin-bottom: 20px;
             }
             
             h1 {
                 font-size: 42px;
-                letter-spacing: 3px;
             }
             
-            h1::before, h1::after {
-                font-size: 28px;
-                margin: 0 10px;
-            }
-            
-            h2 {
-                font-size: 30px;
+            h1 span {
+                font-size: 18px;
             }
             
             #home p {
                 font-size: 22px;
-                padding: 20px 30px;
+                padding: 20px 25px;
             }
             
             button {
-                padding: 15px 30px;
+                padding: 12px 25px;
                 font-size: 18px;
-                letter-spacing: 2px;
             }
             
             #home button {
-                width: 280px;
+                width: 260px;
                 font-size: 20px;
-                padding: 18px 30px;
+                padding: 15px 25px;
             }
             
             .book-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
                 padding: 20px;
             }
             
             .book-grid button {
                 font-size: 18px;
-                padding: 15px 8px;
+                padding: 12px 8px;
             }
             
             .chapter-navigation {
                 flex-wrap: wrap;
-                gap: 12px;
-                padding: 20px;
+                gap: 10px;
+                padding: 15px;
             }
             
             .chapter-navigation button {
-                min-width: 130px;
-                padding: 15px 20px;
+                min-width: 120px;
+                padding: 12px 15px;
                 font-size: 18px;
             }
             
             .chapter-navigation span {
-                font-size: 24px;
-                padding: 12px 25px;
-            }
-            
-            .nav-buttons {
-                flex-direction: column;
-                gap: 12px;
-            }
-            
-            .nav-buttons button {
-                width: 100%;
-                min-width: auto;
+                font-size: 22px;
+                padding: 10px 20px;
             }
             
             #chapter-text {
                 font-size: 20px;
                 padding: 25px;
             }
-            
-            #chapter-text strong {
-                font-size: 22px;
-                padding: 4px 12px;
-            }
-            
-            #chapter-text p {
-                padding: 15px 20px;
-            }
         }
 
-        /* Cross and vine decorations */
-        .vine-corner {
+        /* Corner decorations */
+        .corner-decoration {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 60px;
-            color: #5a7c4a;
-            opacity: 0.3;
-            z-index: 5;
-            transform: rotate(-15deg);
-            pointer-events: none;
-        }
-
-        .cross-small {
-            position: fixed;
-            top: 20px;
-            left: 20px;
+            bottom: 10px;
+            left: 10px;
             font-size: 40px;
             color: #5c3e2d;
             opacity: 0.2;
             z-index: 5;
-            pointer-events: none;
+            transform: rotate(-10deg);
         }
     </style>
 </head>
 
 <body>
-    <!-- Cross and vine background decorations -->
-    <div class="vine-decoration"></div>
-    <div class="cross-small">✝</div>
-    <div class="vine-corner">🌿🌿🌿</div>
+    <!-- Language Toggle Button -->
+    <div class="lang-toggle">
+        <button onclick="toggleLanguage()">
+            <span class="lang-en">📖 Español</span>
+            <span class="lang-es">📖 English</span>
+        </button>
+    </div>
+
+    <!-- Background decorations -->
+    <div class="corner-decoration">✝ 🌿 ✝</div>
 
     <div class="app-container">
-        <h1>Walk With God</h1>
+        <div class="bible-cross">✝</div>
+        
+        <h1>
+            <span class="lang-en">Walk With God</span>
+            <span class="lang-es">Camina Con Dios</span>
+        </h1>
 
         <!-- Home Screen -->
         <div id="home">
-            <h2>Welcome</h2>
-            <p>"Your word is a lamp to my feet and a light to my path." — Psalm 119:105</p>
-            <button onclick="showAsk()">❓ Ask a Question</button>
-            <button onclick="showBible()">🔍 Search the Bible</button>
-            <button onclick="showReader()">📖 Read the Bible</button>
+            <h2>
+                <span class="lang-en">Welcome</span>
+                <span class="lang-es">Bienvenido</span>
+            </h2>
+            <p>
+                <span class="lang-en">"Your word is a lamp to my feet and a light to my path." — Psalm 119:105</span>
+                <span class="lang-es">"Lámpara es a mis pies tu palabra, y luz para mi camino." — Salmo 119:105</span>
+            </p>
+            <button onclick="showAsk()">
+                <span class="lang-en">❓ Ask a Question</span>
+                <span class="lang-es">❓ Hacer una Pregunta</span>
+            </button>
+            <button onclick="showBible()">
+                <span class="lang-en">🔍 Search the Bible</span>
+                <span class="lang-es">🔍 Buscar en la Biblia</span>
+            </button>
+            <button onclick="showReader()">
+                <span class="lang-en">📖 Read the Bible</span>
+                <span class="lang-es">📖 Leer la Biblia</span>
+            </button>
         </div>
 
         <!-- Ask Question Screen -->
         <div id="askSection" style="display:none">
-            <h2>Ask a Question</h2>
-            <input id="question" placeholder="Ask something like 'why do I feel jealous?'">
-            <button onclick="answerQuestion()">Ask</button>
+            <h2>
+                <span class="lang-en">Ask a Question</span>
+                <span class="lang-es">Haz una Pregunta</span>
+            </h2>
+            <input id="question" class="lang-en" placeholder="Ask something like 'why do I feel jealous?'">
+            <input id="question-es" class="lang-es" placeholder="Pregunta algo como '¿por qué siento celos?'" style="display:none;">
+            <button onclick="answerQuestion()">
+                <span class="lang-en">Ask</span>
+                <span class="lang-es">Preguntar</span>
+            </button>
             <div id="answerResult"></div>
-            <button onclick="goHome()">← Back</button>
+            <button onclick="goHome()">← <span class="lang-en">Back</span><span class="lang-es">Volver</span></button>
         </div>
 
         <!-- Search Bible Screen -->
         <div id="bibleSection" style="display:none">
-            <h2>Search the Bible</h2>
-            <input id="bibleSearch" placeholder="Search a word like 'love'">
-            <button onclick="searchBible()">Search</button>
+            <h2>
+                <span class="lang-en">Search the Bible</span>
+                <span class="lang-es">Buscar en la Biblia</span>
+            </h2>
+            <input id="bibleSearch" class="lang-en" placeholder="Search a word like 'love'">
+            <input id="bibleSearch-es" class="lang-es" placeholder="Busca una palabra como 'amor'" style="display:none;">
+            <button onclick="searchBible()">
+                <span class="lang-en">Search</span>
+                <span class="lang-es">Buscar</span>
+            </button>
             <div id="bibleResult"></div>
-            <button onclick="goHome()">← Back</button>
+            <button onclick="goHome()">← <span class="lang-en">Back</span><span class="lang-es">Volver</span></button>
         </div>
 
         <!-- Read Bible Screen -->
         <div id="readerSection" style="display:none">
-            <h2>Read the Bible</h2>
-            <div id="readerContent">
-                <p>Loading books...</p>
+            <h2>
+                <span class="lang-en">Read the Bible</span>
+                <span class="lang-es">Leer la Biblia</span>
+            </h2>
+            <div id="readerContent" class="paper-texture">
+                <p class="loading">
+                    <span class="lang-en">Loading books...</span>
+                    <span class="lang-es">Cargando libros...</span>
+                </p>
             </div>
-            <button onclick="goHome()" style="margin-top:20px;">← Back</button>
+            <button onclick="goHome()" style="margin-top:20px;">← <span class="lang-en">Back</span><span class="lang-es">Volver</span></button>
         </div>
     </div>
 
     <script>
+        // Language toggle function
+        function toggleLanguage() {
+            document.body.classList.toggle('spanish');
+            
+            // Update input placeholders based on language
+            const isSpanish = document.body.classList.contains('spanish');
+            
+            document.getElementById('question').style.display = isSpanish ? 'none' : 'block';
+            document.getElementById('question-es').style.display = isSpanish ? 'block' : 'none';
+            document.getElementById('bibleSearch').style.display = isSpanish ? 'none' : 'block';
+            document.getElementById('bibleSearch-es').style.display = isSpanish ? 'block' : 'none';
+        }
+
+        // Page turn animation function
+        function turnPage(element) {
+            element.classList.add('turning-page');
+            setTimeout(() => {
+                element.classList.remove('turning-page');
+            }, 500);
+        }
+
         function showAsk() {
+            turnPage(document.getElementById('askSection'));
             document.getElementById("home").style.display = "none";
             document.getElementById("askSection").style.display = "block";
             document.getElementById("bibleSection").style.display = "none";
@@ -830,6 +899,7 @@
         }
 
         function showBible() {
+            turnPage(document.getElementById('bibleSection'));
             document.getElementById("home").style.display = "none";
             document.getElementById("askSection").style.display = "none";
             document.getElementById("bibleSection").style.display = "block";
@@ -837,6 +907,7 @@
         }
 
         function showReader() {
+            turnPage(document.getElementById('readerSection'));
             document.getElementById("home").style.display = "none";
             document.getElementById("askSection").style.display = "none";
             document.getElementById("bibleSection").style.display = "none";
@@ -845,84 +916,126 @@
         }
 
         function goHome() {
+            turnPage(document.getElementById('home'));
             document.getElementById("home").style.display = "block";
             document.getElementById("askSection").style.display = "none";
             document.getElementById("bibleSection").style.display = "none";
             document.getElementById("readerSection").style.display = "none";
         }
 
+        // Bilingual topics
         const topics = [
             {
                 keywords: ["lust", "temptation", "desire"],
+                keywords_es: ["lujuria", "tentación", "deseo"],
                 verse: "Matthew 5:28",
+                verse_es: "Mateo 5:28",
                 text: "But I tell you that anyone who looks at a woman lustfully has already committed adultery with her in his heart.",
+                text_es: "Pero yo os digo que cualquiera que mira a una mujer para codiciarla, ya adulteró con ella en su corazón.",
                 explanation: "Jesus teaches that sin begins in the heart and mind, not just in actions. Lust treats people as objects rather than honoring them as God's creation.",
-                guidance: "Guard your thoughts and what you watch. Focus on respecting others and building healthy relationships based on love, not lust."
+                explanation_es: "Jesús enseña que el pecado comienza en el corazón y la mente, no solo en las acciones. La lujuria trata a las personas como objetos en lugar de honrarlas como creación de Dios.",
+                guidance: "Guard your thoughts and what you watch. Focus on respecting others and building healthy relationships based on love, not lust.",
+                guidance_es: "Guarda tus pensamientos y lo que miras. Concéntrate en respetar a los demás y construir relaciones saludables basadas en el amor, no en la lujuria."
             },
             {
                 keywords: ["anger", "mad", "frustrated"],
+                keywords_es: ["enojo", "ira", "frustrado", "enfado"],
                 verse: "James 1:19-20",
+                verse_es: "Santiago 1:19-20",
                 text: "My dear brothers and sisters, take note of this: Everyone should be quick to listen, slow to speak and slow to become angry, because human anger does not produce the righteousness that God desires.",
+                text_es: "Por esto, mis amados hermanos, todo hombre sea pronto para oír, tardo para hablar, tardo para airarse; porque la ira del hombre no obra la justicia de Dios.",
                 explanation: "Anger itself isn't always wrong, but uncontrolled anger leads to words and actions we regret. God wants us to respond thoughtfully, not react emotionally.",
-                guidance: "When you feel angry, pause and take deep breaths. Ask yourself: 'What would help this situation?' Respond with kindness when possible."
+                explanation_es: "El enojo en sí mismo no siempre es malo, pero la ira descontrolada lleva a palabras y acciones que lamentamos. Dios quiere que respondamos con consideración, no que reaccionemos emocionalmente.",
+                guidance: "When you feel angry, pause and take deep breaths. Ask yourself: 'What would help this situation?' Respond with kindness when possible.",
+                guidance_es: "Cuando te sientas enojado, haz una pausa y respira profundamente. Pregúntate: '¿Qué ayudaría en esta situación?' Responde con amabilidad cuando sea posible."
             },
             {
                 keywords: ["fail", "failure", "hate myself", "disappointed", "mess up"],
+                keywords_es: ["fracaso", "fallar", "odio a mí mismo", "decepcionado", "equivocar"],
                 verse: "Romans 8:1",
+                verse_es: "Romanos 8:1",
                 text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+                text_es: "Ahora, pues, ninguna condenación hay para los que están en Cristo Jesús.",
                 explanation: "Failure does not define your worth. God offers forgiveness and a fresh start. Even when you stumble, you are not condemned or rejected.",
-                guidance: "Learn from your mistake, ask for forgiveness if needed, and focus on growing. Every person who ever did anything great failed many times first."
+                explanation_es: "El fracaso no define tu valor. Dios ofrece perdón y un nuevo comienzo. Incluso cuando tropiezas, no eres condenado ni rechazado.",
+                guidance: "Learn from your mistake, ask for forgiveness if needed, and focus on growing. Every person who ever did anything great failed many times first.",
+                guidance_es: "Aprende de tu error, pide perdón si es necesario, y concéntrate en crecer. Toda persona que hizo algo grandioso fracasó muchas veces primero."
             },
             {
                 keywords: ["forgive", "forgiveness", "hurt", "someone wronged me"],
+                keywords_es: ["perdonar", "perdón", "herido", "alguien me lastimó"],
                 verse: "Ephesians 4:32",
+                verse_es: "Efesios 4:32",
                 text: "Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
+                text_es: "Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros, como también Dios os perdonó a vosotros en Cristo.",
                 explanation: "Forgiveness is not about pretending something didn't hurt. It's about releasing the burden of anger and trusting God with justice.",
-                guidance: "Forgiveness is a process. Start by praying for the person who hurt you, even if you don't feel it yet. This helps your own heart heal."
+                explanation_es: "El perdón no se trata de pretender que algo no dolió. Se trata de liberar la carga de la ira y confiar en Dios para la justicia.",
+                guidance: "Forgiveness is a process. Start by praying for the person who hurt you, even if you don't feel it yet. This helps your own heart heal.",
+                guidance_es: "El perdón es un proceso. Comienza orando por la persona que te lastimó, incluso si aún no lo sientes. Esto ayuda a que tu propio corazón sane."
             },
             {
                 keywords: ["jealous", "jealousy", "envy", "compare"],
+                keywords_es: ["celoso", "celos", "envidia", "comparar"],
                 verse: "Proverbs 14:30",
+                verse_es: "Proverbios 14:30",
                 text: "A heart at peace gives life to the body, but envy rots the bones.",
+                text_es: "El corazón apacible es vida de la carne; mas la envidia es carcoma de los huesos.",
                 explanation: "Jealousy and comparison steal your joy and peace. They make you focus on what others have instead of being grateful for your own blessings.",
-                guidance: "Practice gratitude daily. Write down three things you're thankful for. Celebrate others' success instead of comparing yourself to them."
+                explanation_es: "Los celos y la comparación roban tu alegría y paz. Te hacen enfocarte en lo que otros tienen en lugar de estar agradecido por tus propias bendiciones.",
+                guidance: "Practice gratitude daily. Write down three things you're thankful for. Celebrate others' success instead of comparing yourself to them.",
+                guidance_es: "Practica la gratitud diariamente. Escribe tres cosas por las que estás agradecido. Celebra el éxito de los demás en lugar de compararte con ellos."
             },
             {
                 keywords: ["lonely", "alone", "isolated", "no friends"],
+                keywords_es: ["solo", "soledad", "aislado", "sin amigos"],
                 verse: "Deuteronomy 31:6",
+                verse_es: "Deuteronomio 31:6",
                 text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+                text_es: "Esforzaos y cobrad ánimo; no temáis, ni tengáis miedo de ellos, porque Jehová tu Dios es el que va contigo; no te dejará, ni te desamparará.",
                 explanation: "Even when you feel alone, God promises to be with you. Loneliness is a feeling, but God's presence is a fact.",
-                guidance: "Reach out to one person today, even just to say hello. Consider joining a church group or community where you can meet people."
+                explanation_es: "Incluso cuando te sientes solo, Dios promete estar contigo. La soledad es un sentimiento, pero la presencia de Dios es un hecho.",
+                guidance: "Reach out to one person today, even just to say hello. Consider joining a church group or community where you can meet people.",
+                guidance_es: "Comunícate con una persona hoy, aunque solo sea para saludar. Considera unirte a un grupo de la iglesia o comunidad donde puedas conocer personas."
             },
             {
                 keywords: ["purpose", "meaning", "why am i here", "direction"],
+                keywords_es: ["propósito", "significado", "por qué estoy aquí", "dirección"],
                 verse: "Jeremiah 29:11",
+                verse_es: "Jeremías 29:11",
                 text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+                text_es: "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.",
                 explanation: "God has a purpose for your life. Even when you don't know your direction, He does. Your existence is not an accident.",
-                guidance: "Try different activities and see what you enjoy and what helps others. Your purpose often combines what you're good at, what you love, and how you can serve."
+                explanation_es: "Dios tiene un propósito para tu vida. Incluso cuando no sabes tu dirección, Él la sabe. Tu existencia no es un accidente.",
+                guidance: "Try different activities and see what you enjoy and what helps others. Your purpose often combines what you're good at, what you love, and how you can serve.",
+                guidance_es: "Prueba diferentes actividades y ve qué disfrutas y qué ayuda a los demás. Tu propósito a menudo combina lo que se te da bien, lo que amas y cómo puedes servir."
             }
         ];
 
         function answerQuestion() {
-            let q = document.getElementById("question").value.toLowerCase();
+            const isSpanish = document.body.classList.contains('spanish');
+            let q = isSpanish ? 
+                document.getElementById("question-es").value.toLowerCase() : 
+                document.getElementById("question").value.toLowerCase();
+            
             let resultDiv = document.getElementById("answerResult");
             let found = false;
             let output = "";
             
             for (let t of topics) {
-                for (let k of t.keywords) {
+                let keywords = isSpanish ? t.keywords_es : t.keywords;
+                for (let k of keywords) {
                     if (q.includes(k)) {
                         output += `
-                        <div style="background:rgba(245,235,220,0.9); padding:15px; margin-bottom:15px; border-radius:8px; border-left:5px solid #8b6b4f;">
-                            <h3 style="color:#5c3e2d;">📖 Scripture</h3>
-                            <p><strong>${t.verse}</strong></p>
-                            <p><em>"${t.text}"</em></p>
+                        <div style="background:rgba(255,249,240,0.9); padding:20px; margin-bottom:20px; border-radius:8px; border-left:5px solid #8b6b4f;">
+                            <h3 style="color:#5c3e2d;">📖 ${isSpanish ? 'Escritura' : 'Scripture'}</h3>
+                            <p><strong>${isSpanish ? t.verse_es : t.verse}</strong></p>
+                            <p><em>"${isSpanish ? t.text_es : t.text}"</em></p>
                             
-                            <h3 style="color:#5c3e2d;">💭 Explanation</h3>
-                            <p>${t.explanation}</p>
+                            <h3 style="color:#5c3e2d;">💭 ${isSpanish ? 'Explicación' : 'Explanation'}</h3>
+                            <p>${isSpanish ? t.explanation_es : t.explanation}</p>
                             
-                            <h3 style="color:#5c3e2d;">🌟 Guidance</h3>
-                            <p>${t.guidance}</p>
+                            <h3 style="color:#5c3e2d;">🌟 ${isSpanish ? 'Guía' : 'Guidance'}</h3>
+                            <p>${isSpanish ? t.guidance_es : t.guidance}</p>
                         </div>
                         `;
                         found = true;
@@ -933,10 +1046,20 @@
             
             if (!found) {
                 output = `
-                <div style="background:rgba(245,235,220,0.9); padding:20px; border-radius:8px; border-left:5px solid #8b6b4f;">
-                    <p>I don't have an answer for that specific question yet. Here are some topics I can help with:</p>
-                    <p>• Lust and temptation<br>• Anger<br>• Failure and self-hatred<br>• Forgiveness<br>• Jealousy<br>• Loneliness<br>• Purpose and direction</p>
-                    <p>Try asking about one of these topics, or check back soon as we add more!</p>
+                <div style="background:rgba(255,249,240,0.9); padding:25px; border-radius:8px; border-left:5px solid #8b6b4f;">
+                    <p>${isSpanish ? 
+                        'Aún no tengo respuesta para esa pregunta específica. Aquí hay algunos temas con los que puedo ayudar:' : 
+                        'I don\'t have an answer for that specific question yet. Here are some topics I can help with:'}</p>
+                    <p>• ${isSpanish ? 'Lujuria y tentación' : 'Lust and temptation'}<br>
+                       • ${isSpanish ? 'Enojo' : 'Anger'}<br>
+                       • ${isSpanish ? 'Fracaso y odio a uno mismo' : 'Failure and self-hatred'}<br>
+                       • ${isSpanish ? 'Perdón' : 'Forgiveness'}<br>
+                       • ${isSpanish ? 'Celos' : 'Jealousy'}<br>
+                       • ${isSpanish ? 'Soledad' : 'Loneliness'}<br>
+                       • ${isSpanish ? 'Propósito y dirección' : 'Purpose and direction'}</p>
+                    <p>${isSpanish ? 
+                        'Intenta preguntar sobre uno de estos temas, ¡o vuelve pronto mientras añadimos más!' : 
+                        'Try asking about one of these topics, or check back soon as we add more!'}</p>
                 </div>
                 `;
             }
@@ -957,7 +1080,20 @@
             "1 John", "2 John", "3 John", "Jude", "Revelation"
         ];
 
-        // Chapter counts for each book
+        // Spanish book names
+        const bibleBooksSpanish = [
+            "Génesis", "Éxodo", "Levítico", "Números", "Deuteronomio", "Josué", "Jueces", "Rut",
+            "1 Samuel", "2 Samuel", "1 Reyes", "2 Reyes", "1 Crónicas", "2 Crónicas", "Esdras", "Nehemías",
+            "Ester", "Job", "Salmos", "Proverbios", "Eclesiastés", "Cantares", "Isaías", "Jeremías",
+            "Lamentaciones", "Ezequiel", "Daniel", "Oseas", "Joel", "Amós", "Abdías", "Jonás", "Miqueas",
+            "Nahúm", "Habacuc", "Sofonías", "Hageo", "Zacarías", "Malaquías",
+            "Mateo", "Marcos", "Lucas", "Juan", "Hechos", "Romanos", "1 Corintios", "2 Corintios",
+            "Gálatas", "Efesios", "Filipenses", "Colosenses", "1 Tesalonicenses", "2 Tesalonicenses",
+            "1 Timoteo", "2 Timoteo", "Tito", "Filemón", "Hebreos", "Santiago", "1 Pedro", "2 Pedro",
+            "1 Juan", "2 Juan", "3 Juan", "Judas", "Apocalipsis"
+        ];
+
+        // Chapter counts
         const chapterCounts = {
             "Genesis": 50, "Exodus": 40, "Leviticus": 27, "Numbers": 36, "Deuteronomy": 34,
             "Joshua": 24, "Judges": 21, "Ruth": 4, "1 Samuel": 31, "2 Samuel": 24,
@@ -981,9 +1117,12 @@
         let maxChapters = 0;
 
         function loadBooks() {
-            let output = "<h3>Select a Book:</h3><div class='book-grid'>";
+            const isSpanish = document.body.classList.contains('spanish');
+            const books = isSpanish ? bibleBooksSpanish : bibleBooks;
             
-            for (let book of bibleBooks) {
+            let output = `<h3>${isSpanish ? 'Selecciona un Libro:' : 'Select a Book:'}</h3><div class='book-grid'>`;
+            
+            for (let book of books) {
                 output += `<button onclick="loadChapters('${book}')">${book}</button>`;
             }
             
@@ -992,54 +1131,77 @@
         }
 
         function loadChapters(book) {
-            currentBook = book;
-            maxChapters = chapterCounts[book] || 50;
-            let output = `<button onclick="loadBooks()" style="margin-bottom:15px;">← Back to Books</button>`;
+            const isSpanish = document.body.classList.contains('spanish');
+            
+            // Convert Spanish book name to English for API
+            let englishBook = book;
+            if (isSpanish) {
+                const index = bibleBooksSpanish.indexOf(book);
+                if (index !== -1) {
+                    englishBook = bibleBooks[index];
+                }
+            }
+            
+            currentBook = englishBook;
+            maxChapters = chapterCounts[englishBook] || 50;
+            
+            let output = `<button onclick="loadBooks()" style="margin-bottom:15px;">← ${isSpanish ? 'Volver a Libros' : 'Back to Books'}</button>`;
             output += `<h3>${book}</h3>`;
             output += `<div class="chapter-grid">`;
             
             for (let i = 1; i <= maxChapters; i++) {
-                output += `<button onclick="loadChapter('${book}', ${i})">${i}</button>`;
+                output += `<button onclick="loadChapter('${englishBook}', ${i}, '${book}')">${i}</button>`;
             }
             
             output += `</div>`;
             document.getElementById("readerContent").innerHTML = output;
         }
 
-        function loadChapter(book, chapter) {
+        function loadChapter(book, chapter, displayBook) {
+            const isSpanish = document.body.classList.contains('spanish');
+            
+            if (!displayBook) {
+                displayBook = book;
+                if (isSpanish) {
+                    const index = bibleBooks.indexOf(book);
+                    if (index !== -1) {
+                        displayBook = bibleBooksSpanish[index];
+                    }
+                }
+            }
+            
             currentBook = book;
             currentChapter = chapter;
             maxChapters = chapterCounts[book] || 50;
             
             let output = `<div class="nav-buttons">`;
-            output += `<button onclick="loadChapters('${book}')">← Back to Chapters</button>`;
+            output += `<button onclick="loadChapters('${displayBook}')">← ${isSpanish ? 'Volver a Capítulos' : 'Back to Chapters'}</button>`;
             output += `</div>`;
             
-            // Add chapter navigation
             output += `<div class="chapter-navigation">`;
             if (chapter > 1) {
-                output += `<button onclick="loadChapter('${book}', ${chapter - 1})">← Previous</button>`;
+                output += `<button onclick="loadChapter('${book}', ${chapter - 1}, '${displayBook}')">← ${isSpanish ? 'Anterior' : 'Previous'}</button>`;
             } else {
-                output += `<button disabled style="opacity:0.5; cursor:not-allowed;">← Previous</button>`;
+                output += `<button disabled style="opacity:0.5; cursor:not-allowed;">← ${isSpanish ? 'Anterior' : 'Previous'}</button>`;
             }
             
-            output += `<span>${book} ${chapter}</span>`;
+            output += `<span>${displayBook} ${chapter}</span>`;
             
             if (chapter < maxChapters) {
-                output += `<button onclick="loadChapter('${book}', ${chapter + 1})">Next →</button>`;
+                output += `<button onclick="loadChapter('${book}', ${chapter + 1}, '${displayBook}')">${isSpanish ? 'Siguiente' : 'Next'} →</button>`;
             } else {
-                output += `<button disabled style="opacity:0.5; cursor:not-allowed;">Next →</button>`;
+                output += `<button disabled style="opacity:0.5; cursor:not-allowed;">${isSpanish ? 'Siguiente' : 'Next'} →</button>`;
             }
             
             output += `</div>`;
             
             output += `<div id="chapter-text" style='text-align:left;'>`;
-            output += `<p class="loading">Loading ${book} ${chapter}...</p>`;
+            output += `<p class="loading">${isSpanish ? 'Cargando' : 'Loading'} ${displayBook} ${chapter}...</p>`;
             output += `</div>`;
             
             document.getElementById("readerContent").innerHTML = output;
             
-            // Use Bible API to get the actual verses
+            // Use Bible API
             fetch(`https://bible-api.com/${book}+${chapter}?translation=kjv`)
                 .then(response => response.json())
                 .then(data => {
@@ -1049,23 +1211,29 @@
                             versesOutput += `<p><strong>${verse.verse}</strong> ${verse.text}</p>`;
                         });
                     } else {
-                        versesOutput = "<p>Could not load verses. Please try again later.</p>";
+                        versesOutput = `<p>${isSpanish ? 
+                            'No se pudieron cargar los versículos. Por favor, intente de nuevo más tarde.' : 
+                            'Could not load verses. Please try again later.'}</p>`;
                     }
                     document.getElementById("chapter-text").innerHTML = versesOutput;
                 })
                 .catch(error => {
-                    document.getElementById("chapter-text").innerHTML = "<p>Error loading chapter. Please try again.</p>";
+                    document.getElementById("chapter-text").innerHTML = `<p>${isSpanish ? 
+                        'Error al cargar el capítulo. Por favor, intente de nuevo.' : 
+                        'Error loading chapter. Please try again.'}</p>`;
                 });
         }
 
-        // Search Bible function using API
         function searchBible() {
-            let word = document.getElementById("bibleSearch").value.toLowerCase();
+            const isSpanish = document.body.classList.contains('spanish');
+            let word = isSpanish ? 
+                document.getElementById("bibleSearch-es").value.toLowerCase() : 
+                document.getElementById("bibleSearch").value.toLowerCase();
+            
             let resultDiv = document.getElementById("bibleResult");
             
-            resultDiv.innerHTML = "<p class='loading'>Searching...</p>";
+            resultDiv.innerHTML = `<p class='loading'>${isSpanish ? 'Buscando...' : 'Searching...'}</p>`;
             
-            // Use Bible API for search
             fetch(`https://bible-api.com/${encodeURIComponent(word)}?translation=kjv`)
                 .then(response => response.json())
                 .then(data => {
@@ -1075,22 +1243,28 @@
                     if (data.verses && data.verses.length > 0) {
                         data.verses.forEach(verse => {
                             output += `
-                            <div style="background:rgba(245,235,220,0.9); padding:10px; margin-bottom:10px; border-radius:5px; border-left:5px solid #8b6b4f;">
+                            <div style="background:rgba(255,249,240,0.9); padding:15px; margin-bottom:15px; border-radius:5px; border-left:5px solid #8b6b4f;">
                                 <p><strong>${verse.book} ${verse.chapter}:${verse.verse}</strong><br>
                                 ${verse.text}</p>
                             </div>
                             `;
                             count++;
                         });
-                        output = `<p>Found ${count} verses:</p>` + output;
+                        output = `<p>${isSpanish ? 
+                            `Se encontraron ${count} versículos:` : 
+                            `Found ${count} verses:`}</p>` + output;
                     } else {
-                        output = "<p>No verses found. Try a different word like 'love', 'faith', or 'pray'.</p>";
+                        output = `<p>${isSpanish ? 
+                            'No se encontraron versículos. Prueba con una palabra diferente como "amor", "fe" o "oración".' : 
+                            'No verses found. Try a different word like "love", "faith", or "pray".'}</p>`;
                     }
                     
                     resultDiv.innerHTML = output;
                 })
                 .catch(error => {
-                    resultDiv.innerHTML = "<p>Error searching. Please try again.</p>";
+                    resultDiv.innerHTML = `<p>${isSpanish ? 
+                        'Error al buscar. Por favor, intente de nuevo.' : 
+                        'Error searching. Please try again.'}</p>`;
                 });
         }
     </script>
