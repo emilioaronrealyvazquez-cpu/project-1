@@ -19,10 +19,11 @@
             align-items: center;
             position: relative;
             overflow-x: hidden;
-            background: #b7d9e5;
+            /* Beautiful sky painting background */
+            background: linear-gradient(145deg, #b7d9e5 0%, #e3b7a0 50%, #d4a59a 100%);
         }
 
-        /* Master painting background */
+        /* Painted sky background with artistic clouds */
         body::before {
             content: '';
             position: fixed;
@@ -31,118 +32,101 @@
             right: 0;
             bottom: 0;
             background: 
-                linear-gradient(165deg, 
-                    #c4e0e9 0%,
-                    #b7d9e5 20%,
-                    #d4bfb0 60%,
-                    #e3b79c 80%,
-                    #e8b89d 100%),
-                radial-gradient(ellipse at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
-                radial-gradient(ellipse at 80% 45%, rgba(255, 235, 220, 0.35) 0%, transparent 45%),
-                radial-gradient(ellipse at 40% 60%, rgba(255, 245, 235, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 60% 25%, rgba(255, 250, 240, 0.25) 0%, transparent 35%),
-                repeating-linear-gradient(45deg, 
-                    rgba(255, 255, 255, 0.02) 0px,
-                    rgba(255, 255, 255, 0.02) 5px,
-                    transparent 5px,
-                    transparent 10px),
-                radial-gradient(ellipse at 50% 80%, rgba(255, 200, 150, 0.3) 0%, transparent 60%);
-            filter: blur(2px);
+                radial-gradient(circle at 20% 30%, rgba(255, 220, 180, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 80% 60%, rgba(255, 200, 150, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(180, 210, 230, 0.5) 0%, transparent 60%),
+                radial-gradient(circle at 70% 20%, rgba(230, 200, 170, 0.4) 0%, transparent 45%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Artistic clouds */
-        .painting-cloud {
+        /* Artistic floating clouds - painted style */
+        .cloud-painting {
             position: fixed;
-            background: none;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(3px);
+            border-radius: 1000px;
             z-index: 1;
             pointer-events: none;
+            box-shadow: 
+                0 20px 40px rgba(255, 220, 180, 0.2),
+                inset 0 -10px 30px rgba(255, 255, 255, 0.6);
+            filter: blur(3px);
         }
 
-        .cloud-1 {
-            top: 15%;
-            left: 0;
-            width: 100%;
-            height: 300px;
-            background: 
-                radial-gradient(ellipse at 10% 50%, rgba(255, 255, 255, 0.35) 0%, transparent 50%),
-                radial-gradient(ellipse at 30% 40%, rgba(255, 240, 225, 0.3) 0%, transparent 45%),
-                radial-gradient(ellipse at 50% 55%, rgba(255, 250, 240, 0.4) 0%, transparent 40%),
-                radial-gradient(ellipse at 70% 35%, rgba(255, 235, 220, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 90% 45%, rgba(255, 245, 235, 0.35) 0%, transparent 45%);
-            filter: blur(25px);
-            animation: cloudDrift1 160s linear infinite;
+        .cloud-painting1 {
+            width: 400px;
+            height: 150px;
+            top: 5%;
+            left: -200px;
+            background: linear-gradient(135deg, rgba(255, 245, 235, 0.5), rgba(255, 220, 200, 0.4));
+            animation: driftCloud1 120s linear infinite;
         }
 
-        .cloud-2 {
-            top: 45%;
-            right: 0;
-            width: 100%;
-            height: 350px;
-            background: 
-                radial-gradient(ellipse at 15% 50%, rgba(255, 240, 230, 0.3) 0%, transparent 45%),
-                radial-gradient(ellipse at 35% 40%, rgba(255, 250, 240, 0.35) 0%, transparent 40%),
-                radial-gradient(ellipse at 55% 60%, rgba(255, 235, 220, 0.25) 0%, transparent 50%),
-                radial-gradient(ellipse at 75% 35%, rgba(255, 245, 235, 0.4) 0%, transparent 45%),
-                radial-gradient(ellipse at 95% 55%, rgba(255, 240, 225, 0.3) 0%, transparent 40%);
-            filter: blur(30px);
-            animation: cloudDrift2 180s linear infinite;
+        .cloud-painting2 {
+            width: 600px;
+            height: 200px;
+            top: 40%;
+            right: -300px;
+            background: linear-gradient(145deg, rgba(255, 235, 220, 0.5), rgba(230, 210, 200, 0.4));
+            animation: driftCloud2 150s linear infinite;
         }
 
-        .cloud-3 {
-            bottom: 10%;
-            left: 0;
-            width: 100%;
-            height: 250px;
-            background: 
-                radial-gradient(ellipse at 20% 50%, rgba(255, 245, 235, 0.3) 0%, transparent 40%),
-                radial-gradient(ellipse at 45% 40%, rgba(255, 250, 240, 0.4) 0%, transparent 45%),
-                radial-gradient(ellipse at 70% 60%, rgba(255, 240, 225, 0.35) 0%, transparent 50%),
-                radial-gradient(ellipse at 90% 35%, rgba(255, 235, 220, 0.3) 0%, transparent 40%);
-            filter: blur(20px);
-            animation: cloudDrift3 200s linear infinite;
+        .cloud-painting3 {
+            width: 350px;
+            height: 120px;
+            bottom: 15%;
+            left: -150px;
+            background: linear-gradient(125deg, rgba(240, 225, 215, 0.5), rgba(255, 235, 225, 0.4));
+            animation: driftCloud3 100s linear infinite;
         }
 
-        @keyframes cloudDrift1 {
-            0% { transform: translateX(-10%) scale(1); opacity: 0.7; }
-            50% { transform: translateX(5%) scale(1.05); opacity: 0.9; }
-            100% { transform: translateX(-10%) scale(1); opacity: 0.7; }
+        .cloud-painting4 {
+            width: 500px;
+            height: 180px;
+            top: 60%;
+            left: 70%;
+            background: linear-gradient(155deg, rgba(255, 240, 225, 0.5), rgba(235, 215, 200, 0.4));
+            animation: driftCloud4 130s linear infinite reverse;
         }
 
-        @keyframes cloudDrift2 {
-            0% { transform: translateX(10%) scale(1.05); opacity: 0.8; }
-            50% { transform: translateX(-5%) scale(1); opacity: 0.6; }
-            100% { transform: translateX(10%) scale(1.05); opacity: 0.8; }
+        @keyframes driftCloud1 {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(calc(100vw + 400px)); }
         }
 
-        @keyframes cloudDrift3 {
-            0% { transform: translateX(-5%) scale(1); opacity: 0.6; }
-            50% { transform: translateX(8%) scale(1.1); opacity: 0.8; }
-            100% { transform: translateX(-5%) scale(1); opacity: 0.6; }
+        @keyframes driftCloud2 {
+            from { transform: translateX(calc(100vw + 300px)); }
+            to { transform: translateX(-600px); }
         }
 
-        /* Sun effect */
-        .sun-painting {
+        @keyframes driftCloud3 {
+            from { transform: translateX(-150px); }
+            to { transform: translateX(calc(100vw + 350px)); }
+        }
+
+        @keyframes driftCloud4 {
+            from { transform: translateX(calc(100vw + 500px)); }
+            to { transform: translateX(-500px); }
+        }
+
+        /* Warm sun glow */
+        .sun-glow {
             position: fixed;
-            top: 10%;
-            right: 15%;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, 
-                rgba(255, 220, 170, 0.35) 0%,
-                rgba(255, 200, 150, 0.25) 30%,
-                rgba(255, 180, 130, 0.15) 50%,
-                transparent 70%);
+            top: 5%;
+            right: 5%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 200, 150, 0.4) 0%, rgba(255, 180, 130, 0.2) 50%, transparent 70%);
             border-radius: 50%;
-            filter: blur(30px);
+            filter: blur(40px);
             z-index: 1;
-            animation: sunGlow 12s ease-in-out infinite;
+            animation: sunPulse 8s ease-in-out infinite;
         }
 
-        @keyframes sunGlow {
-            0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.6; }
-            50% { transform: scale(1.2) translate(-10px, -5px); opacity: 0.9; }
+        @keyframes sunPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
         }
 
         /* Main app container */
@@ -150,49 +134,33 @@
             max-width: 1100px;
             width: 100%;
             margin: 0 auto;
-            background: rgba(255, 245, 235, 0.25);
-            backdrop-filter: blur(12px);
-            border-radius: 80px 80px 50px 50px;
-            padding: 45px;
+            background: rgba(255, 245, 235, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 60px 60px 40px 40px;
+            padding: 40px;
             box-shadow: 
-                0 40px 70px rgba(0, 0, 0, 0.1),
-                0 20px 40px rgba(0, 0, 0, 0.05),
+                0 30px 50px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(0, 0, 0, 0.05),
                 inset 0 0 0 2px rgba(255, 255, 255, 0.6),
-                inset 0 0 50px rgba(255, 255, 255, 0.4);
+                inset 0 0 30px rgba(255, 220, 180, 0.3);
             position: relative;
             z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
 
-        /* Artistic texture */
-        .painting-texture {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.03) 0px, transparent 5px),
-                repeating-radial-gradient(circle at 70% 60%, rgba(255, 240, 220, 0.03) 0px, transparent 7px);
-            pointer-events: none;
-            z-index: 2;
-            mix-blend-mode: overlay;
-        }
-
-        /* Title */
         h1 {
             text-align: center;
-            color: #3f352c;
-            font-size: 72px;
-            margin-bottom: 25px;
+            color: #4a3b2f;
+            font-size: 64px;
+            margin-bottom: 20px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             font-weight: 500;
-            letter-spacing: 8px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             text-shadow: 
-                3px 3px 0 rgba(255, 255, 255, 0.7),
-                6px 6px 0 rgba(210, 180, 140, 0.2),
-                9px 9px 0 rgba(0, 0, 0, 0.05);
+                2px 2px 0 rgba(255, 255, 255, 0.8),
+                4px 4px 0 rgba(210, 180, 140, 0.3),
+                6px 6px 0 rgba(0, 0, 0, 0.05);
             position: relative;
             display: inline-block;
             width: 100%;
@@ -200,57 +168,74 @@
 
         h1::before, h1::after {
             content: '✦';
-            color: #d4a59a;
-            font-size: 56px;
-            margin: 0 30px;
-            opacity: 0.9;
+            color: rgba(230, 180, 130, 0.8);
+            font-size: 48px;
+            margin: 0 25px;
+            opacity: 0.8;
             display: inline-block;
-            filter: drop-shadow(0 4px 8px rgba(255, 200, 150, 0.4));
-            animation: paintSparkle 5s ease-in-out infinite;
+            filter: drop-shadow(0 2px 5px rgba(255, 200, 150, 0.5));
+            animation: sparkle 4s ease-in-out infinite;
         }
 
         h1::before { animation-delay: 0s; }
-        h1::after { animation-delay: 2.5s; }
+        h1::after { animation-delay: 2s; }
 
-        @keyframes paintSparkle {
-            0%, 100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.3) rotate(8deg); }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(10deg); }
         }
 
-        /* Section headers */
         h2 {
-            color: #3f352c;
-            font-size: 42px;
-            margin-bottom: 35px;
+            color: #4a3b2f;
+            font-size: 36px;
+            margin-bottom: 30px;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
             font-weight: 400;
-            border-bottom: 3px solid rgba(212, 175, 55, 0.3);
-            padding-bottom: 18px;
-            letter-spacing: 4px;
+            border-bottom: 3px solid rgba(230, 180, 130, 0.5);
+            padding-bottom: 15px;
+            letter-spacing: 3px;
             position: relative;
-            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.6);
         }
 
         h2::after {
-            content: '';
+            content: '☀︎';
             position: absolute;
             right: 0;
-            bottom: -2px;
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #d4a59a, transparent);
+            bottom: -18px;
+            color: #e3b7a0;
+            font-size: 32px;
+            background: rgba(255, 245, 235, 0.8);
+            padding: 0 25px;
+            border-radius: 50px;
+            box-shadow: 0 2px 15px rgba(230, 180, 130, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        h3 {
+            color: #5a4b3f;
+            font-size: 28px;
+            margin: 20px 0 10px;
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border-left: 5px solid rgba(230, 180, 130, 0.6);
+            padding-left: 20px;
+            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
         }
 
         /* Home screen */
         #home {
             text-align: center;
-            padding: 30px 0 50px;
+            padding: 30px 0;
         }
 
         #home h2 {
-            font-size: 48px;
+            color: #4a3b2f;
+            font-size: 42px;
+            margin-bottom: 30px;
             border-bottom: none;
-            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.7);
         }
 
         #home h2::after {
@@ -258,147 +243,154 @@
         }
 
         #home p {
-            color: #3f352c;
-            font-size: 28px;
-            margin: 45px 0 55px;
+            color: #4a3b2f;
+            font-size: 26px;
+            margin: 40px 0 50px;
             font-style: italic;
-            background: rgba(255, 245, 235, 0.5);
-            backdrop-filter: blur(8px);
-            padding: 35px 70px;
+            font-family: 'Cormorant Garamond', serif;
+            background: rgba(255, 245, 235, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 30px 60px;
             display: inline-block;
-            border-radius: 300px;
+            border-radius: 200px;
             box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 2px rgba(255, 255, 255, 0.7),
-                inset 0 0 40px rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+                0 15px 40px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 2px rgba(255, 255, 255, 0.9),
+                inset 0 0 30px rgba(255, 220, 180, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            letter-spacing: 1px;
         }
 
         /* Buttons */
         button {
-            padding: 22px 50px;
-            margin: 15px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(10px);
-            color: #3f352c;
+            padding: 18px 40px;
+            margin: 12px;
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(5px);
+            color: #4a3b2f;
             border: none;
-            border-radius: 120px;
-            font-size: 24px;
+            border-radius: 80px;
+            font-size: 20px;
             font-weight: 400;
             cursor: pointer;
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.1),
-                0 0 0 2px rgba(255, 255, 255, 0.7),
-                inset 0 0 30px rgba(255, 255, 255, 0.6);
+                0 10px 25px rgba(0, 0, 0, 0.1),
+                0 0 0 2px rgba(255, 255, 255, 0.8),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
             position: relative;
             overflow: hidden;
         }
 
         button:hover {
-            background: rgba(255, 250, 240, 0.8);
-            transform: translateY(-6px) scale(1.02);
+            background: rgba(255, 235, 220, 0.9);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 
-                0 25px 45px rgba(0, 0, 0, 0.15),
+                0 20px 35px rgba(0, 0, 0, 0.15),
                 0 0 0 3px rgba(255, 255, 255, 0.9),
-                inset 0 0 40px rgba(255, 255, 255, 0.8);
-            color: #2f251c;
+                inset 0 0 30px rgba(255, 255, 255, 0.8);
+            color: #3a2b1f;
         }
 
         button:active {
             transform: translateY(0) scale(1);
         }
 
-        /* Home page buttons */
         #home button {
-            width: 400px;
+            width: 350px;
             display: block;
             margin: 25px auto;
-            font-size: 28px;
-            padding: 25px 45px;
-            animation: paintFadeIn 0.8s ease backwards;
+            font-size: 24px;
+            padding: 22px 40px;
+            animation: fadeInUp 0.6s ease backwards;
         }
 
         #home button:nth-child(3) { animation-delay: 0.1s; }
         #home button:nth-child(4) { animation-delay: 0.2s; }
         #home button:nth-child(5) { animation-delay: 0.3s; }
 
-        @keyframes paintFadeIn {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); filter: blur(2px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Input fields */
         input {
-            padding: 22px 40px;
+            padding: 20px 35px;
             width: 100%;
-            max-width: 700px;
-            margin: 15px 0 35px;
+            max-width: 650px;
+            margin: 15px 0 30px;
             border: none;
-            border-radius: 120px;
-            font-size: 24px;
-            background: rgba(255, 245, 235, 0.7);
-            backdrop-filter: blur(8px);
+            border-radius: 80px;
+            font-size: 22px;
+            background: rgba(255, 245, 235, 0.8);
+            backdrop-filter: blur(5px);
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            color: #3f352c;
-            transition: all 0.5s;
+            color: #4a3b2f;
+            transition: all 0.4s;
             box-shadow: 
-                inset 0 8px 20px rgba(0, 0, 0, 0.05),
-                0 0 0 2px rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.7);
+                inset 0 5px 15px rgba(0, 0, 0, 0.05),
+                0 0 0 2px rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.9);
         }
 
         input:focus {
             outline: none;
             box-shadow: 
-                inset 0 8px 25px rgba(0, 0, 0, 0.08),
-                0 0 0 4px rgba(255, 255, 255, 0.8),
-                0 0 40px rgba(255, 220, 180, 0.3);
-            background: rgba(255, 250, 245, 0.9);
+                inset 0 5px 20px rgba(0, 0, 0, 0.1),
+                0 0 0 4px rgba(255, 255, 255, 0.9),
+                0 0 30px rgba(230, 180, 130, 0.3);
+            background: rgba(255, 250, 245, 0.95);
         }
 
         input::placeholder {
-            color: #8f7e6e;
+            color: #a58e7a;
             font-style: italic;
-            letter-spacing: 1.5px;
-            opacity: 0.6;
+            letter-spacing: 1px;
+            opacity: 0.7;
         }
 
         /* Result containers */
         #answerResult, #bibleResult, #readerContent {
-            margin-top: 40px;
-            padding: 50px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 60px;
+            margin-top: 35px;
+            padding: 45px;
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
             box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.1),
-                inset 0 0 0 3px rgba(255, 255, 255, 0.8),
-                inset 0 0 60px rgba(255, 255, 255, 0.4);
+                0 25px 45px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 3px rgba(255, 255, 255, 0.9),
+                inset 0 0 40px rgba(255, 220, 180, 0.3);
             text-align: left;
-            font-size: 24px;
-            line-height: 2;
-            color: #3f352c;
+            font-size: 22px;
+            line-height: 1.9;
+            color: #4a3b2f;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
 
         #answerResult::before, #bibleResult::before, #readerContent::before {
             content: '✦';
             position: absolute;
             top: -25px;
-            left: 60px;
-            color: #d4a59a;
-            font-size: 52px;
-            background: rgba(255, 245, 235, 0.8);
-            backdrop-filter: blur(8px);
-            padding: 8px 40px;
-            border-radius: 80px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.7);
+            left: 50px;
+            color: #e3b7a0;
+            font-size: 45px;
+            background: rgba(255, 245, 235, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 5px 30px;
+            border-radius: 60px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.9);
         }
 
         /* Chapter navigation */
@@ -406,22 +398,22 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px;
-            margin: 40px 0 30px;
-            padding: 30px 50px;
-            background: rgba(255, 245, 235, 0.5);
-            backdrop-filter: blur(12px);
-            border-radius: 120px;
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.1);
+            gap: 25px;
+            margin: 35px 0 25px;
+            padding: 25px 40px;
+            background: rgba(255, 245, 235, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
         .chapter-navigation button {
-            padding: 22px 50px;
-            font-size: 24px;
+            padding: 18px 40px;
+            font-size: 22px;
             margin: 0;
-            min-width: 180px;
-            background: rgba(255, 255, 255, 0.7);
+            min-width: 160px;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         .chapter-navigation button:disabled {
@@ -431,227 +423,330 @@
         }
 
         .chapter-navigation span {
-            font-size: 36px;
-            color: #3f352c;
+            font-size: 32px;
+            color: #4a3b2f;
             font-weight: 500;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             font-family: 'Cormorant Garamond', serif;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(8px);
-            padding: 18px 55px;
-            border-radius: 100px;
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            box-shadow: inset 0 4px 20px rgba(255, 220, 180, 0.2);
-            text-shadow: 2px 2px 0 white;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 15px 45px;
+            border-radius: 80px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            box-shadow: inset 0 2px 15px rgba(230, 180, 130, 0.2);
+            text-shadow: 1px 1px 0 white;
         }
 
-        /* Book and Chapter grids */
-        .book-grid, .chapter-grid {
+        /* Book grid */
+        .book-grid {
             display: grid;
-            gap: 20px;
-            padding: 35px;
-            background: rgba(255, 245, 235, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 60px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            margin: 30px 0;
-            max-height: 600px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 18px;
+            padding: 30px;
+            background: rgba(255, 245, 235, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin-top: 25px;
+            max-height: 550px;
             overflow-y: auto;
         }
 
-        .book-grid {
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        }
-
-        .chapter-grid {
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-        }
-
-        .book-grid button, .chapter-grid button {
-            padding: 22px 15px;
-            font-size: 24px;
+        .book-grid button {
+            padding: 20px 15px;
+            font-size: 22px;
             text-transform: none;
-            background: rgba(255, 255, 255, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.8);
             margin: 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .book-grid button:hover, .chapter-grid button:hover {
-            background: rgba(255, 255, 255, 0.8);
-            transform: translateY(-8px) scale(1.02);
+        .book-grid button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Chapter grid */
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            padding: 30px;
+            background: rgba(255, 245, 235, 0.6);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin: 25px 0;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+
+        .chapter-grid button {
+            padding: 18px 10px;
+            font-size: 20px;
+            margin: 0;
+            background: rgba(255, 255, 255, 0.7);
         }
 
         /* Verse text */
         #chapter-text {
             font-family: 'Cormorant Garamond', 'Georgia', serif;
-            line-height: 2.4;
-            color: #3f352c;
-            padding: 45px;
-            background: rgba(255, 245, 235, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 60px;
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            margin-top: 30px;
-            max-height: 600px;
+            line-height: 2.3;
+            color: #4a3b2f;
+            padding: 35px;
+            background: rgba(255, 245, 235, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin-top: 25px;
+            max-height: 550px;
             overflow-y: auto;
-            font-size: 26px;
+            font-size: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
         }
 
         #chapter-text p {
-            margin-bottom: 22px;
-            padding: 20px 35px;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(5px);
-            border-radius: 40px;
-            border-left: 10px solid rgba(212, 175, 55, 0.4);
-            transition: all 0.5s;
+            margin-bottom: 18px;
+            padding: 18px 30px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(3px);
+            border-radius: 30px;
+            border-left: 8px solid rgba(230, 180, 130, 0.6);
+            transition: all 0.4s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.02);
         }
 
         #chapter-text p:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateX(10px);
-            border-left-color: #d4a59a;
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(230, 180, 130, 0.15);
+            border-left-color: #e3b7a0;
         }
 
         #chapter-text strong {
-            color: #4a3b2f;
-            font-size: 28px;
-            margin-right: 25px;
-            background: rgba(212, 175, 55, 0.15);
-            padding: 6px 20px;
-            border-radius: 60px;
+            color: #5a4b3f;
+            font-size: 26px;
+            margin-right: 20px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            background: rgba(230, 180, 130, 0.2);
+            padding: 5px 18px;
+            border-radius: 50px;
             display: inline-block;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
-        /* Navigation buttons */
+        /* Navigation buttons for back */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 30px 0;
+            margin: 25px 0;
         }
 
         .nav-buttons button {
-            padding: 20px 45px;
-            min-width: 220px;
-            font-size: 24px;
+            padding: 18px 40px;
+            min-width: 200px;
+            font-size: 22px;
         }
 
-        /* Section animations */
+        /* Section containers */
         #askSection, #bibleSection, #readerSection {
-            animation: paintReveal 1s ease;
+            animation: artisticFade 0.8s ease;
             position: relative;
         }
 
-        @keyframes paintReveal {
-            from { opacity: 0; transform: translateY(30px) scale(0.97); filter: blur(4px); }
-            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        @keyframes artisticFade {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.98);
+                filter: blur(2px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
         }
 
-        /* Scrollbar */
+        /* Scrollbar styling - artistic */
         ::-webkit-scrollbar {
-            width: 16px;
+            width: 14px;
         }
 
         ::-webkit-scrollbar-track {
             background: rgba(255, 245, 235, 0.5);
-            border-radius: 30px;
-            border: 3px solid rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(145deg, #d4a59a, #c49488);
-            border-radius: 30px;
-            border: 4px solid rgba(255, 255, 255, 0.7);
+            background: linear-gradient(145deg, #e3b7a0, #d4a59a);
+            border-radius: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.8);
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(145deg, #c49488, #b58478);
+            background: linear-gradient(145deg, #d4a59a, #c4958a);
         }
 
-        /* Painting glow effects */
-        .painting-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255, 220, 180, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(200, 220, 240, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 3;
-            mix-blend-mode: soft-light;
-        }
-
-        /* Warm horizon */
-        .warm-horizon {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40%;
-            background: linear-gradient(to top, rgba(232, 184, 157, 0.25), transparent);
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        /* Loading indicator */
+        /* Loading indicator - artistic */
         .loading {
             text-align: center;
-            padding: 70px;
-            color: #7f6e5e;
-            font-size: 32px;
+            padding: 60px;
+            color: #a58e7a;
+            font-size: 28px;
             font-style: italic;
             position: relative;
         }
 
         .loading::after {
             content: '✦';
-            animation: paintSpin 4s linear infinite;
+            animation: artisticSpin 3s linear infinite;
             display: inline-block;
-            margin-left: 20px;
-            font-size: 40px;
-            color: #d4a59a;
+            margin-left: 15px;
+            font-size: 32px;
+            color: #e3b7a0;
         }
 
-        @keyframes paintSpin {
+        @keyframes artisticSpin {
             0% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.2); }
-            50% { transform: rotate(180deg) scale(1); }
-            75% { transform: rotate(270deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1.2); }
             100% { transform: rotate(360deg) scale(1); }
         }
 
         /* Mobile responsive */
         @media (max-width: 600px) {
-            body { padding: 10px; }
-            .app-container { padding: 30px 20px; }
-            h1 { font-size: 48px; }
-            h1::before, h1::after { font-size: 32px; margin: 0 10px; }
-            h2 { font-size: 32px; }
-            #home p { font-size: 22px; padding: 25px 35px; }
-            button { padding: 18px 35px; font-size: 20px; }
-            #home button { width: 300px; font-size: 22px; }
-            .book-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-            .chapter-navigation { flex-wrap: wrap; }
-            .chapter-navigation button { min-width: 140px; font-size: 20px; }
-            .chapter-navigation span { font-size: 26px; padding: 15px 30px; }
-            #chapter-text { font-size: 22px; }
+            body {
+                padding: 15px 10px;
+            }
+            
+            .app-container {
+                padding: 25px 15px;
+            }
+            
+            h1 {
+                font-size: 42px;
+                letter-spacing: 3px;
+            }
+            
+            h1::before, h1::after {
+                font-size: 28px;
+                margin: 0 10px;
+            }
+            
+            h2 {
+                font-size: 30px;
+            }
+            
+            #home p {
+                font-size: 22px;
+                padding: 20px 30px;
+            }
+            
+            button {
+                padding: 15px 30px;
+                font-size: 18px;
+                letter-spacing: 2px;
+            }
+            
+            #home button {
+                width: 280px;
+                font-size: 20px;
+                padding: 18px 30px;
+            }
+            
+            .book-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                padding: 20px;
+            }
+            
+            .book-grid button {
+                font-size: 18px;
+                padding: 15px 8px;
+            }
+            
+            .chapter-navigation {
+                flex-wrap: wrap;
+                gap: 12px;
+                padding: 20px;
+            }
+            
+            .chapter-navigation button {
+                min-width: 130px;
+                padding: 15px 20px;
+                font-size: 18px;
+            }
+            
+            .chapter-navigation span {
+                font-size: 24px;
+                padding: 12px 25px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .nav-buttons button {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            #chapter-text {
+                font-size: 20px;
+                padding: 25px;
+            }
+            
+            #chapter-text strong {
+                font-size: 22px;
+                padding: 4px 12px;
+            }
+            
+            #chapter-text p {
+                padding: 15px 20px;
+            }
+        }
+
+        /* Artistic elements */
+        .artistic-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 220, 180, 0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 70% 60%, rgba(230, 200, 170, 0.1) 0%, transparent 25%),
+                        radial-gradient(circle at 45% 80%, rgba(210, 180, 140, 0.1) 0%, transparent 15%);
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: overlay;
+        }
+
+        .warm-light {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to top, rgba(255, 200, 150, 0.2), transparent);
+            pointer-events: none;
+            z-index: 2;
         }
     </style>
 </head>
 
 <body>
-    <!-- Painting background elements -->
-    <div class="painting-cloud cloud-1"></div>
-    <div class="painting-cloud cloud-2"></div>
-    <div class="painting-cloud cloud-3"></div>
-    <div class="sun-painting"></div>
-    <div class="painting-texture"></div>
-    <div class="painting-glow"></div>
-    <div class="warm-horizon"></div>
+    <!-- Artistic painted sky elements -->
+    <div class="cloud-painting cloud-painting1"></div>
+    <div class="cloud-painting cloud-painting2"></div>
+    <div class="cloud-painting cloud-painting3"></div>
+    <div class="cloud-painting cloud-painting4"></div>
+    <div class="sun-glow"></div>
+    <div class="artistic-dots"></div>
+    <div class="warm-light"></div>
 
     <div class="app-container">
         <h1>Walk With God</h1>
@@ -785,9 +880,187 @@
                 for (let k of t.keywords) {
                     if (q.includes(k)) {
                         output += `
-                        <div style="background:rgba(255,245,235,0.8); padding:20px; margin-bottom:20px; border-radius:15px;">
-                            <h3 style="color:#3f352c;">📖 Scripture</h3>
+                        <div style="background:rgba(255,245,235,0.8); padding:15px; margin-bottom:15px; border-radius:8px;">
+                            <h3 style="color:#2c3e50;">📖 Scripture</h3>
                             <p><strong>${t.verse}</strong></p>
                             <p><em>"${t.text}"</em></p>
                             
-                            <h3 style="color:#3f
+                            <h3 style="color:#2c3e50;">💭 Explanation</h3>
+                            <p>${t.explanation}</p>
+                            
+                            <h3 style="color:#2c3e50;">🌟 Guidance</h3>
+                            <p>${t.guidance}</p>
+                        </div>
+                        `;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (!found) {
+                output = `
+                <div style="background:rgba(255,245,235,0.8); padding:20px; border-radius:8px;">
+                    <p>I don't have an answer for that specific question yet. Here are some topics I can help with:</p>
+                    <p>• Lust and temptation<br>• Anger<br>• Failure and self-hatred<br>• Forgiveness<br>• Jealousy<br>• Loneliness<br>• Purpose and direction</p>
+                    <p>Try asking about one of these topics, or check back soon as we add more!</p>
+                </div>
+                `;
+            }
+            
+            resultDiv.innerHTML = output;
+        }
+
+        // Bible books for the reader
+        const bibleBooks = [
+            "Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy", "Joshua", "Judges", "Ruth",
+            "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah",
+            "Esther", "Job", "Psalm", "Proverbs", "Ecclesiastes", "Song of Solomon", "Isaiah", "Jeremiah",
+            "Lamentations", "Ezekiel", "Daniel", "Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah",
+            "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi",
+            "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "1 Corinthians", "2 Corinthians",
+            "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians",
+            "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews", "James", "1 Peter", "2 Peter",
+            "1 John", "2 John", "3 John", "Jude", "Revelation"
+        ];
+
+        // Chapter counts for each book
+        const chapterCounts = {
+            "Genesis": 50, "Exodus": 40, "Leviticus": 27, "Numbers": 36, "Deuteronomy": 34,
+            "Joshua": 24, "Judges": 21, "Ruth": 4, "1 Samuel": 31, "2 Samuel": 24,
+            "1 Kings": 22, "2 Kings": 25, "1 Chronicles": 29, "2 Chronicles": 36,
+            "Ezra": 10, "Nehemiah": 13, "Esther": 10, "Job": 42, "Psalm": 150,
+            "Proverbs": 31, "Ecclesiastes": 12, "Song of Solomon": 8, "Isaiah": 66,
+            "Jeremiah": 52, "Lamentations": 5, "Ezekiel": 48, "Daniel": 12,
+            "Hosea": 14, "Joel": 3, "Amos": 9, "Obadiah": 1, "Jonah": 4,
+            "Micah": 7, "Nahum": 3, "Habakkuk": 3, "Zephaniah": 3, "Haggai": 2,
+            "Zechariah": 14, "Malachi": 4, "Matthew": 28, "Mark": 16, "Luke": 24,
+            "John": 21, "Acts": 28, "Romans": 16, "1 Corinthians": 16, "2 Corinthians": 13,
+            "Galatians": 6, "Ephesians": 6, "Philippians": 4, "Colossians": 4,
+            "1 Thessalonians": 5, "2 Thessalonians": 3, "1 Timothy": 6, "2 Timothy": 4,
+            "Titus": 3, "Philemon": 1, "Hebrews": 13, "James": 5, "1 Peter": 5,
+            "2 Peter": 3, "1 John": 5, "2 John": 1, "3 John": 1, "Jude": 1,
+            "Revelation": 22
+        };
+
+        let currentBook = "";
+        let currentChapter = 1;
+        let maxChapters = 0;
+
+        function loadBooks() {
+            let output = "<h3>Select a Book:</h3><div class='book-grid'>";
+            
+            for (let book of bibleBooks) {
+                output += `<button onclick="loadChapters('${book}')">${book}</button>`;
+            }
+            
+            output += "</div>";
+            document.getElementById("readerContent").innerHTML = output;
+        }
+
+        function loadChapters(book) {
+            currentBook = book;
+            maxChapters = chapterCounts[book] || 50;
+            let output = `<button onclick="loadBooks()" style="margin-bottom:15px;">← Back to Books</button>`;
+            output += `<h3>${book}</h3>`;
+            output += `<div class="chapter-grid">`;
+            
+            for (let i = 1; i <= maxChapters; i++) {
+                output += `<button onclick="loadChapter('${book}', ${i})">${i}</button>`;
+            }
+            
+            output += `</div>`;
+            document.getElementById("readerContent").innerHTML = output;
+        }
+
+        function loadChapter(book, chapter) {
+            currentBook = book;
+            currentChapter = chapter;
+            maxChapters = chapterCounts[book] || 50;
+            
+            let output = `<div class="nav-buttons">`;
+            output += `<button onclick="loadChapters('${book}')">← Back to Chapters</button>`;
+            output += `</div>`;
+            
+            // Add chapter navigation
+            output += `<div class="chapter-navigation">`;
+            if (chapter > 1) {
+                output += `<button onclick="loadChapter('${book}', ${chapter - 1})">← Previous</button>`;
+            } else {
+                output += `<button disabled style="opacity:0.5; cursor:not-allowed;">← Previous</button>`;
+            }
+            
+            output += `<span>${book} ${chapter}</span>`;
+            
+            if (chapter < maxChapters) {
+                output += `<button onclick="loadChapter('${book}', ${chapter + 1})">Next →</button>`;
+            } else {
+                output += `<button disabled style="opacity:0.5; cursor:not-allowed;">Next →</button>`;
+            }
+            
+            output += `</div>`;
+            
+            output += `<div id="chapter-text" style='text-align:left;'>`;
+            output += `<p class="loading">Loading ${book} ${chapter}...</p>`;
+            output += `</div>`;
+            
+            document.getElementById("readerContent").innerHTML = output;
+            
+            // Use Bible API to get the actual verses
+            fetch(`https://bible-api.com/${book}+${chapter}?translation=kjv`)
+                .then(response => response.json())
+                .then(data => {
+                    let versesOutput = "";
+                    if (data.verses && data.verses.length > 0) {
+                        data.verses.forEach(verse => {
+                            versesOutput += `<p><strong>${verse.verse}</strong> ${verse.text}</p>`;
+                        });
+                    } else {
+                        versesOutput = "<p>Could not load verses. Please try again later.</p>";
+                    }
+                    document.getElementById("chapter-text").innerHTML = versesOutput;
+                })
+                .catch(error => {
+                    document.getElementById("chapter-text").innerHTML = "<p>Error loading chapter. Please try again.</p>";
+                });
+        }
+
+        // Search Bible function using API
+        function searchBible() {
+            let word = document.getElementById("bibleSearch").value.toLowerCase();
+            let resultDiv = document.getElementById("bibleResult");
+            
+            resultDiv.innerHTML = "<p class='loading'>Searching...</p>";
+            
+            // Use Bible API for search
+            fetch(`https://bible-api.com/${encodeURIComponent(word)}?translation=kjv`)
+                .then(response => response.json())
+                .then(data => {
+                    let output = "";
+                    let count = 0;
+                    
+                    if (data.verses && data.verses.length > 0) {
+                        data.verses.forEach(verse => {
+                            output += `
+                            <div style="background:rgba(255,245,235,0.8); padding:10px; margin-bottom:10px; border-radius:5px;">
+                                <p><strong>${verse.book} ${verse.chapter}:${verse.verse}</strong><br>
+                                ${verse.text}</p>
+                            </div>
+                            `;
+                            count++;
+                        });
+                        output = `<p>Found ${count} verses:</p>` + output;
+                    } else {
+                        output = "<p>No verses found. Try a different word like 'love', 'faith', or 'pray'.</p>";
+                    }
+                    
+                    resultDiv.innerHTML = output;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = "<p>Error searching. Please try again.</p>";
+                });
+        }
+    </script>
+</body>
+
+</html>
