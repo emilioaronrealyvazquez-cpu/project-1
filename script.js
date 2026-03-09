@@ -237,3 +237,78 @@ function searchBible() {
             resultDiv.innerHTML = "<p>Error searching. Please try again.</p>";
         });
 }
+// ... (keep all your existing functions like showAsk, showBible, showReader, goHome, topics, answerQuestion)
+
+// Add these variables at the top with your other variables
+let currentBook = "";
+let currentChapter = 1;
+let maxChapters = 0;
+
+// Update your loadChapters function
+function loadChapters(book) {
+    currentBook = book;
+    maxChapters = chapterCounts[book] || 50;
+    let output = `<button onclick="loadBooks()" style="margin-bottom:15px;">← Back to Books</button>`;
+    output += `<h3>${book}</h3>`;
+    output += `<div class="chapter-grid">`;
+    
+    for (let i = 1; i <= maxChapters; i++) {
+        output += `<button onclick="loadChapter('${book}', ${i})">${i}</button>`;
+    }
+    
+    output += `</div>`;
+    document.getElementById("readerContent").innerHTML = output;
+}
+
+// Update your loadChapter function with navigation
+function loadChapter(book, chapter) {
+    currentBook = book;
+    currentChapter = chapter;
+    maxChapters = chapterCounts[book] || 50;
+    
+    let output = `<div class="nav-buttons">`;
+    output += `<button onclick="loadChapters('${book}')">← Back to Chapters</button>`;
+    output += `</div>`;
+    
+    // Add chapter navigation
+    output += `<div class="chapter-navigation">`;
+    if (chapter > 1) {
+        output += `<button onclick="loadChapter('${book}', ${chapter - 1})">← Previous</button>`;
+    } else {
+        output += `<button disabled style="opacity:0.5; cursor:not-allowed;">← Previous</button>`;
+    }
+    
+    output += `<span>${book} ${chapter}</span>`;
+    
+    if (chapter < maxChapters) {
+        output += `<button onclick="loadChapter('${book}', ${chapter + 1})">Next →</button>`;
+    } else {
+        output += `<button disabled style="opacity:0.5; cursor:not-allowed;">Next →</button>`;
+    }
+    
+    output += `</div>`;
+    
+    output += `<div id="chapter-text" style='text-align:left;'>`;
+    output += `<p class="loading">Loading ${book} ${chapter}...</p>`;
+    output += `</div>`;
+    
+    document.getElementById("readerContent").innerHTML = output;
+    
+    // Use Bible API to get the actual verses
+    fetch(`https://bible-api.com/${book}+${chapter}?translation=kjv`)
+        .then(response => response.json())
+        .then(data => {
+            let versesOutput = "";
+            if (data.verses && data.verses.length > 0) {
+                data.verses.forEach(verse => {
+                    versesOutput += `<p><strong>${verse.verse}</strong> ${verse.text}</p>`;
+                });
+            } else {
+                versesOutput = "<p>Could not load verses. Please try again later.</p>";
+            }
+            document.getElementById("chapter-text").innerHTML = versesOutput;
+        })
+        .catch(error => {
+            document.getElementById("chapter-text").innerHTML = "<p>Error loading chapter. Please try again.</p>";
+        });
+}
