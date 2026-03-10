@@ -33,6 +33,9 @@
             --heaven-blue: #87CEEB;
             --character: #4a6b8f;
             --character-light: #6b8caf;
+            --jesus: #b8860b;
+            --jesus-light: #daa520;
+            --profanity-warning: #ff6b6b;
         }
 
         body {
@@ -295,6 +298,11 @@
             background: var(--character);
         }
 
+        .badge.jesus {
+            background: var(--jesus);
+            color: white;
+        }
+
         /* Progress Bar */
         .progress-section {
             margin: 15px 0;
@@ -420,6 +428,13 @@
             border-color: var(--character-light);
         }
 
+        .action-btn.jesus {
+            background: var(--jesus);
+            color: white;
+            border-color: var(--jesus-light);
+            font-weight: 600;
+        }
+
         .action-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -439,6 +454,10 @@
 
         .action-btn.character:hover {
             background: var(--character-light);
+        }
+
+        .action-btn.jesus:hover {
+            background: var(--jesus-light);
         }
 
         /* Bottom Navigation */
@@ -645,6 +664,63 @@
             border-color: var(--primary-dark);
         }
 
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(139, 107, 79, 0.1);
+            border-radius: 8px;
+        }
+
+        .toggle-switch label {
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .toggle-switch input[type="checkbox"] {
+            width: 50px;
+            height: 24px;
+            appearance: none;
+            background: rgba(139, 107, 79, 0.3);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch input[type="checkbox"]:checked {
+            background: var(--primary);
+        }
+
+        .toggle-switch input[type="checkbox"]::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch input[type="checkbox"]:checked::before {
+            left: 28px;
+        }
+
+        .profanity-warning {
+            color: var(--profanity-warning);
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .profanity-warning.show {
+            display: block;
+        }
+
         .color-picker {
             width: 100%;
             height: 50px;
@@ -788,6 +864,7 @@
             justify-content: center;
             gap: 10px;
             margin: 20px 0;
+            flex-wrap: wrap;
         }
 
         .mode-btn {
@@ -799,6 +876,7 @@
             font-size: 14px;
             transition: all 0.2s;
             flex: 1;
+            min-width: 100px;
         }
 
         .mode-btn.active {
@@ -816,6 +894,18 @@
             background: var(--gold);
             color: var(--text-light);
             border-color: #b8860b;
+        }
+
+        .mode-btn.character-mode.active {
+            background: var(--character);
+            border-color: var(--character-light);
+            color: white;
+        }
+
+        .mode-btn.jesus-mode.active {
+            background: var(--jesus);
+            border-color: var(--jesus-light);
+            color: white;
         }
 
         .suggested-questions {
@@ -873,6 +963,17 @@
             color: white;
         }
 
+        .suggested-btn.jesus {
+            border-color: var(--jesus);
+            background: rgba(184, 134, 11, 0.1);
+            font-weight: 600;
+        }
+
+        .suggested-btn.jesus:hover {
+            background: var(--jesus);
+            color: white;
+        }
+
         .answer-card {
             background: linear-gradient(135deg, rgba(139, 107, 79, 0.05), rgba(201, 169, 89, 0.05));
             border-left: 4px solid var(--primary);
@@ -901,6 +1002,11 @@
             background: linear-gradient(135deg, rgba(74, 107, 143, 0.1), rgba(139, 107, 79, 0.05));
         }
 
+        .answer-card.jesus-info {
+            border-left: 4px solid var(--jesus);
+            background: linear-gradient(135deg, rgba(184, 134, 11, 0.1), rgba(139, 107, 79, 0.05));
+        }
+
         .answer-card h4 {
             color: var(--primary);
             margin-bottom: 10px;
@@ -920,6 +1026,10 @@
 
         .answer-card.character-info h4 {
             color: var(--character);
+        }
+
+        .answer-card.jesus-info h4 {
+            color: var(--jesus);
         }
 
         .answer-card .source-badge {
@@ -944,6 +1054,10 @@
 
         .answer-card .source-badge.character {
             background: var(--character);
+        }
+
+        .answer-card .source-badge.jesus {
+            background: var(--jesus);
         }
 
         .answer-card .verse {
@@ -987,6 +1101,10 @@
             background: rgba(74, 107, 143, 0.1);
         }
 
+        .answer-card.jesus-info .guidance {
+            background: rgba(184, 134, 11, 0.15);
+        }
+
         .guidance-title {
             font-weight: 600;
             margin-bottom: 8px;
@@ -1018,6 +1136,18 @@
         .character-detail-value {
             font-weight: 600;
             font-size: 16px;
+        }
+
+        .timeline-item {
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            color: var(--jesus);
         }
 
         .ai-confidence {
@@ -1167,6 +1297,11 @@
 
         .related-topic.character:hover {
             background: var(--character);
+            color: white;
+        }
+
+        .related-topic.jesus:hover {
+            background: var(--jesus);
             color: white;
         }
 
@@ -1520,6 +1655,24 @@
             </div>
         </div>
 
+        <!-- Profanity Filter Settings -->
+        <div class="settings-section">
+            <h3>Comment Moderation</h3>
+            <div class="toggle-switch">
+                <label for="profanityFilter">Enable Profanity Filter</label>
+                <input type="checkbox" id="profanityFilter" onchange="toggleProfanityFilter(this.checked)">
+            </div>
+            <div class="toggle-switch">
+                <label for="autoBlock">Auto-block offensive comments</label>
+                <input type="checkbox" id="autoBlock" checked onchange="toggleAutoBlock(this.checked)">
+            </div>
+            <div class="toggle-switch">
+                <label for="notifyOnProfanity">Notify when content is blocked</label>
+                <input type="checkbox" id="notifyOnProfanity" checked onchange="toggleNotifyOnProfanity(this.checked)">
+            </div>
+            <p style="font-size:12px; opacity:0.7; margin-top:10px;">When enabled, inappropriate language will be automatically detected and blocked.</p>
+        </div>
+
         <!-- AI Settings -->
         <div class="settings-section">
             <h3>AI Search</h3>
@@ -1527,7 +1680,8 @@
                 <button class="settings-btn" onclick="setSearchMode('hybrid')" id="modeHybrid">🌐 Hybrid</button>
                 <button class="settings-btn" onclick="setSearchMode('curated')" id="modeCurated">📚 Curated</button>
                 <button class="settings-btn" onclick="setSearchMode('ai')" id="modeAI">🤖 AI Only</button>
-                <button class="settings-btn" onclick="clearAICache()">🗑️ Clear Cache</button>
+                <button class="settings-btn" onclick="setSearchMode('character')" id="modeCharacter">👤 Characters</button>
+                <button class="settings-btn" onclick="setSearchMode('jesus')" id="modeJesus">✝️ Jesus</button>
             </div>
             <div class="form-group" style="margin-top:10px;">
                 <label>Confidence Threshold</label>
@@ -1689,7 +1843,7 @@
                 </div>
             </div>
 
-            <!-- Ask Section - ENHANCED with Character Info and Personal Notes -->
+            <!-- Ask Section - HYBRID AI + CURATED + CHARACTERS + JESUS -->
             <div id="askSection" class="content-section">
                 <div class="card">
                     <div class="ask-header">
@@ -1702,10 +1856,12 @@
                         <button class="mode-btn active" onclick="setSearchMode('hybrid')" id="modeHybridBtn">🌐 Hybrid</button>
                         <button class="mode-btn" onclick="setSearchMode('curated')" id="modeCuratedBtn">📚 Curated</button>
                         <button class="mode-btn" onclick="setSearchMode('ai')" id="modeAIBtn">🤖 AI</button>
-                        <button class="mode-btn" onclick="setSearchMode('character')" id="modeCharacterBtn">👤 Characters</button>
+                        <button class="mode-btn" onclick="setSearchMode('character')" id="modeCharacterBtn">👤 People</button>
+                        <button class="mode-btn jesus-mode" onclick="setSearchMode('jesus')" id="modeJesusBtn">✝️ Jesus</button>
                     </div>
                     
                     <textarea id="question" rows="3" placeholder="Ask about a topic, person, or question..." style="width:100%; padding:15px; margin:10px 0; border:2px solid var(--primary-light); border-radius:8px; font-size:16px;"></textarea>
+                    <div id="profanityWarning" class="profanity-warning">⚠️ Please use respectful language in your questions.</div>
                     
                     <div class="action-row">
                         <button class="action-btn primary" onclick="answerQuestion()" style="flex:2;">Get Answers</button>
@@ -1716,16 +1872,16 @@
                     <div style="margin: 20px 0;">
                         <p style="margin-bottom:10px; opacity:0.8;">Popular topics & people:</p>
                         <div class="suggested-questions">
+                            <button class="suggested-btn jesus" onclick="setQuestion('Who is Jesus?')">✝️ Jesus</button>
                             <button class="suggested-btn salvation" onclick="setQuestion('How do I get to heaven?')">✝️ Salvation</button>
                             <button class="suggested-btn character" onclick="setQuestion('Who was David?')">👑 King David</button>
+                            <button class="suggested-btn jesus" onclick="setQuestion('What did Jesus teach?')">📖 Jesus' Teachings</button>
                             <button class="suggested-btn" onclick="setQuestion('How do I overcome anxiety?')">😰 Anxiety</button>
                             <button class="suggested-btn character" onclick="setQuestion('Who was Moses?')">📜 Moses</button>
                             <button class="suggested-btn" onclick="setQuestion('How do I forgive someone?')">💝 Forgiveness</button>
                             <button class="suggested-btn character" onclick="setQuestion('Who was Paul?')">✉️ Apostle Paul</button>
                             <button class="suggested-btn" onclick="setQuestion('How do I find my purpose?')">🎯 Purpose</button>
                             <button class="suggested-btn character" onclick="setQuestion('Who was Peter?')">⚓ Peter</button>
-                            <button class="suggested-btn" onclick="setQuestion('How do I deal with anger?')">😤 Anger</button>
-                            <button class="suggested-btn character" onclick="setQuestion('Who was Abraham?')">🌟 Abraham</button>
                         </div>
                     </div>
                     
@@ -1789,6 +1945,51 @@
         let currentUser = null;
         let users = JSON.parse(localStorage.getItem('users')) || [];
         
+        // Profanity filter settings
+        let profanityFilterEnabled = localStorage.getItem('profanityFilterEnabled') !== 'false';
+        let autoBlockEnabled = localStorage.getItem('autoBlockEnabled') !== 'false';
+        let notifyOnProfanity = localStorage.getItem('notifyOnProfanity') !== 'false';
+        
+        // Update UI to reflect settings
+        document.getElementById('profanityFilter').checked = profanityFilterEnabled;
+        document.getElementById('autoBlock').checked = autoBlockEnabled;
+        document.getElementById('notifyOnProfanity').checked = notifyOnProfanity;
+        
+        // Profanity list (simplified - in production, you'd have a more comprehensive list)
+        const profanityList = [
+            'fuck', 'shit', 'ass', 'bitch', 'cunt', 'dick', 'piss', 'crap',
+            'damn', 'hell', 'arse', 'bastard', 'twat', 'wanker', 'motherfucker',
+            'nigger', 'faggot', 'retard', 'slut', 'whore', 'pussy', 'cock'
+        ];
+        
+        function checkProfanity(text) {
+            if (!profanityFilterEnabled) return false;
+            
+            const lowerText = text.toLowerCase();
+            for (let word of profanityList) {
+                if (lowerText.includes(word)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function toggleProfanityFilter(enabled) {
+            profanityFilterEnabled = enabled;
+            localStorage.setItem('profanityFilterEnabled', enabled);
+            showToast(enabled ? 'Profanity filter enabled' : 'Profanity filter disabled');
+        }
+
+        function toggleAutoBlock(enabled) {
+            autoBlockEnabled = enabled;
+            localStorage.setItem('autoBlockEnabled', enabled);
+        }
+
+        function toggleNotifyOnProfanity(enabled) {
+            notifyOnProfanity = enabled;
+            localStorage.setItem('notifyOnProfanity', enabled);
+        }
+
         // Load current session
         const session = JSON.parse(localStorage.getItem('currentSession'));
         if (session) {
@@ -1796,18 +1997,59 @@
             updateUIForUser();
         }
 
-        // ==================== HYBRID SEARCH SYSTEM ====================
-        
-        // Search mode: 'hybrid', 'curated', 'ai', or 'character'
-        let searchMode = localStorage.getItem('searchMode') || 'hybrid';
-        let confidenceThreshold = parseFloat(localStorage.getItem('confidenceThreshold')) || 0.6;
-        
-        // Simple semantic cache
-        let semanticCache = JSON.parse(localStorage.getItem('semanticCache')) || {};
-        
-        // Personal notes storage
-        let personalNotes = JSON.parse(localStorage.getItem('personalNotes')) || {};
-        
+        // ==================== JESUS INFORMATION ====================
+        const jesusInfo = {
+            keywords: ["jesus", "christ", "jesus christ", "son of god", "messiah", "savior", "lord"],
+            name: "Jesus Christ",
+            titles: "Son of God, Messiah, Savior, Lord, King of Kings, Lamb of God, Word of God",
+            born: "c. 6-4 BC in Bethlehem",
+            parents: "Mary (mother), Joseph (earthly father), God the Father",
+            earthlyLife: "Jesus was born in Bethlehem to the virgin Mary. He grew up in Nazareth and began his public ministry around age 30. He traveled throughout Galilee and Judea, teaching about the Kingdom of God, performing miracles, and calling disciples. His teachings emphasized love, forgiveness, and repentance. He was crucified under Pontius Pilate, died, and was buried. On the third day, he rose from the dead, appeared to many witnesses, and ascended to heaven.",
+            miracles: [
+                "Turned water into wine",
+                "Healed the sick, blind, and lame",
+                "Cast out demons",
+                "Calmed storms",
+                "Walked on water",
+                "Fed 5,000 with five loaves and two fish",
+                "Raised Lazarus from the dead",
+                "Raised Jairus's daughter",
+                "His own resurrection"
+            ],
+            teachings: [
+                "Sermon on the Mount (Matthew 5-7) - Beatitudes, Lord's Prayer",
+                "Parables: Good Samaritan, Prodigal Son, Mustard Seed, etc.",
+                "Great Commandment: Love God and love your neighbor",
+                "Great Commission: Go and make disciples",
+                "Teachings on forgiveness, faith, prayer, and the Kingdom of God"
+            ],
+            significance: "Jesus is the central figure of Christianity. Christians believe he is the Son of God, the promised Messiah, and the savior of humanity. His death and resurrection provide salvation and eternal life to all who believe. He is the fulfillment of Old Testament prophecies and the foundation of the Christian faith.",
+            verses: [
+                { ref: "John 1:1,14", text: "In the beginning was the Word, and the Word was with God, and the Word was God... The Word became flesh and made his dwelling among us." },
+                { ref: "John 3:16", text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." },
+                { ref: "John 14:6", text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'" },
+                { ref: "Philippians 2:5-8", text: "In your relationships with one another, have the same mindset as Christ Jesus: Who, being in very nature God, did not consider equality with God something to be used to his own advantage; rather, he made himself nothing by taking the very nature of a servant, being made in human likeness." },
+                { ref: "Colossians 1:15-20", text: "The Son is the image of the invisible God, the firstborn over all creation. For in him all things were created: things in heaven and on earth, visible and invisible... He is before all things, and in him all things hold together." },
+                { ref: "1 Timothy 2:5", text: "For there is one God and one mediator between God and mankind, the man Christ Jesus." },
+                { ref: "Revelation 1:8", text: "'I am the Alpha and the Omega,' says the Lord God, 'who is, and who was, and who is to come, the Almighty.'" }
+            ],
+            oldTestamentProphecies: [
+                "Born of a virgin (Isaiah 7:14)",
+                "Born in Bethlehem (Micah 5:2)",
+                "Descendant of David (Jeremiah 23:5)",
+                "Would suffer for our sins (Isaiah 53)",
+                "Would be betrayed for 30 pieces of silver (Zechariah 11:12-13)",
+                "Would rise from the dead (Psalm 16:10)"
+            ],
+            quotes: [
+                "'Love the Lord your God with all your heart and with all your soul and with all your mind.' This is the first and greatest commandment. And the second is like it: 'Love your neighbor as yourself.'",
+                "'Come to me, all you who are weary and burdened, and I will give you rest.'",
+                "'I am the light of the world. Whoever follows me will never walk in darkness, but will have the light of life.'",
+                "'Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.'"
+            ],
+            lessons: "Jesus's life teaches us perfect love, humility, sacrifice, and obedience to God. He modeled how to live, how to love, how to serve, and how to forgive. Through his death and resurrection, he conquered sin and death, offering eternal life to all who believe."
+        };
+
         // ==================== BIBLICAL CHARACTER DATABASE ====================
         const biblicalCharacters = {
             david: {
@@ -1992,7 +2234,7 @@
             return results.sort((a, b) => b.relevance - a.relevance).slice(0, 5);
         }
 
-        // AI answer generation (simplified template-based) - FIXED APOSTROPHE ISSUE
+        // AI answer generation (simplified template-based)
         function generateAIAnswer(question, relevantVerses) {
             if (relevantVerses.length === 0) {
                 return null;
@@ -2058,6 +2300,86 @@
             return answer;
         }
 
+        // Jesus info function
+        function getJesusInfo(question) {
+            const q = question.toLowerCase();
+            const match = jesusInfo.keywords.some(keyword => q.includes(keyword));
+            
+            if (!match) return null;
+            
+            let versesHtml = '';
+            jesusInfo.verses.forEach(v => {
+                versesHtml += `<div class="verse">"${v.text}" — <strong>${v.ref}</strong></div>`;
+            });
+            
+            let miraclesHtml = '<ul style="margin-left:20px;">';
+            jesusInfo.miracles.slice(0, 5).forEach(m => {
+                miraclesHtml += `<li>${m}</li>`;
+            });
+            miraclesHtml += '</ul>';
+            
+            let teachingsHtml = '<ul style="margin-left:20px;">';
+            jesusInfo.teachings.slice(0, 3).forEach(t => {
+                teachingsHtml += `<li>${t}</li>`;
+            });
+            teachingsHtml += '</ul>';
+            
+            let quotesHtml = '';
+            jesusInfo.quotes.slice(0, 2).forEach(q => {
+                quotesHtml += `<div class="verse">"${q}"</div>`;
+            });
+            
+            return {
+                html: `
+                    <div class="answer-card jesus-info">
+                        <h4>✝️ Jesus Christ <span class="source-badge jesus">Savior & Lord</span></h4>
+                        <div class="character-details">
+                            <div class="character-detail-item">
+                                <div class="character-detail-label">Titles</div>
+                                <div class="character-detail-value">Son of God, Messiah</div>
+                            </div>
+                            <div class="character-detail-item">
+                                <div class="character-detail-label">Born</div>
+                                <div class="character-detail-value">c. 6-4 BC, Bethlehem</div>
+                            </div>
+                            <div class="character-detail-item">
+                                <div class="character-detail-label">Earthly Parents</div>
+                                <div class="character-detail-value">Mary & Joseph</div>
+                            </div>
+                            <div class="character-detail-item">
+                                <div class="character-detail-label">Ministry</div>
+                                <div class="character-detail-value">c. 27-30 AD</div>
+                            </div>
+                        </div>
+                        <div class="explanation"><strong>Who is Jesus?</strong> ${jesusInfo.earthlyLife}</div>
+                        <div class="explanation"><strong>Significance:</strong> ${jesusInfo.significance}</div>
+                        
+                        <div class="guidance">
+                            <div class="guidance-title">📖 Key Scriptures</div>
+                            ${versesHtml}
+                            
+                            <div style="margin-top:15px;"><strong>✨ Miracles:</strong></div>
+                            ${miraclesHtml}
+                            
+                            <div style="margin-top:15px;"><strong>📚 Teachings:</strong></div>
+                            ${teachingsHtml}
+                            
+                            <div style="margin-top:15px;"><strong>💬 Famous Quotes:</strong></div>
+                            ${quotesHtml}
+                            
+                            <div style="margin-top:15px;"><strong>📜 Old Testament Prophecies Fulfilled:</strong></div>
+                            <ul style="margin-left:20px;">
+                                ${jesusInfo.oldTestamentProphecies.slice(0, 4).map(p => `<li>${p}</li>`).join('')}
+                            </ul>
+                            
+                            <div style="margin-top:15px;"><strong>✨ Lessons from Jesus's Life:</strong> ${jesusInfo.lessons}</div>
+                        </div>
+                    </div>
+                `,
+                characterKey: 'jesus'
+            };
+        }
+
         // Character info function
         function getCharacterInfo(question) {
             const q = question.toLowerCase();
@@ -2115,7 +2437,7 @@
             };
         }
 
-        // Curated answers database (your existing system)
+        // Curated answers database
         const curatedAnswers = [
             // SALVATION
             {
@@ -2218,6 +2540,8 @@
         ];
 
         // ==================== PERSONAL NOTES FUNCTIONS ====================
+        let personalNotes = JSON.parse(localStorage.getItem('personalNotes')) || {};
+
         function loadPersonalNotesForTopic(topicKey) {
             if (!currentUser) return;
             
@@ -2251,6 +2575,16 @@
             
             const noteText = document.getElementById('personalNote').value.trim();
             if (!noteText) return;
+            
+            // Check for profanity in notes
+            if (profanityFilterEnabled && checkProfanity(noteText)) {
+                if (autoBlockEnabled) {
+                    showToast('⚠️ Note contains inappropriate language and was not saved');
+                    return;
+                } else if (notifyOnProfanity) {
+                    showToast('⚠️ Note contains potentially inappropriate language');
+                }
+            }
             
             const currentTopic = document.getElementById('answerResult').getAttribute('data-current-topic') || 'general';
             
@@ -2291,6 +2625,7 @@
             document.getElementById('modeCuratedBtn').classList.remove('active');
             document.getElementById('modeAIBtn').classList.remove('active');
             document.getElementById('modeCharacterBtn').classList.remove('active');
+            document.getElementById('modeJesusBtn').classList.remove('active');
             
             if (mode === 'hybrid') {
                 document.getElementById('modeHybridBtn').classList.add('active');
@@ -2304,6 +2639,9 @@
             } else if (mode === 'character') {
                 document.getElementById('modeCharacterBtn').classList.add('active');
                 showToast('👤 Character mode: Learn about Bible people');
+            } else if (mode === 'jesus') {
+                document.getElementById('modeJesusBtn').classList.add('active');
+                showToast('✝️ Jesus mode: Learn about our Savior');
             }
         }
 
@@ -2328,6 +2666,19 @@
                 return;
             }
             
+            // Check for profanity
+            if (profanityFilterEnabled && checkProfanity(question)) {
+                document.getElementById('profanityWarning').classList.add('show');
+                if (autoBlockEnabled) {
+                    showToast('⚠️ Please use respectful language in your questions');
+                    return;
+                } else if (notifyOnProfanity) {
+                    showToast('⚠️ Question contains potentially inappropriate language');
+                }
+            } else {
+                document.getElementById('profanityWarning').classList.remove('show');
+            }
+            
             let output = '';
             let topicKey = 'general';
             
@@ -2348,18 +2699,33 @@
                 } else {
                     output = '<p>No character information found. Try asking about David, Moses, Paul, Peter, or Abraham.</p>';
                 }
-            } else {
-                // Hybrid: try character first, then curated, then AI
-                const characterInfo = getCharacterInfo(question);
-                if (characterInfo) {
-                    output = characterInfo.html;
-                    topicKey = characterInfo.characterKey;
+            } else if (searchMode === 'jesus') {
+                // Jesus mode
+                const jesusInfo_result = getJesusInfo(question);
+                if (jesusInfo_result) {
+                    output = jesusInfo_result.html;
+                    topicKey = 'jesus';
                 } else {
-                    output = getCuratedAnswer(question);
-                    topicKey = 'curated';
-                    if (!output) {
-                        output = getAIAnswer(question);
-                        topicKey = 'ai';
+                    output = '<p>Ask about Jesus to learn more about Him!</p>';
+                }
+            } else {
+                // Hybrid: try Jesus first, then character, then curated, then AI
+                const jesusInfo_result = getJesusInfo(question);
+                if (jesusInfo_result) {
+                    output = jesusInfo_result.html;
+                    topicKey = 'jesus';
+                } else {
+                    const characterInfo = getCharacterInfo(question);
+                    if (characterInfo) {
+                        output = characterInfo.html;
+                        topicKey = characterInfo.characterKey;
+                    } else {
+                        output = getCuratedAnswer(question);
+                        topicKey = 'curated';
+                        if (!output) {
+                            output = getAIAnswer(question);
+                            topicKey = 'ai';
+                        }
                     }
                 }
             }
@@ -2434,6 +2800,7 @@
             document.getElementById('question').value = '';
             document.getElementById('answerResult').innerHTML = '';
             document.getElementById('personalNotesSection').style.display = 'none';
+            document.getElementById('profanityWarning').classList.remove('show');
         }
 
         // ==================== USER AUTHENTICATION (simplified) ====================
@@ -2870,6 +3237,16 @@
             const text = document.getElementById('noteInput').value.trim();
             if (!text) return;
             
+            // Check for profanity in notes
+            if (profanityFilterEnabled && checkProfanity(text)) {
+                if (autoBlockEnabled) {
+                    showToast('⚠️ Note contains inappropriate language and was not saved');
+                    return;
+                } else if (notifyOnProfanity) {
+                    showToast('⚠️ Note contains potentially inappropriate language');
+                }
+            }
+            
             if (!currentUser.notes) currentUser.notes = [];
             
             currentUser.notes.unshift({
@@ -3146,15 +3523,27 @@
             setFontSize('medium');
             setSearchMode('hybrid');
             setConfidenceThreshold(0.6);
+            
+            // Reset profanity filter settings
+            profanityFilterEnabled = true;
+            autoBlockEnabled = true;
+            notifyOnProfanity = true;
+            document.getElementById('profanityFilter').checked = true;
+            document.getElementById('autoBlock').checked = true;
+            document.getElementById('notifyOnProfanity').checked = true;
+            localStorage.setItem('profanityFilterEnabled', 'true');
+            localStorage.setItem('autoBlockEnabled', 'true');
+            localStorage.setItem('notifyOnProfanity', 'true');
+            
             showToast('Settings reset');
         }
 
         function showPrivacyPolicy() {
-            alert('Privacy Policy: Your data is stored locally on your device. We do not collect or share any personal information.');
+            alert('Privacy Policy: Your data is stored locally on your device. We do not collect or share any personal information. Profanity filter settings help maintain a respectful environment.');
         }
 
         function showTerms() {
-            alert('Terms of Service: This app is for personal Bible study and spiritual growth. All Bible content is from the King James Version.');
+            alert('Terms of Service: This app is for personal Bible study and spiritual growth. All Bible content is from the King James Version. Users are expected to maintain respectful communication.');
         }
 
         // Initialize
