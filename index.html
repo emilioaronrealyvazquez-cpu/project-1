@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Exercise Enforcer - Tabs</title>
+    <title>Blood Enforcer - Dark Custom Exercise Tracker</title>
     <style>
         * {
             box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Courier New', 'Monaco', 'Monospace', system-ui, monospace;
         }
 
         body {
-            background: linear-gradient(145deg, #1a2a3a 0%, #0f1a24 100%);
+            background: #000000;
             min-height: 100vh;
             margin: 0;
             padding: 16px;
@@ -20,15 +20,15 @@
             align-items: center;
         }
 
-        /* main app container */
+        /* main app container - dark blood theme */
         .app-container {
             max-width: 700px;
             width: 100%;
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(2px);
+            background: #0a0000;
             border-radius: 40px;
             padding: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+            border: 1px solid #8b0000;
         }
 
         /* header */
@@ -40,105 +40,125 @@
         h1 {
             font-size: 1.8rem;
             margin: 0;
-            background: linear-gradient(135deg, #FFD166, #FF9F4A);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 5px #8b0000;
+            letter-spacing: 2px;
         }
 
         .sub {
-            color: #b9d8f0;
-            font-size: 0.75rem;
+            color: #cc3333;
+            font-size: 0.7rem;
             margin-top: 4px;
+            font-style: italic;
         }
 
-        /* top bar with date and reset */
+        /* top bar */
         .top-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #0b1219aa;
+            background: #1a0000;
             padding: 10px 16px;
             border-radius: 50px;
             margin-bottom: 20px;
-            backdrop-filter: blur(4px);
+            border: 1px solid #8b0000;
         }
 
         .date-badge {
-            background: #2c3e44;
+            background: #2a0000;
             padding: 5px 12px;
             border-radius: 30px;
             font-size: 0.8rem;
-            font-weight: 500;
-            color: #f0f3f8;
+            font-weight: bold;
+            color: #ff4444;
+            border: 1px solid #8b0000;
         }
 
         .reset-btn {
-            background: #2c3e50;
-            border: none;
+            background: #2a0000;
+            border: 1px solid #8b0000;
             padding: 5px 14px;
             border-radius: 30px;
-            color: #ffb347;
+            color: #ff6666;
             font-weight: bold;
             font-size: 0.75rem;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #3a0000;
+            color: #ff0000;
         }
 
         /* add exercise form */
         .add-exercise {
-            background: #101c26cc;
+            background: #1a0000;
             border-radius: 28px;
             padding: 16px;
             margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            border: 1px solid #8b0000;
         }
 
         .input-group {
             flex: 2;
             min-width: 140px;
+            margin-bottom: 10px;
         }
 
         .input-group label {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
             font-weight: bold;
-            color: #9bc2e6;
+            color: #ff6666;
             display: block;
             margin-bottom: 4px;
         }
 
-        .input-group input, .input-group textarea {
+        .input-group input, .input-group textarea, .input-group select {
             width: 100%;
-            background: #1f2e38;
-            border: 1px solid #3c627a;
+            background: #0a0000;
+            border: 1px solid #8b0000;
             padding: 8px 12px;
-            border-radius: 24px;
-            color: white;
+            border-radius: 20px;
+            color: #ff4444;
             font-size: 0.85rem;
             outline: none;
         }
 
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: #ff0000;
+            box-shadow: 0 0 8px rgba(255,0,0,0.3);
+        }
+
         .add-btn {
-            background: #FF9F4A;
+            background: #8b0000;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 30px;
             font-weight: bold;
             font-size: 0.85rem;
             cursor: pointer;
-            align-self: flex-end;
+            color: #ffffff;
+            margin-top: 8px;
+            width: 100%;
+            transition: all 0.2s;
         }
 
-        /* ----- TABS (mobile friendly) ----- */
+        .add-btn:hover {
+            background: #ff0000;
+            box-shadow: 0 0 15px rgba(255,0,0,0.5);
+        }
+
+        /* tabs */
         .tabs {
             display: flex;
             gap: 8px;
             margin-bottom: 16px;
-            background: #0a1118;
+            background: #1a0000;
             padding: 6px;
             border-radius: 50px;
+            border: 1px solid #8b0000;
         }
 
         .tab {
@@ -146,21 +166,22 @@
             text-align: center;
             padding: 10px 8px;
             border-radius: 40px;
-            font-weight: 600;
+            font-weight: bold;
             font-size: 0.9rem;
             cursor: pointer;
-            transition: all 0.2s ease;
-            color: #9aaebf;
+            transition: all 0.2s;
+            color: #cc6666;
             background: transparent;
         }
 
         .tab.active {
-            background: #FF9F4A;
-            color: #1a2a2f;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: #8b0000;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(255,0,0,0.5);
+            text-shadow: none;
         }
 
-        /* exercise list container */
+        /* exercise list */
         .exercises-list {
             display: flex;
             flex-direction: column;
@@ -171,42 +192,57 @@
             padding-right: 4px;
         }
 
+        /* scrollbar styling */
+        .exercises-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .exercises-list::-webkit-scrollbar-track {
+            background: #1a0000;
+        }
+        .exercises-list::-webkit-scrollbar-thumb {
+            background: #8b0000;
+            border-radius: 10px;
+        }
+
         /* exercise card */
         .exercise-card {
-            background: #0f1820e6;
-            border-radius: 24px;
+            background: #1a0000;
+            border-radius: 20px;
             padding: 12px 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            border-left: 6px solid #ff9f4a;
+            border-left: 6px solid #ff0000;
             transition: all 0.2s;
+            border: 1px solid #8b0000;
         }
 
         .exercise-card.completed {
-            opacity: 0.75;
-            border-left-color: #2ecc71;
-            background: #0b1a1fd9;
+            opacity: 0.6;
+            border-left-color: #660000;
+            background: #0a0000;
         }
 
         .check-box {
             width: 36px;
             height: 36px;
-            background: #1f3a44;
+            background: #2a0000;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             font-size: 1.3rem;
-            color: white;
+            color: #ff6666;
             flex-shrink: 0;
             transition: 0.1s;
+            border: 1px solid #8b0000;
         }
 
         .check-box.checked {
-            background: #2ecc71;
-            box-shadow: 0 0 6px #2ecc71;
+            background: #8b0000;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(255,0,0,0.5);
         }
 
         .exercise-info {
@@ -217,44 +253,56 @@
             font-weight: bold;
             font-size: 1rem;
             word-break: break-word;
+            color: #ff4444;
         }
 
-        .punishment-preview {
+        .punishment-preview, .priority-preview {
             font-size: 0.7rem;
-            color: #ffae70;
+            color: #cc6666;
             margin-top: 4px;
         }
 
+        .priority-preview {
+            color: #ff8888;
+            font-weight: bold;
+        }
+
         .delete-exercise {
-            background: #3a2c2c;
-            border: none;
-            color: #ff8a7a;
+            background: #2a0000;
+            border: 1px solid #8b0000;
+            color: #ff6666;
             font-size: 1.1rem;
             padding: 6px 12px;
             border-radius: 30px;
             cursor: pointer;
+            transition: all 0.2s;
         }
 
-        /* empty state */
+        .delete-exercise:hover {
+            background: #8b0000;
+            color: #ffffff;
+        }
+
         .empty-state {
             text-align: center;
-            color: #8aaec0;
+            color: #cc6666;
             padding: 40px 20px;
             font-size: 0.9rem;
         }
 
         /* consequence area */
         .consequence-area {
-            background: #00000066;
+            background: #0a0000;
             border-radius: 28px;
             padding: 16px;
-            border-top: 2px solid #ff7b2c;
+            border: 2px solid #8b0000;
+            margin-top: 10px;
         }
 
         .consequence-title {
             font-weight: bold;
             font-size: 0.85rem;
-            color: #ffaa66;
+            color: #ff4444;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -262,12 +310,13 @@
         }
 
         #punishmentMessage {
-            background: #1f1a15;
+            background: #1a0000;
             padding: 12px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: #ffc285;
+            color: #ff6666;
             word-break: break-word;
+            border: 1px solid #8b0000;
         }
 
         .action-buttons {
@@ -278,21 +327,73 @@
         }
 
         .action-buttons button {
-            background: #2c2b2b;
-            border: none;
+            background: #1a0000;
+            border: 1px solid #8b0000;
             padding: 6px 14px;
             border-radius: 30px;
             font-size: 0.7rem;
             font-weight: bold;
             cursor: pointer;
-            color: #ddd;
+            color: #ff6666;
+            transition: all 0.2s;
+        }
+
+        .action-buttons button:hover {
+            background: #8b0000;
+            color: #ffffff;
         }
 
         .footer-note {
             font-size: 0.6rem;
             text-align: center;
             margin-top: 16px;
-            color: #8aaec0;
+            color: #993333;
+        }
+
+        /* customization panel */
+        .customization-panel {
+            background: #1a0000;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #8b0000;
+        }
+
+        .custom-title {
+            color: #ff4444;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .custom-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .custom-field {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .custom-field label {
+            font-size: 0.65rem;
+            color: #cc6666;
+            display: block;
+        }
+
+        .custom-field input, .custom-field select {
+            width: 100%;
+            background: #0a0000;
+            border: 1px solid #8b0000;
+            padding: 6px 10px;
+            border-radius: 15px;
+            color: #ff4444;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 500px) {
@@ -305,7 +406,6 @@
             .check-box {
                 width: 32px;
                 height: 32px;
-                font-size: 1.1rem;
             }
         }
     </style>
@@ -313,57 +413,106 @@
 <body>
 <div class="app-container">
     <div class="header">
-        <h1>💪 EXERCISE ENFORCER</h1>
-        <div class="sub">✅ TABS: Completed vs Incomplete • ⚡ Consequences</div>
+        <h1>🩸 BLOOD ENFORCER 🩸</h1>
+        <div class="sub">CUSTOM EXERCISES • BLOOD PUNISHMENTS • NO MERCY</div>
     </div>
 
     <div class="top-bar">
         <div class="date-badge" id="currentDate"></div>
-        <button class="reset-btn" id="resetDayBtn">⟳ Reset Today</button>
+        <button class="reset-btn" id="resetDayBtn">⟳ RESET TODAY</button>
     </div>
 
-    <!-- add new exercise -->
+    <!-- CUSTOMIZATION PANEL - Global Settings -->
+    <div class="customization-panel">
+        <div class="custom-title">⚙️ CUSTOMIZATION SETTINGS</div>
+        <div class="custom-grid">
+            <div class="custom-field">
+                <label>🎯 DEFAULT PRIORITY</label>
+                <select id="defaultPriority">
+                    <option value="Low">Low 💚</option>
+                    <option value="Medium" selected>Medium 💛</option>
+                    <option value="High">High 🧡</option>
+                    <option value="Critical">Critical ❤️</option>
+                </select>
+            </div>
+            <div class="custom-field">
+                <label>💀 DEFAULT PUNISHMENT TYPE</label>
+                <select id="defaultPunishmentType">
+                    <option value="Physical">Physical (burpees/pushups)</option>
+                    <option value="Financial">Financial (donation/fine)</option>
+                    <option value="Social">Social (no social media)</option>
+                    <option value="Food">Food (no sweets/snacks)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- add new exercise with more options -->
     <div class="add-exercise">
         <div class="input-group">
-            <label>🏋️ EXERCISE</label>
-            <input type="text" id="exerciseName" placeholder="e.g., 20 push-ups" autocomplete="off">
+            <label>🏋️ EXERCISE NAME *</label>
+            <input type="text" id="exerciseName" placeholder="e.g., 50 push-ups, 5km run" autocomplete="off">
         </div>
         <div class="input-group">
-            <label>⚠️ PUNISHMENT</label>
-            <textarea id="punishmentText" rows="1" placeholder="e.g., No dessert, 50 burpees"></textarea>
+            <label>⚠️ CUSTOM PUNISHMENT (leave blank for default)</label>
+            <textarea id="punishmentText" rows="1" placeholder="e.g., 100 burpees, $10 fine, no games for 2 days"></textarea>
         </div>
-        <button class="add-btn" id="addExerciseBtn">➕ ADD</button>
+        <div class="custom-grid" style="margin-top: 8px;">
+            <div class="custom-field">
+                <label>🎯 PRIORITY</label>
+                <select id="exercisePriority">
+                    <option value="Low">Low 💚</option>
+                    <option value="Medium" selected>Medium 💛</option>
+                    <option value="High">High 🧡</option>
+                    <option value="Critical">Critical ❤️</option>
+                </select>
+            </div>
+            <div class="custom-field">
+                <label>📅 REPETITION</label>
+                <select id="exerciseRepetition">
+                    <option value="daily">Daily</option>
+                    <option value="weekdays">Weekdays only</option>
+                    <option value="weekends">Weekends only</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+        </div>
+        <button class="add-btn" id="addExerciseBtn">➕ ADD BLOOD TASK</button>
     </div>
 
-    <!-- TABS (complete / incomplete) -->
+    <!-- TABS -->
     <div class="tabs">
-        <div class="tab" data-tab="incomplete">❌ Incomplete</div>
-        <div class="tab" data-tab="complete">✅ Complete</div>
+        <div class="tab" data-tab="incomplete">❌ INCOMPLETE</div>
+        <div class="tab" data-tab="complete">✅ COMPLETE</div>
     </div>
 
     <!-- dynamic exercise list -->
     <div id="exercisesContainer" class="exercises-list">
-        <div class="empty-state">✨ Add your first exercise ✨</div>
+        <div class="empty-state">💀 Add your first blood exercise 💀</div>
     </div>
 
     <!-- punishment zone -->
     <div class="consequence-area">
-        <div class="consequence-title">🔥 ACTIVE CONSEQUENCE 🔥</div>
-        <div id="punishmentMessage">😇 No punishment! Complete all tasks.</div>
+        <div class="consequence-title">🔥 ACTIVE BLOOD CONSEQUENCE 🔥</div>
+        <div id="punishmentMessage">😈 No punishment... yet. Complete your tasks or face the blood price.</div>
         <div class="action-buttons">
-            <button id="forcePunishBtn">💀 Force punishment</button>
-            <button id="clearPunishBtn">✨ Clear manually</button>
+            <button id="forcePunishBtn">💀 FORCE PUNISHMENT</button>
+            <button id="clearPunishBtn">✨ CLEAR MANUALLY</button>
         </div>
     </div>
-    <div class="footer-note">📱 Tap checkbox to complete • Swipe list • New day auto-resets checks</div>
+    <div class="footer-note">🩸 Tap checkbox to complete • Priority affects punishment weight • New day auto-resets</div>
 </div>
 
 <script>
-    // Data model
-    let exercises = [];           // each: { id, name, punishment, completed }
-    let currentTab = "incomplete";  // 'incomplete' or 'complete'
+    // Data model - enhanced with more fields
+    let exercises = [];
+    let currentTab = "incomplete";
     let currentDate = new Date().toLocaleDateString('en-CA');
     let punishmentActive = false;
+    
+    // Customization defaults
+    let defaultPriority = "Medium";
+    let defaultPunishmentType = "Physical";
 
     // DOM elements
     const exercisesContainer = document.getElementById('exercisesContainer');
@@ -376,11 +525,16 @@
     const forcePunishBtn = document.getElementById('forcePunishBtn');
     const clearPunishBtn = document.getElementById('clearPunishBtn');
     const tabs = document.querySelectorAll('.tab');
+    const defaultPrioritySelect = document.getElementById('defaultPriority');
+    const defaultPunishmentTypeSelect = document.getElementById('defaultPunishmentType');
+    const exercisePrioritySelect = document.getElementById('exercisePriority');
+    const exerciseRepetitionSelect = document.getElementById('exerciseRepetition');
 
     // Storage keys
-    const STORAGE_EXERCISES = "custom_exercises_list";
-    const STORAGE_DATE = "last_saved_date";
-    const STORAGE_PUNISHMENT_ACTIVE = "punishment_active_status";
+    const STORAGE_EXERCISES = "blood_exercises_list";
+    const STORAGE_DATE = "blood_last_date";
+    const STORAGE_PUNISHMENT_ACTIVE = "blood_punishment_status";
+    const STORAGE_SETTINGS = "blood_settings";
 
     // Helper: escape HTML
     function escapeHtml(str) {
@@ -393,7 +547,49 @@
         });
     }
 
-    // Format date display
+    // Generate default punishment based on type and priority
+    function generateDefaultPunishment(priority, type) {
+        const punishments = {
+            Physical: {
+                Low: "10 jumping jacks",
+                Medium: "25 burpees",
+                High: "50 push-ups + 20 squats",
+                Critical: "100 burpees + 2 min plank"
+            },
+            Financial: {
+                Low: "$1 fine",
+                Medium: "$5 donation",
+                High: "$10 penalty",
+                Critical: "$25 to charity"
+            },
+            Social: {
+                Low: "No social media 1 hour",
+                Medium: "No social media 4 hours",
+                High: "No social media rest of day",
+                Critical: "No phone for 24 hours"
+            },
+            Food: {
+                Low: "No candy",
+                Medium: "No dessert",
+                High: "No sugar all day",
+                Critical: "No sweets for 3 days"
+            }
+        };
+        return punishments[type]?.[priority] || "25 burpees";
+    }
+
+    // Get priority color/icon
+    function getPriorityIcon(priority) {
+        const icons = {
+            'Low': '💚',
+            'Medium': '💛',
+            'High': '🧡',
+            'Critical': '❤️'
+        };
+        return icons[priority] || '💛';
+    }
+
+    // Format date
     function formatDateReadable(dateStr) {
         const parts = dateStr.split('-');
         if(parts.length !== 3) return dateStr;
@@ -401,7 +597,7 @@
         return dateObj.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
     }
 
-    // Update punishment flag based on exercises
+    // Update punishment flag
     function updatePunishmentFromExercises() {
         if (!exercises.length) {
             punishmentActive = false;
@@ -415,29 +611,30 @@
 
     function renderPunishmentMessage() {
         if (!exercises.length) {
-            punishmentMessageDiv.innerHTML = "📭 No exercises yet. Add tasks to see consequences.";
+            punishmentMessageDiv.innerHTML = "💀 No exercises yet. Add tasks to see blood consequences.";
             return;
         }
 
         if (punishmentActive) {
             const incomplete = exercises.filter(ex => !ex.completed);
             if (incomplete.length === 0) {
-                punishmentMessageDiv.innerHTML = "✅ ALL DONE! No punishment today. 🎉";
+                punishmentMessageDiv.innerHTML = "✅ ALL TASKS COMPLETE! Your soul is safe... for now. 🩸";
             } else {
-                let html = `<strong>⚠️ MISSED ${incomplete.length} TASK(S):</strong><br>`;
+                let html = `<strong>⚠️ BLOOD PRICE FOR ${incomplete.length} MISSED TASK(S):</strong><br><br>`;
                 incomplete.forEach(ex => {
-                    const punish = ex.punishment?.trim() || "Default punishment";
-                    html += `‣ ${escapeHtml(ex.name)} → ${escapeHtml(punish)}<br>`;
+                    let punish = ex.punishment?.trim() || generateDefaultPunishment(ex.priority, defaultPunishmentType);
+                    const priorityIcon = getPriorityIcon(ex.priority);
+                    html += `🩸 ${priorityIcon} ${escapeHtml(ex.name)} → <span style="color:#ff0000;">${escapeHtml(punish)}</span><br>`;
                 });
-                html += `<br><span style="color:#ff9f4a;">🔥 Do them or face the consequence!</span>`;
+                html += `<br><span style="color:#ff4444;">🔥 FACE THE CONSEQUENCE OR COMPLETE YOUR TASKS 🔥</span>`;
                 punishmentMessageDiv.innerHTML = html;
             }
         } else {
-            punishmentMessageDiv.innerHTML = "✨ PERFECT! All exercises completed. No punishment. ✨";
+            punishmentMessageDiv.innerHTML = "✨ PERFECT! All exercises completed. Blood price avoided. ✨";
         }
     }
 
-    // Render exercises based on active tab
+    // Render exercises based on tab
     function renderExercises() {
         if (!exercisesContainer) return;
 
@@ -448,8 +645,12 @@
             filteredExercises = exercises.filter(ex => ex.completed === false);
         }
 
+        // Sort by priority (Critical > High > Medium > Low)
+        const priorityOrder = { 'Critical': 0, 'High': 1, 'Medium': 2, 'Low': 3 };
+        filteredExercises.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+
         if (filteredExercises.length === 0) {
-            let message = currentTab === "complete" ? "🎉 No completed exercises yet. Keep going!" : "🏋️ No incomplete tasks. Great job!";
+            let message = currentTab === "complete" ? "🎉 No completed exercises yet. Bleed for your gains!" : "🏋️ No incomplete tasks. You're a beast!";
             exercisesContainer.innerHTML = `<div class="empty-state">${message}</div>`;
             return;
         }
@@ -459,7 +660,8 @@
             const checkedClass = ex.completed ? 'checked' : '';
             const completedCardClass = ex.completed ? 'completed' : '';
             const checkIcon = ex.completed ? '✓' : '○';
-            const punishmentDisplay = ex.punishment?.trim() || "No punishment set";
+            const punishmentDisplay = ex.punishment?.trim() || generateDefaultPunishment(ex.priority, defaultPunishmentType);
+            const priorityIcon = getPriorityIcon(ex.priority);
             
             html += `
                 <div class="exercise-card ${completedCardClass}" data-id="${ex.id}">
@@ -467,8 +669,10 @@
                         ${checkIcon}
                     </div>
                     <div class="exercise-info">
-                        <div class="exercise-name">${escapeHtml(ex.name)}</div>
-                        <div class="punishment-preview">⚡ ${escapeHtml(punishmentDisplay)}</div>
+                        <div class="exercise-name">${priorityIcon} ${escapeHtml(ex.name)}</div>
+                        <div class="priority-preview">🎯 Priority: ${ex.priority} ${priorityIcon}</div>
+                        <div class="punishment-preview">⚡ Punishment: ${escapeHtml(punishmentDisplay)}</div>
+                        <div class="punishment-preview">📅 ${ex.repetition}</div>
                     </div>
                     <button class="delete-exercise" data-id="${ex.id}" data-delete>🗑️</button>
                 </div>
@@ -485,7 +689,7 @@
             exercise.completed = !exercise.completed;
             saveExercisesToLocal();
             updatePunishmentFromExercises();
-            renderExercises();  // re-render current tab
+            renderExercises();
         }
     }
 
@@ -497,33 +701,43 @@
         renderExercises();
     }
 
-    // Add new exercise
+    // Add new exercise with all custom fields
     function addNewExercise() {
         const name = exerciseNameInput.value.trim();
-        let punishment = punishmentTextarea.value.trim();
+        let customPunishment = punishmentTextarea.value.trim();
+        const priority = exercisePrioritySelect.value;
+        const repetition = exerciseRepetitionSelect.value;
 
         if (name === "") {
-            alert("Please enter an exercise name!");
+            alert("Enter an exercise name or face the blood price!");
             return;
         }
-        if (punishment === "") {
-            punishment = "10 extra burpees";
+
+        // Generate punishment if not provided
+        let finalPunishment = customPunishment;
+        if (!finalPunishment) {
+            finalPunishment = generateDefaultPunishment(priority, defaultPunishmentType);
         }
 
         const newId = Date.now() + Math.floor(Math.random() * 10000);
         exercises.push({
             id: newId,
             name: name,
-            punishment: punishment,
+            punishment: finalPunishment,
             completed: false,
+            priority: priority,
+            repetition: repetition,
+            createdAt: new Date().toISOString()
         });
 
+        // Clear inputs but keep defaults
         exerciseNameInput.value = "";
         punishmentTextarea.value = "";
+        exercisePrioritySelect.value = defaultPriority;
         
         saveExercisesToLocal();
         updatePunishmentFromExercises();
-        // after adding, switch to incomplete tab to see new task
+        
         if (currentTab !== "incomplete") {
             currentTab = "incomplete";
             updateTabUI();
@@ -531,7 +745,7 @@
         renderExercises();
     }
 
-    // Reset all completions for today
+    // Reset all completions
     function resetTodaysChecks() {
         if (exercises.length === 0) return;
         exercises.forEach(ex => { ex.completed = false; });
@@ -540,10 +754,10 @@
         renderExercises();
     }
 
-    // Manual punishment override
+    // Manual punishment
     function forcePunishment() {
         if (exercises.length === 0) {
-            alert("Add exercises first.");
+            alert("Add blood exercises first.");
             return;
         }
         punishmentActive = true;
@@ -575,7 +789,30 @@
         });
     }
 
-    // LocalStorage save/load with date reset logic
+    // Save settings
+    function saveSettings() {
+        const settings = {
+            defaultPriority: defaultPriority,
+            defaultPunishmentType: defaultPunishmentType
+        };
+        localStorage.setItem(STORAGE_SETTINGS, JSON.stringify(settings));
+    }
+
+    function loadSettings() {
+        const saved = localStorage.getItem(STORAGE_SETTINGS);
+        if (saved) {
+            try {
+                const settings = JSON.parse(saved);
+                defaultPriority = settings.defaultPriority || "Medium";
+                defaultPunishmentType = settings.defaultPunishmentType || "Physical";
+                defaultPrioritySelect.value = defaultPriority;
+                defaultPunishmentTypeSelect.value = defaultPunishmentType;
+                exercisePrioritySelect.value = defaultPriority;
+            } catch(e) {}
+        }
+    }
+
+    // Save/load data
     function saveExercisesToLocal() {
         localStorage.setItem(STORAGE_EXERCISES, JSON.stringify(exercises));
         localStorage.setItem(STORAGE_DATE, currentDate);
@@ -590,17 +827,16 @@
         const todayStr = new Date().toLocaleDateString('en-CA');
         
         if (savedDate !== todayStr) {
-            // New day: keep exercises but reset completions
             const savedExercisesRaw = localStorage.getItem(STORAGE_EXERCISES);
             if (savedExercisesRaw) {
                 try {
                     const parsed = JSON.parse(savedExercisesRaw);
                     if (Array.isArray(parsed)) {
                         exercises = parsed.map(ex => ({
-                            id: ex.id,
-                            name: ex.name,
-                            punishment: ex.punishment,
-                            completed: false
+                            ...ex,
+                            completed: false,
+                            priority: ex.priority || "Medium",
+                            repetition: ex.repetition || "daily"
                         }));
                     } else {
                         exercises = [];
@@ -613,12 +849,15 @@
             currentDate = todayStr;
             saveExercisesToLocal();
         } else {
-            // Same day: load everything normally
             const storedExercises = localStorage.getItem(STORAGE_EXERCISES);
             if (storedExercises) {
                 try {
                     exercises = JSON.parse(storedExercises);
                     if (!Array.isArray(exercises)) exercises = [];
+                    exercises.forEach(ex => {
+                        if (!ex.priority) ex.priority = "Medium";
+                        if (!ex.repetition) ex.repetition = "daily";
+                    });
                 } catch(e) { exercises = []; }
             } else {
                 exercises = [];
@@ -632,7 +871,6 @@
             }
         }
         
-        // Final consistency check
         if (exercises.length > 0) {
             const trulyAllComplete = exercises.every(e => e.completed === true);
             if (trulyAllComplete && punishmentActive === true) punishmentActive = false;
@@ -651,7 +889,20 @@
         dateDisplay.innerText = `📅 ${formatDateReadable(currentDate)}`;
     }
 
-    // Event delegation for check & delete
+    // Settings change listeners
+    defaultPrioritySelect.addEventListener('change', () => {
+        defaultPriority = defaultPrioritySelect.value;
+        saveSettings();
+        renderExercises();
+    });
+    
+    defaultPunishmentTypeSelect.addEventListener('change', () => {
+        defaultPunishmentType = defaultPunishmentTypeSelect.value;
+        saveSettings();
+        renderExercises();
+    });
+
+    // Event delegation
     exercisesContainer.addEventListener('click', (e) => {
         const toggleBtn = e.target.closest('[data-toggle]');
         if (toggleBtn) {
@@ -675,7 +926,7 @@
         });
     });
 
-    // Buttons
+    // Button listeners
     addBtn.addEventListener('click', addNewExercise);
     resetBtn.addEventListener('click', resetTodaysChecks);
     forcePunishBtn.addEventListener('click', forcePunishment);
@@ -685,14 +936,9 @@
     exerciseNameInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') addNewExercise();
     });
-    punishmentTextarea.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            addNewExercise();
-        }
-    });
 
     // Initialize
+    loadSettings();
     loadData();
 </script>
 </body>
